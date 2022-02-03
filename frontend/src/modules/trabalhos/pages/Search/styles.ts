@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Accordion, AccordionSummary } from '@mui/material';
 import { blue, grey } from '@mui/material/colors';
 
 export const Publication = styled.div`
@@ -73,4 +74,43 @@ export const ResultsInfo = styled.div`
 export const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
+`;
+
+export const FilterContainer = styled(Accordion)`
+  width: 100%;
+`;
+
+export const FilterTitle = styled(AccordionSummary)`
+  background-color: ${blue[600]};
+  color: #fff;
+
+  text-align: center;
+
+  border-radius: 5px;
+
+  > div {
+    display: flex;
+    justify-content: center;
+
+    &.Mui-expanded {
+      margin: 0;
+    }
+  }
+
+  &.Mui-expanded {
+    min-height: 3em;
+
+    border-radius: 5px 5px 0 0;
+  }
+`;
+
+export const FilterContent = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  > button {
+    width: 100%;
+    margin-top: 1em;
+    align-self: center;
+  }
 `;

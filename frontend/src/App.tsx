@@ -15,7 +15,7 @@ export function App() {
         <BrowserRouter>
           <Navbar />
 
-          <Container sx={{ margin: '2em 0' }} maxWidth="xl">
+          <Container sx={{ margin: '2em auto' }} maxWidth="xl">
             <Router />
           </Container>
         </BrowserRouter>

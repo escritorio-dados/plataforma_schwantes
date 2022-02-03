@@ -25,7 +25,7 @@ type IUseWithInput<T, D> = {
   send(input: D): Promise<ISendWithInput<T>>;
 };
 
-type IUseGetParams = { url: string; config?: AxiosRequestConfig; lazy: boolean };
+type IUseGetParams = { url: string; config?: AxiosRequestConfig; lazy?: boolean };
 
 export function useGet<T>({ url, lazy, config }: IUseGetParams): IUseGet<T> {
   const [data, setData] = useState<T>();
