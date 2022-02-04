@@ -1,7 +1,6 @@
 import {
   AccordionDetails,
   Autocomplete,
-  Box,
   Button,
   FormControl,
   MenuItem,
@@ -25,6 +24,7 @@ import {
   PaginationContainer,
   Publication,
   PublicationTags,
+  ResponsiveContent,
   ResultsInfo,
 } from './styles';
 
@@ -38,15 +38,32 @@ type IPublicationFormat = {
 };
 
 type IFilters = {
-  text: string;
-  tipos_trabalho: string[];
-  tipo_instituicao?: string[];
-  estado?: string[];
-  instituicao?: string[];
-  programa?: string[];
-  campo?: string[];
-  min_ano?: number;
-  max_ano?: number;
+  search: string;
+  min_ano: string;
+  max_ano: string;
+  tipo_trabalho: string[];
+  tipo_instituicao: string[];
+  estado: string[];
+  instituicao: string[];
+  programa: string[];
+  campo: string[];
+};
+
+const filterFields = {
+  array: ['tipo_trabalho', 'tipo_instituicao', 'estado', 'instituicao', 'programa', 'campo'],
+  unique: ['search', 'min_ano', 'max_ano'],
+};
+
+const defaultFilters: IFilters = {
+  campo: [],
+  estado: [],
+  instituicao: [],
+  max_ano: '',
+  min_ano: '',
+  programa: [],
+  search: '',
+  tipo_instituicao: [],
+  tipo_trabalho: [],
 };
 
 export function Search() {
@@ -64,15 +81,17 @@ export function Search() {
     return 'recente';
   });
   const [filters, setFilters] = useState<IFilters>(() => {
-    return {
-      text: searchParams.get('query') || '',
-      tipos_trabalho: [],
-      tipo_instituicao: [],
-      estado: [],
-      instituicao: [],
-      programa: [],
-      campo: [],
-    };
+    const filtersObject = {} as any;
+
+    filterFields.array.forEach((field) => {
+      filtersObject[field] = searchParams.getAll(field).map(decodeURI);
+    });
+
+    filterFields.unique.forEach((field) => {
+      filtersObject[field] = decodeURI(searchParams.get(field) || '');
+    });
+
+    return filtersObject;
   });
 
   const { toast } = useToast();
@@ -154,6 +173,32 @@ export function Search() {
     }));
   }, []);
 
+  const applyFilters = useCallback(() => {
+    Object.entries(filters).forEach(([key, filter]) => {
+      if (Array.isArray(filter)) {
+        searchParams.delete(key);
+
+        filter.forEach((value) => {
+          searchParams.append(key, encodeURI(value));
+        });
+      } else {
+        searchParams.set(key, encodeURI(filter));
+      }
+    });
+
+    setSearchParams(searchParams);
+  }, [filters, searchParams, setSearchParams]);
+
+  const clearFilters = useCallback(() => {
+    setFilters(defaultFilters);
+
+    Object.keys(defaultFilters).forEach((key) => {
+      searchParams.delete(key);
+    });
+
+    setSearchParams(searchParams);
+  }, [searchParams, setSearchParams]);
+
   if (loading) return <Loading loading={loading} />;
 
   if (filterLoading) return <Loading loading={filterLoading} />;
@@ -162,103 +207,237 @@ export function Search() {
     <>
       {/* Informações sobre o resultado */}
       <ResultsInfo>
-        <div className="total">
-          <Typography component="span">{totalResults}</Typography>
+        <div className="filter-area" />
 
-          <Typography>Resultados Encontrados</Typography>
-        </div>
+        <div className="results">
+          <div className="total">
+            <Typography component="span">{totalResults}</Typography>
 
-        <div className="sort">
-          <FormControl fullWidth>
-            <Select id="demo-simple-select" value={sort} onChange={(e) => setSort(e.target.value)}>
-              <MenuItem value="recente">Mais Recentes</MenuItem>
-              <MenuItem value="antigo">Mais Antigos</MenuItem>
-            </Select>
-          </FormControl>
+            <Typography>Resultados Encontrados</Typography>
+          </div>
+
+          <div className="sort">
+            <FormControl fullWidth>
+              <Select
+                id="demo-simple-select"
+                value={sort}
+                onChange={(e) => setSort(e.target.value)}
+              >
+                <MenuItem value="recente">Mais Recentes</MenuItem>
+                <MenuItem value="antigo">Mais Antigos</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
         </div>
       </ResultsInfo>
 
-      {/* Filtro */}
-      <Box sx={{ marginBottom: '2em', display: { xs: 'flex', lg: 'none' } }}>
-        <FilterContainer
-          expanded={filterExpanded}
-          onChange={() => setFilterExpanded((old) => !old)}
-        >
-          <FilterTitle>
-            <Typography>Filtros</Typography>
-          </FilterTitle>
+      <ResponsiveContent>
+        <div className="filter">
+          {/* Filtro */}
+          <FilterContainer
+            expanded={filterExpanded}
+            onChange={() => setFilterExpanded((old) => !old)}
+          >
+            <FilterTitle>
+              <Typography>Filtros</Typography>
+            </FilterTitle>
 
-          <AccordionDetails>
-            <FilterContent>
-              <TextField
-                fullWidth
-                label="Pesquisar"
-                variant="outlined"
-                value={filters.text}
-                onBlur={(e) => updateFilters('text', e.target.value)}
-              />
-
-              {filterData && (
-                <Autocomplete
-                  multiple
-                  options={filterData.tipos_trabalho}
-                  value={filters.tipos_trabalho}
-                  onChange={(e, newValue) => updateFilters('tipos_trabalho', newValue)}
-                  filterSelectedOptions
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="Tipo de Trabalho"
-                      inputProps={{
-                        ...params.inputProps,
-                      }}
-                      sx={{ marginTop: '1em' }}
-                    />
-                  )}
+            <AccordionDetails>
+              <FilterContent>
+                <TextField
+                  fullWidth
+                  label="Pesquisar"
+                  variant="outlined"
+                  value={filters.search}
+                  onChange={(e) => updateFilters('search', e.target.value)}
                 />
-              )}
 
-              <Button className="filter" variant="contained">
-                Aplicar Filtros
-              </Button>
-            </FilterContent>
-          </AccordionDetails>
-        </FilterContainer>
-      </Box>
+                {filterData && (
+                  <>
+                    <Autocomplete
+                      multiple
+                      options={filterData.tipo_trabalho}
+                      value={filters.tipo_trabalho}
+                      onChange={(e, newValue) => updateFilters('tipo_trabalho', newValue)}
+                      filterSelectedOptions
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          label="Tipo de Trabalho"
+                          inputProps={{
+                            ...params.inputProps,
+                          }}
+                          sx={{ marginTop: '1em' }}
+                        />
+                      )}
+                    />
 
-      {/* Resultados */}
-      {publications.map((publication) => (
-        <Publication key={publication.id}>
-          <PublicationTags>
-            <Typography component="span" className="ano">
-              {publication.ano}
-            </Typography>
+                    <Autocomplete
+                      multiple
+                      options={filterData.campo}
+                      value={filters.campo}
+                      onChange={(e, newValue) => updateFilters('campo', newValue)}
+                      filterSelectedOptions
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          label="Campo"
+                          inputProps={{
+                            ...params.inputProps,
+                          }}
+                          sx={{ marginTop: '1em' }}
+                        />
+                      )}
+                    />
 
-            <Typography component="span" className="tipo">
-              {publication.tipo_trabalho}
-            </Typography>
-          </PublicationTags>
+                    <Autocomplete
+                      multiple
+                      options={filterData.tipo_instituicao}
+                      value={filters.tipo_instituicao}
+                      onChange={(e, newValue) => updateFilters('tipo_instituicao', newValue)}
+                      filterSelectedOptions
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          label="Tipo de Instituição"
+                          inputProps={{
+                            ...params.inputProps,
+                          }}
+                          sx={{ marginTop: '1em' }}
+                        />
+                      )}
+                    />
 
-          <Typography variant="h4" className="title">
-            {publication.titulo}
-          </Typography>
+                    <Autocomplete
+                      multiple
+                      options={filterData.instituicao}
+                      value={filters.instituicao}
+                      onChange={(e, newValue) => updateFilters('instituicao', newValue)}
+                      filterSelectedOptions
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          label="Instituição"
+                          inputProps={{
+                            ...params.inputProps,
+                          }}
+                          sx={{ marginTop: '1em' }}
+                        />
+                      )}
+                    />
 
-          <Typography className="autor">{publication.autor}</Typography>
+                    <Autocomplete
+                      multiple
+                      options={filterData.programa}
+                      value={filters.programa}
+                      onChange={(e, newValue) => updateFilters('programa', newValue)}
+                      filterSelectedOptions
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          label="Programa"
+                          inputProps={{
+                            ...params.inputProps,
+                          }}
+                          sx={{ marginTop: '1em' }}
+                        />
+                      )}
+                    />
 
-          <Typography className="resumo">{publication.resumo}</Typography>
-        </Publication>
-      ))}
+                    <Autocomplete
+                      multiple
+                      options={filterData.estado}
+                      value={filters.estado}
+                      onChange={(e, newValue) => updateFilters('estado', newValue)}
+                      filterSelectedOptions
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          label="Estado"
+                          inputProps={{
+                            ...params.inputProps,
+                          }}
+                          sx={{ marginTop: '1em' }}
+                        />
+                      )}
+                    />
 
-      {/* Páginação */}
-      <PaginationContainer>
-        <Pagination
-          variant="outlined"
-          shape="rounded"
-          count={totalPages}
-          page={page}
-          onChange={(e, p) => setPage(p)}
-        />
-      </PaginationContainer>
+                    <div className="ano">
+                      <TextField
+                        fullWidth
+                        sx={{ marginRight: '0.5em' }}
+                        label="Ano Inicial"
+                        variant="outlined"
+                        value={filters.min_ano}
+                        onChange={(e) =>
+                          updateFilters('min_ano', e.target.value.replace(/\D*/g, ''))
+                        }
+                        helperText={`EX: ${filterData.ano.min}`}
+                      />
+
+                      <TextField
+                        fullWidth
+                        label="Ano Final"
+                        variant="outlined"
+                        sx={{ marginLeft: '0.5em' }}
+                        value={filters.max_ano}
+                        onChange={(e) =>
+                          updateFilters('max_ano', e.target.value.replace(/\D*/g, ''))
+                        }
+                        helperText={`EX: ${filterData.ano.max}`}
+                      />
+                    </div>
+                  </>
+                )}
+
+                <Button className="filter" variant="contained" onClick={applyFilters}>
+                  Aplicar Filtros
+                </Button>
+
+                <Button className="clear" variant="contained" onClick={clearFilters}>
+                  Limpar
+                </Button>
+              </FilterContent>
+            </AccordionDetails>
+          </FilterContainer>
+        </div>
+
+        <div className="content">
+          {/* Resultados */}
+          {publications.map((publication) => (
+            <Publication key={publication.id}>
+              <PublicationTags>
+                <Typography component="span" className="ano">
+                  {publication.ano}
+                </Typography>
+
+                <Typography component="span" className="tipo">
+                  {publication.tipo_trabalho}
+                </Typography>
+              </PublicationTags>
+
+              <Typography variant="h4" className="title">
+                {publication.titulo}
+              </Typography>
+
+              <Typography className="autor">{publication.autor}</Typography>
+
+              <Typography className="resumo">{publication.resumo}</Typography>
+            </Publication>
+          ))}
+
+          {/* Páginação */}
+          <PaginationContainer>
+            <Pagination
+              variant="outlined"
+              shape="rounded"
+              count={totalPages}
+              page={page}
+              onChange={(e, p) => setPage(p)}
+            />
+          </PaginationContainer>
+        </div>
+      </ResponsiveContent>
     </>
   );
 }

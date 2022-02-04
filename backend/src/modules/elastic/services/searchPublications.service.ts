@@ -31,21 +31,54 @@ const sortTranslate = {
     field: 'ano',
     order: 'desc',
   },
+  score: {
+    field: '_score',
+    order: 'desc',
+  },
 };
 
 @Injectable()
 export class SearchPublicationsService {
-  async execute({ page, sort }: SearchPublicationsQuery): Promise<IResponseApi> {
+  async execute({
+    page,
+    sort,
+    search,
+    min_ano,
+    max_ano,
+    ...othersFilters
+  }: SearchPublicationsQuery): Promise<IResponseApi> {
     const { field, order } = sortTranslate[sort];
+
+    const noFilters = Object.values(othersFilters).length === 0 && !search && !min_ano && !max_ano;
+
+    const query = noFilters ? { match_all: {} } : ({ bool: {} } as any);
+
+    if (!noFilters) {
+      if (search) {
+        query.bool.must = [
+          {
+            multi_match: {
+              query: search,
+              type: 'phrase',
+              fields: [
+                'titulo',
+                'autor.autor_full_name',
+                'orientador.orientador_full_name',
+                'resumo',
+                'palavras_chave',
+              ],
+            },
+          },
+        ];
+      }
+    }
 
     const response = await elasticClient.search<IResponseElastic>({
       index: 'trabalhos',
       body: {
         from: (page - 1) * 10,
         size: 10,
-        query: {
-          match_all: {},
-        },
+        query,
         _source: ['ano', 'titulo', 'tipo_trabalho', 'resumo', 'autor.autor_full_name'],
         sort: [
           {

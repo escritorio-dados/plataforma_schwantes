@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Accordion, AccordionSummary } from '@mui/material';
-import { blue, grey } from '@mui/material/colors';
+import { blue, grey, red } from '@mui/material/colors';
 
 export const Publication = styled.div`
   border-bottom: 1px solid #ccc;
@@ -54,19 +54,40 @@ export const PublicationTags = styled.div`
 export const ResultsInfo = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-bottom: 2em;
 
-  .total {
+  > div.results {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
 
-    > span {
+    .total {
+      display: flex;
+      align-items: center;
+
+      > span {
+        display: block;
+        padding: 0.2em 0.6em;
+        background-color: ${grey[300]};
+        border-radius: 5px;
+        margin-right: 0.5em;
+      }
+    }
+
+    @media (min-width: 900px) {
+      width: 66%;
+    }
+  }
+
+  > div.filter-area {
+    display: none;
+
+    @media (min-width: 900px) {
       display: block;
-      padding: 0.2em 0.6em;
-      background-color: ${grey[300]};
-      border-radius: 5px;
-      margin-right: 0.5em;
+      width: 34%;
+      margin-right: 2em;
+      min-width: 300px;
     }
   }
 `;
@@ -112,5 +133,47 @@ export const FilterContent = styled.div`
     width: 100%;
     margin-top: 1em;
     align-self: center;
+  }
+
+  > button.clear {
+    background-color: ${red[400]};
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(0.95);
+    }
+  }
+
+  .ano {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 1em;
+  }
+`;
+
+export const ResponsiveContent = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 899px) {
+    > div.filter {
+      margin-bottom: 2em;
+    }
+  }
+
+  @media (min-width: 900px) {
+    flex-direction: row;
+
+    > div.filter {
+      width: 34%;
+      margin-right: 2em;
+      min-width: 300px;
+    }
+
+    > div.content {
+      width: 66%;
+    }
   }
 `;

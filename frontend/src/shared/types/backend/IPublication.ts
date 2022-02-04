@@ -20,7 +20,7 @@ export type ISearchFilters = {
   tipo_instituicao: string[];
   estado: string[];
   instituicao: string[];
-  tipos_trabalho: string[];
+  tipo_trabalho: string[];
   programa: string[];
   campo: string[];
   ano: { min: number; max: number };

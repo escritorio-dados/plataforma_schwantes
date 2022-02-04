@@ -11,7 +11,7 @@ type IFilterElastic = {
     tipo_instituicao: IElasticValue;
     estado: IElasticValue;
     instituicao: IElasticValue;
-    tipos_trabalho: IElasticValue;
+    tipo_trabalho: IElasticValue;
     programa: IElasticValue;
     campo: IElasticValue;
     min_ano: IElasticValueAno;
@@ -23,7 +23,7 @@ type IResponseApi = {
   tipo_instituicao: string[];
   estado: string[];
   instituicao: string[];
-  tipos_trabalho: string[];
+  tipo_trabalho: string[];
   programa: string[];
   campo: string[];
   ano: { min: number; max: number };
@@ -54,7 +54,7 @@ export class GetFilterOptionsService {
       body: {
         size: 0,
         aggs: {
-          tipos_trabalho: {
+          tipo_trabalho: {
             terms: {
               field: 'tipo_trabalho.keyword',
               size: 100,
