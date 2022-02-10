@@ -1,21 +1,26 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import {
   AccordionDetails,
-  Autocomplete,
   Button,
   FormControl,
   MenuItem,
   Pagination,
   Select,
-  TextField,
   Typography,
 } from '@mui/material';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 
+import { FormAutoComplete } from '#shared/components/form/FormAutoComplete';
+import { FormTextField } from '#shared/components/form/FormTextField';
 import { Loading } from '#shared/components/Loading';
 import { useToast } from '#shared/hooks/toast';
 import { useGet } from '#shared/services/useAxios';
 import { IPublicationSearch, ISearchFilters } from '#shared/types/backend/IPublication';
+import { removeEmptyFields } from '#shared/utils/removeEmptyFields';
+
+import { ISearchSchema, SearchSchema } from '#modules/trabalhos/schemas/search.schema';
 
 import {
   FilterContainer,
@@ -37,33 +42,9 @@ type IPublicationFormat = {
   autor: string;
 };
 
-type IFilters = {
-  search: string;
-  min_ano: string;
-  max_ano: string;
-  tipo_trabalho: string[];
-  tipo_instituicao: string[];
-  estado: string[];
-  instituicao: string[];
-  programa: string[];
-  campo: string[];
-};
-
 const filterFields = {
   array: ['tipo_trabalho', 'tipo_instituicao', 'estado', 'instituicao', 'programa', 'campo'],
   unique: ['search', 'min_ano', 'max_ano'],
-};
-
-const defaultFilters: IFilters = {
-  campo: [],
-  estado: [],
-  instituicao: [],
-  max_ano: '',
-  min_ano: '',
-  programa: [],
-  search: '',
-  tipo_instituicao: [],
-  tipo_trabalho: [],
 };
 
 export function Search() {
@@ -74,24 +55,11 @@ export function Search() {
   const [sort, setSort] = useState(() => {
     const sortParams = searchParams.get('sort');
 
-    if (!!sortParams && ['recente', 'antigo'].includes(sortParams)) {
+    if (!!sortParams && ['recente', 'antigo', 'score'].includes(sortParams)) {
       return sortParams;
     }
 
     return 'recente';
-  });
-  const [filters, setFilters] = useState<IFilters>(() => {
-    const filtersObject = {} as any;
-
-    filterFields.array.forEach((field) => {
-      filtersObject[field] = searchParams.getAll(field).map(decodeURI);
-    });
-
-    filterFields.unique.forEach((field) => {
-      filtersObject[field] = decodeURI(searchParams.get(field) || '');
-    });
-
-    return filtersObject;
   });
 
   const { toast } = useToast();
@@ -107,6 +75,32 @@ export function Search() {
     data: filterData,
   } = useGet<ISearchFilters>({ url: '/elastic/search/filters' });
 
+  const activeFilters = useMemo(() => {
+    const defaultFilters = {} as any;
+
+    filterFields.array.forEach((field) => {
+      defaultFilters[field] = searchParams.getAll(field).map(decodeURI);
+    });
+
+    filterFields.unique.forEach((field) => {
+      defaultFilters[field] = decodeURI(searchParams.get(field) || '');
+    });
+
+    return defaultFilters as ISearchSchema;
+  }, [searchParams]);
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<ISearchSchema>({
+    resolver: yupResolver(SearchSchema),
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
+    defaultValues: activeFilters,
+  });
+
   useEffect(() => {
     searchParams.set('page', String(page));
 
@@ -114,10 +108,14 @@ export function Search() {
 
     setSearchParams(searchParams);
 
-    send({ params: { page, sort } });
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, send, sort]);
+
+  useEffect(() => {
+    send({ params: { page, sort, ...removeEmptyFields(activeFilters) } });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (error) {
@@ -166,38 +164,77 @@ export function Search() {
     return data.pagination.totalPages;
   }, [data]);
 
-  const updateFilters = useCallback((field: string, value: any) => {
-    setFilters((old) => ({
-      ...old,
-      [field]: value,
-    }));
-  }, []);
+  const applyFilters = useCallback(
+    (formData: ISearchSchema) => {
+      removeEmptyFields(formData);
 
-  const applyFilters = useCallback(() => {
-    Object.entries(filters).forEach(([key, filter]) => {
-      if (Array.isArray(filter)) {
-        searchParams.delete(key);
+      Object.entries(formData).forEach(([key, filter]) => {
+        if (Array.isArray(filter)) {
+          searchParams.delete(key);
 
-        filter.forEach((value) => {
-          searchParams.append(key, encodeURI(value));
-        });
-      } else {
-        searchParams.set(key, encodeURI(filter));
-      }
-    });
+          filter.forEach((value) => {
+            searchParams.append(key, encodeURI(value));
+          });
+        } else if (filter) {
+          searchParams.set(key, encodeURI(filter));
+        } else {
+          searchParams.delete(key);
+        }
+      });
 
-    setSearchParams(searchParams);
-  }, [filters, searchParams, setSearchParams]);
+      setPage(1);
+      setSort('score');
+
+      setSearchParams(searchParams);
+
+      send({ params: { page: 1, sort: 'score', ...formData } });
+    },
+    [searchParams, send, setSearchParams],
+  );
 
   const clearFilters = useCallback(() => {
-    setFilters(defaultFilters);
+    reset({
+      campo: [],
+      estado: [],
+      instituicao: [],
+      max_ano: '',
+      min_ano: '',
+      programa: [],
+      search: '',
+      tipo_instituicao: [],
+      tipo_trabalho: [],
+    });
 
-    Object.keys(defaultFilters).forEach((key) => {
-      searchParams.delete(key);
+    Object.values(filterFields).forEach((value) => {
+      value.forEach((key) => {
+        searchParams.delete(key);
+      });
     });
 
     setSearchParams(searchParams);
-  }, [searchParams, setSearchParams]);
+    setPage(1);
+    setSort('recente');
+
+    send({ params: { page: 1, sort: 'recente' } });
+  }, [reset, searchParams, send, setSearchParams]);
+
+  const changePage = useCallback(
+    (newPage: number) => {
+      setPage(newPage);
+
+      send({ params: { page: newPage, sort, ...removeEmptyFields(activeFilters) } });
+    },
+    [activeFilters, send, sort],
+  );
+
+  const changeSort = useCallback(
+    (newSort: string) => {
+      setSort(newSort);
+
+      send({ params: { page, sort: newSort, ...removeEmptyFields(activeFilters) } });
+    },
+    [activeFilters, page, send],
+  );
 
   if (loading) return <Loading loading={loading} />;
 
@@ -218,13 +255,10 @@ export function Search() {
 
           <div className="sort">
             <FormControl fullWidth>
-              <Select
-                id="demo-simple-select"
-                value={sort}
-                onChange={(e) => setSort(e.target.value)}
-              >
+              <Select id="sort" value={sort} onChange={(e) => changeSort(e.target.value)}>
                 <MenuItem value="recente">Mais Recentes</MenuItem>
                 <MenuItem value="antigo">Mais Antigos</MenuItem>
+                <MenuItem value="score">Maior Relevância</MenuItem>
               </Select>
             </FormControl>
           </div>
@@ -244,159 +278,101 @@ export function Search() {
 
             <AccordionDetails>
               <FilterContent>
-                <TextField
-                  fullWidth
-                  label="Pesquisar"
-                  variant="outlined"
-                  value={filters.search}
-                  onChange={(e) => updateFilters('search', e.target.value)}
-                />
+                <form onSubmit={handleSubmit(applyFilters)}>
+                  <FormTextField
+                    name="search"
+                    label="Pesquisar"
+                    control={control}
+                    margin_type="no-margin"
+                    errors={errors.search}
+                  />
 
-                {filterData && (
-                  <>
-                    <Autocomplete
-                      multiple
-                      options={filterData.tipo_trabalho}
-                      value={filters.tipo_trabalho}
-                      onChange={(e, newValue) => updateFilters('tipo_trabalho', newValue)}
-                      filterSelectedOptions
-                      renderInput={(params) => (
-                        <TextField
-                          {...params}
-                          label="Tipo de Trabalho"
-                          inputProps={{
-                            ...params.inputProps,
-                          }}
-                          sx={{ marginTop: '1em' }}
-                        />
-                      )}
-                    />
-
-                    <Autocomplete
-                      multiple
-                      options={filterData.campo}
-                      value={filters.campo}
-                      onChange={(e, newValue) => updateFilters('campo', newValue)}
-                      filterSelectedOptions
-                      renderInput={(params) => (
-                        <TextField
-                          {...params}
-                          label="Campo"
-                          inputProps={{
-                            ...params.inputProps,
-                          }}
-                          sx={{ marginTop: '1em' }}
-                        />
-                      )}
-                    />
-
-                    <Autocomplete
-                      multiple
-                      options={filterData.tipo_instituicao}
-                      value={filters.tipo_instituicao}
-                      onChange={(e, newValue) => updateFilters('tipo_instituicao', newValue)}
-                      filterSelectedOptions
-                      renderInput={(params) => (
-                        <TextField
-                          {...params}
-                          label="Tipo de Instituição"
-                          inputProps={{
-                            ...params.inputProps,
-                          }}
-                          sx={{ marginTop: '1em' }}
-                        />
-                      )}
-                    />
-
-                    <Autocomplete
-                      multiple
-                      options={filterData.instituicao}
-                      value={filters.instituicao}
-                      onChange={(e, newValue) => updateFilters('instituicao', newValue)}
-                      filterSelectedOptions
-                      renderInput={(params) => (
-                        <TextField
-                          {...params}
-                          label="Instituição"
-                          inputProps={{
-                            ...params.inputProps,
-                          }}
-                          sx={{ marginTop: '1em' }}
-                        />
-                      )}
-                    />
-
-                    <Autocomplete
-                      multiple
-                      options={filterData.programa}
-                      value={filters.programa}
-                      onChange={(e, newValue) => updateFilters('programa', newValue)}
-                      filterSelectedOptions
-                      renderInput={(params) => (
-                        <TextField
-                          {...params}
-                          label="Programa"
-                          inputProps={{
-                            ...params.inputProps,
-                          }}
-                          sx={{ marginTop: '1em' }}
-                        />
-                      )}
-                    />
-
-                    <Autocomplete
-                      multiple
-                      options={filterData.estado}
-                      value={filters.estado}
-                      onChange={(e, newValue) => updateFilters('estado', newValue)}
-                      filterSelectedOptions
-                      renderInput={(params) => (
-                        <TextField
-                          {...params}
-                          label="Estado"
-                          inputProps={{
-                            ...params.inputProps,
-                          }}
-                          sx={{ marginTop: '1em' }}
-                        />
-                      )}
-                    />
-
-                    <div className="ano">
-                      <TextField
-                        fullWidth
-                        sx={{ marginRight: '0.5em' }}
-                        label="Ano Inicial"
-                        variant="outlined"
-                        value={filters.min_ano}
-                        onChange={(e) =>
-                          updateFilters('min_ano', e.target.value.replace(/\D*/g, ''))
-                        }
-                        helperText={`EX: ${filterData.ano.min}`}
+                  {filterData && (
+                    <>
+                      <FormAutoComplete
+                        multiple
+                        control={control}
+                        name="tipo_trabalho"
+                        label="Tipo de Trabalho"
+                        options={filterData.tipo_trabalho}
+                        errors={errors.tipo_trabalho}
                       />
 
-                      <TextField
-                        fullWidth
-                        label="Ano Final"
-                        variant="outlined"
-                        sx={{ marginLeft: '0.5em' }}
-                        value={filters.max_ano}
-                        onChange={(e) =>
-                          updateFilters('max_ano', e.target.value.replace(/\D*/g, ''))
-                        }
-                        helperText={`EX: ${filterData.ano.max}`}
+                      <FormAutoComplete
+                        multiple
+                        control={control}
+                        name="campo"
+                        label="Campo"
+                        options={filterData.campo}
+                        errors={errors.campo}
                       />
-                    </div>
-                  </>
-                )}
 
-                <Button className="filter" variant="contained" onClick={applyFilters}>
-                  Aplicar Filtros
-                </Button>
+                      <FormAutoComplete
+                        multiple
+                        control={control}
+                        name="tipo_instituicao"
+                        label="Tipo de Instituição"
+                        options={filterData.tipo_instituicao}
+                        errors={errors.tipo_instituicao}
+                      />
 
-                <Button className="clear" variant="contained" onClick={clearFilters}>
-                  Limpar
-                </Button>
+                      <FormAutoComplete
+                        multiple
+                        control={control}
+                        name="instituicao"
+                        label="Instituição"
+                        options={filterData.instituicao}
+                        errors={errors.instituicao}
+                      />
+
+                      <FormAutoComplete
+                        multiple
+                        control={control}
+                        name="programa"
+                        label="Programa"
+                        options={filterData.programa}
+                        errors={errors.programa}
+                      />
+
+                      <FormAutoComplete
+                        multiple
+                        control={control}
+                        name="estado"
+                        label="Estado"
+                        options={filterData.estado}
+                        errors={errors.estado}
+                      />
+
+                      <div className="ano">
+                        <FormTextField
+                          name="min_ano"
+                          label="Ano Inicial"
+                          control={control}
+                          margin_type="no-margin"
+                          errors={errors.min_ano}
+                          helperText={`EX: ${filterData.ano.min}`}
+                        />
+
+                        <FormTextField
+                          name="max_ano"
+                          label="Ano Final"
+                          control={control}
+                          margin_type="left-margin"
+                          errors={errors.max_ano}
+                          helperText={`EX: ${filterData.ano.max}`}
+                        />
+                      </div>
+                    </>
+                  )}
+
+                  <Button type="submit" className="filter" variant="contained">
+                    Aplicar Filtros
+                  </Button>
+
+                  <Button className="clear" variant="contained" onClick={clearFilters}>
+                    Limpar
+                  </Button>
+                </form>
               </FilterContent>
             </AccordionDetails>
           </FilterContainer>
@@ -433,7 +409,7 @@ export function Search() {
               shape="rounded"
               count={totalPages}
               page={page}
-              onChange={(e, p) => setPage(p)}
+              onChange={(e, p) => changePage(p)}
             />
           </PaginationContainer>
         </div>

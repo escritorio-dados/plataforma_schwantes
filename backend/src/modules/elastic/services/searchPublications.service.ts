@@ -54,6 +54,9 @@ export class SearchPublicationsService {
     const query = noFilters ? { match_all: {} } : ({ bool: {} } as any);
 
     if (!noFilters) {
+      let alreadyHasMust = false;
+
+      // Lidando com filtros de pesquisa
       if (search) {
         query.bool.must = [
           {
@@ -67,6 +70,45 @@ export class SearchPublicationsService {
                 'resumo',
                 'palavras_chave',
               ],
+            },
+          },
+        ];
+
+        alreadyHasMust = true;
+      }
+
+      // Lidando com filtros em algum metadata
+      Object.entries(othersFilters).forEach(([key, filters]) => {
+        const newFilter = {
+          bool: {
+            should: [],
+          },
+        };
+
+        if (Array.isArray(filters)) {
+          filters.forEach((filter) => {
+            newFilter.bool.should.push({
+              match_phrase: { [key]: filter },
+            });
+          });
+        }
+
+        if (alreadyHasMust) {
+          query.bool.must.push(newFilter);
+        } else {
+          query.bool.must = [newFilter];
+        }
+      });
+
+      // Lidando com filtros de datas
+      if (min_ano || max_ano) {
+        query.bool.filter = [
+          {
+            range: {
+              ano: {
+                gte: min_ano || undefined,
+                lte: max_ano || undefined,
+              },
             },
           },
         ];

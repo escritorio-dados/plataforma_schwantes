@@ -129,27 +129,29 @@ export const FilterContent = styled.div`
   display: flex;
   flex-direction: column;
 
-  > button {
-    width: 100%;
-    margin-top: 1em;
-    align-self: center;
-  }
-
-  > button.clear {
-    background-color: ${red[400]};
-    transition: filter 0.2s;
-
-    &:hover {
-      filter: brightness(0.95);
+  > form {
+    > button {
+      width: 100%;
+      margin-top: 1em;
+      align-self: center;
     }
-  }
 
-  .ano {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    > button.clear {
+      background-color: ${red[400]};
+      transition: filter 0.2s;
 
-    margin-top: 1em;
+      &:hover {
+        filter: brightness(0.95);
+      }
+    }
+
+    .ano {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      margin-top: 1em;
+    }
   }
 `;
 
