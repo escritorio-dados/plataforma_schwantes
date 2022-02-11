@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 import { green } from '@mui/material/colors';
 
 export const LogoStyled = styled.img`
-  width: 10em;
+  width: 10rem;
   display: flex;
 `;
 

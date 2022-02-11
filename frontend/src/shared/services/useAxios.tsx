@@ -32,21 +32,34 @@ export function useGet<T>({ url, lazy, config }: IUseGetParams): IUseGet<T> {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
 
-  const send = useCallback(async (conf?: AxiosRequestConfig) => {
-    setLoading(true);
+  const send = useCallback(
+    async (conf?: AxiosRequestConfig) => {
+      setLoading(true);
 
-    try {
-      const response = await axiosClient.get<T>(url, conf);
+      try {
+        const response = await axiosClient.get<T>(url, conf);
 
-      setData(response);
-    } catch (e) {
-      setError(getError(e));
-    } finally {
-      setLoading(false);
-    }
+        setData(response);
+      } catch (e) {
+        setError((current) => {
+          const newError = getError(e);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+          if (current === newError) {
+            if (current[current.length - 1] === ' ') {
+              return newError;
+            }
+
+            return `${newError} `;
+          }
+
+          return newError;
+        });
+      } finally {
+        setLoading(false);
+      }
+    },
+    [url],
+  );
 
   const add = (newData: any) => {
     setData((current) => {

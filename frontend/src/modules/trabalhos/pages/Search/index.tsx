@@ -10,14 +10,14 @@ import {
 } from '@mui/material';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 import { FormAutoComplete } from '#shared/components/form/FormAutoComplete';
 import { FormTextField } from '#shared/components/form/FormTextField';
 import { Loading } from '#shared/components/Loading';
 import { useToast } from '#shared/hooks/toast';
 import { useGet } from '#shared/services/useAxios';
-import { IPublicationSearch, ISearchFilters } from '#shared/types/backend/IPublication';
+import { IPublicationsSearch, ISearchFilters } from '#shared/types/backend/IPublication';
 import { removeEmptyFields } from '#shared/utils/removeEmptyFields';
 
 import { ISearchSchema, SearchSchema } from '#modules/trabalhos/schemas/search.schema';
@@ -64,7 +64,7 @@ export function Search() {
 
   const { toast } = useToast();
 
-  const { error, loading, data, send } = useGet<IPublicationSearch>({
+  const { error, loading, data, send } = useGet<IPublicationsSearch>({
     url: '/elastic/search',
     lazy: true,
   });
@@ -392,9 +392,11 @@ export function Search() {
                 </Typography>
               </PublicationTags>
 
-              <Typography variant="h4" className="title">
-                {publication.titulo}
-              </Typography>
+              <Link to={`/doc/${publication.id}`}>
+                <Typography variant="h4" className="title">
+                  {publication.titulo}
+                </Typography>
+              </Link>
 
               <Typography className="autor">{publication.autor}</Typography>
 

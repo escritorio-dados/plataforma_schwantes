@@ -4,14 +4,24 @@ import { blue, grey, red } from '@mui/material/colors';
 
 export const Publication = styled.div`
   border-bottom: 1px solid #ccc;
-  margin-bottom: 2em;
-  padding-bottom: 2em;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+
+  a {
+    text-decoration: none;
+  }
 
   .title {
-    font-size: 1.3em;
+    font-size: 1.3rem;
     color: ${blue[700]};
     text-align: justify;
     font-weight: bold;
+
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(0.7);
+    }
   }
 
   .autor {
@@ -31,14 +41,14 @@ export const Publication = styled.div`
 export const PublicationTags = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
 
   > span {
     display: block;
-    margin-right: 0.5em;
+    margin-right: 0.5rem;
     border-radius: 3px;
     padding: 2px 7px;
-    font-size: 0.8em;
+    font-size: 0.8rem;
     color: #fff;
 
     &.ano {
@@ -54,7 +64,7 @@ export const PublicationTags = styled.div`
 export const ResultsInfo = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 2em;
+  margin-bottom: 2rem;
 
   > div.results {
     display: flex;
@@ -68,10 +78,10 @@ export const ResultsInfo = styled.div`
 
       > span {
         display: block;
-        padding: 0.2em 0.6em;
+        padding: 0.2em 0.6rem;
         background-color: ${grey[300]};
         border-radius: 5px;
-        margin-right: 0.5em;
+        margin-right: 0.5rem;
       }
     }
 
@@ -86,7 +96,7 @@ export const ResultsInfo = styled.div`
     @media (min-width: 900px) {
       display: block;
       width: 34%;
-      margin-right: 2em;
+      margin-right: 2rem;
       min-width: 300px;
     }
   }
@@ -119,7 +129,7 @@ export const FilterTitle = styled(AccordionSummary)`
   }
 
   &.Mui-expanded {
-    min-height: 3em;
+    min-height: 3rem;
 
     border-radius: 5px 5px 0 0;
   }
@@ -132,7 +142,7 @@ export const FilterContent = styled.div`
   > form {
     > button {
       width: 100%;
-      margin-top: 1em;
+      margin-top: 1rem;
       align-self: center;
     }
 
@@ -150,7 +160,7 @@ export const FilterContent = styled.div`
       justify-content: space-between;
       align-items: flex-start;
 
-      margin-top: 1em;
+      margin-top: 1rem;
     }
   }
 `;
@@ -161,7 +171,7 @@ export const ResponsiveContent = styled.div`
 
   @media (max-width: 899px) {
     > div.filter {
-      margin-bottom: 2em;
+      margin-bottom: 2rem;
     }
   }
 
@@ -170,7 +180,7 @@ export const ResponsiveContent = styled.div`
 
     > div.filter {
       width: 34%;
-      margin-right: 2em;
+      margin-right: 2rem;
       min-width: 300px;
     }
 
