@@ -4,7 +4,7 @@ import { Control, Controller, FieldError } from 'react-hook-form';
 
 type IFormTextField = Omit<OutlinedTextFieldProps, 'variant'> & {
   name: string;
-  control: Control;
+  control: Control<any>;
   errors?: FieldError;
   margin_type?: 'no-margin' | 'left-margin';
 };

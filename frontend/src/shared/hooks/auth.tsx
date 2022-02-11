@@ -12,7 +12,7 @@ type IAuthProviderProps = { children: ReactNode };
 
 type IAuthResponse = { token: string; user: IUser };
 
-type IAuthInput = { email: string; password: string; organization_id: string };
+type IAuthInput = { email: string; password: string };
 
 type IAuthContextData = {
   user: IUser;

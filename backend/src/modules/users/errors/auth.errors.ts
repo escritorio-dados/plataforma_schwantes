@@ -1,7 +1,7 @@
 export const authErrors = {
   emailInvalid: {
-    message: 'This email is not registered in this organization ',
-    userMessage: 'Este e-mail não está cadastrado nesta organização',
+    message: 'invalid email',
+    userMessage: 'E-mail não registrado',
     statusCode: 401,
   },
   passwordInvalid: {

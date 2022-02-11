@@ -1,4 +1,3 @@
-import { Menu as MenuIcon } from '@mui/icons-material';
 import {
   AppBar,
   Avatar,
@@ -19,15 +18,15 @@ import logo from '#static/logo.png';
 
 import { useAuth } from '#shared/hooks/auth';
 
-import { pages, menuUser } from './data';
-import { LoginButton, LogoStyled, MenuLinkButton } from './styles';
+import { menuUser } from './data';
+import { LoginButton, LogoStyled } from './styles';
 
 export function Navbar() {
-  const [anchorMenu, setAnchorMenu] = useState<null | HTMLElement>(null);
+  // const [anchorMenu, setAnchorMenu] = useState<null | HTMLElement>(null);
   const [anchorUser, setAnchorUser] = useState<null | HTMLElement>(null);
 
   const navigate = useNavigate();
-  const { logged } = useAuth();
+  const { logged, signOut } = useAuth();
 
   return (
     <AppBar position="static">
@@ -38,7 +37,7 @@ export function Navbar() {
           </Link>
 
           {/* Box em Telas Pequenas */}
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+          {/* <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="Menu Principal"
@@ -77,16 +76,16 @@ export function Navbar() {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box> */}
 
           {/* Box em Telas Grandes */}
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          {/* <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <MenuLinkButton key={page.title} onClick={() => navigate(page.url)}>
                 {page.title}
               </MenuLinkButton>
             ))}
-          </Box>
+          </Box> */}
 
           {/* Menu Esquerdo */}
           <Box sx={{ marginLeft: 'auto' }}>
@@ -125,10 +124,20 @@ export function Navbar() {
                       <Typography textAlign="center">{menu.title}</Typography>
                     </MenuItem>
                   ))}
-                </Menu>{' '}
+
+                  <MenuItem
+                    onClick={() => {
+                      setAnchorUser(null);
+
+                      signOut();
+                    }}
+                  >
+                    <Typography textAlign="center">Sair</Typography>
+                  </MenuItem>
+                </Menu>
               </>
             ) : (
-              <LoginButton onClick={() => navigate('/auth')}>Login</LoginButton>
+              <LoginButton onClick={() => navigate('/auth')}>Entrar</LoginButton>
             )}
           </Box>
         </Toolbar>

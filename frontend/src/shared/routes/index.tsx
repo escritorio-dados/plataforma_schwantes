@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 
-import { Home } from '#shared/pages/Home';
+import { Auth } from '#shared/pages/Auth';
 
 import { InfoPublication } from '#modules/trabalhos/pages/InfoPublication';
 import { Search } from '#modules/trabalhos/pages/Search';
@@ -8,11 +8,11 @@ import { Search } from '#modules/trabalhos/pages/Search';
 export function Router() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-
-      <Route path="/search" element={<Search />} />
+      <Route path="/" element={<Search />} />
 
       <Route path="/doc/:id" element={<InfoPublication />} />
+
+      <Route path="/auth" element={<Auth />} />
     </Routes>
   );
 }
