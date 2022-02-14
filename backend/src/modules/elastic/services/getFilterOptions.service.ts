@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
+import { AppError } from '#shared/errors/AppError';
 import { elasticClient } from '#shared/services/elastic';
 
 type IElasticValue = { buckets: Array<{ key: string; doc_count: number }> };
@@ -49,61 +50,65 @@ export class GetFilterOptionsService {
   }
 
   async execute(): Promise<IResponseApi> {
-    const response = await elasticClient.search<IFilterElastic>({
-      index: 'trabalhos',
-      body: {
-        size: 0,
-        aggs: {
-          tipo_trabalho: {
-            terms: {
-              field: 'tipo_trabalho.keyword',
-              size: 100,
+    try {
+      const response = await elasticClient.search<IFilterElastic>({
+        index: 'trabalhos',
+        body: {
+          size: 0,
+          aggs: {
+            tipo_trabalho: {
+              terms: {
+                field: 'tipo_trabalho.keyword',
+                size: 100,
+              },
             },
-          },
-          programa: {
-            terms: {
-              field: 'programa.keyword',
-              size: 100,
+            programa: {
+              terms: {
+                field: 'programa.keyword',
+                size: 100,
+              },
             },
-          },
-          campo: {
-            terms: {
-              field: 'campo.keyword',
-              size: 100,
+            campo: {
+              terms: {
+                field: 'campo.keyword',
+                size: 100,
+              },
             },
-          },
-          instituicao: {
-            terms: {
-              field: 'instituicao.keyword',
-              size: 100,
+            instituicao: {
+              terms: {
+                field: 'instituicao.keyword',
+                size: 100,
+              },
             },
-          },
-          tipo_instituicao: {
-            terms: {
-              field: 'tipo_instituicao.keyword',
-              size: 100,
+            tipo_instituicao: {
+              terms: {
+                field: 'tipo_instituicao.keyword',
+                size: 100,
+              },
             },
-          },
-          estado: {
-            terms: {
-              field: 'estado.keyword',
-              size: 100,
+            estado: {
+              terms: {
+                field: 'estado.keyword',
+                size: 100,
+              },
             },
-          },
-          min_ano: {
-            min: {
-              field: 'ano',
+            min_ano: {
+              min: {
+                field: 'ano',
+              },
             },
-          },
-          max_ano: {
-            max: {
-              field: 'ano',
+            max_ano: {
+              max: {
+                field: 'ano',
+              },
             },
           },
         },
-      },
-    });
+      });
 
-    return this.formatResponse(response.body);
+      return this.formatResponse(response.body);
+    } catch (error) {
+      throw new AppError({ message: 'internal server error' });
+    }
   }
 }

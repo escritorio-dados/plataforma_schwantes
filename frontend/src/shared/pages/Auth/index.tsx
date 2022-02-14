@@ -39,8 +39,9 @@ export function Auth() {
 
   return (
     <AuthContainer elevation={5}>
-      <form onSubmit={handleSubmit(signIn)}>
+      <form onSubmit={handleSubmit(signIn)} noValidate>
         <FormTextField
+          required
           control={control}
           name="email"
           label="E-mail"
@@ -49,6 +50,7 @@ export function Auth() {
         />
 
         <FormTextField
+          required
           control={control}
           type="password"
           name="password"

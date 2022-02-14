@@ -15,14 +15,17 @@ type IUseWithoutInput<T> = {
 };
 
 type IUseGet<T> = IUseWithoutInput<T> & {
-  add(newData: any): void;
-  change(id: string, newData: any): void;
-  remove(id: string): void;
+  updateData: React.Dispatch<React.SetStateAction<T | undefined>>;
 };
 
 type IUseWithInput<T, D> = {
   loading: boolean;
   send(input: D): Promise<ISendWithInput<T>>;
+};
+
+type IUseDelete<T> = {
+  loading: boolean;
+  send(): Promise<ISendWithInput<T>>;
 };
 
 type IUseGetParams = { url: string; config?: AxiosRequestConfig; lazy?: boolean };
@@ -61,44 +64,6 @@ export function useGet<T>({ url, lazy, config }: IUseGetParams): IUseGet<T> {
     [url],
   );
 
-  const add = (newData: any) => {
-    setData((current) => {
-      if (Array.isArray(current)) {
-        current.push(newData);
-      }
-
-      return current;
-    });
-  };
-
-  const change = (id: string, newData: any) => {
-    setData((current) => {
-      if (Array.isArray(current)) {
-        const newArray = current.map((item) => {
-          if (item.id === id) {
-            return { ...item, ...newData };
-          }
-
-          return item;
-        }) as unknown as T;
-
-        return newArray;
-      }
-
-      return current;
-    });
-  };
-
-  const remove = (id: string) => {
-    setData((current) => {
-      if (Array.isArray(current)) {
-        return current.filter((item) => item.id !== id) as unknown as T;
-      }
-
-      return current;
-    });
-  };
-
   useEffect(() => {
     if (lazy) {
       return;
@@ -108,7 +73,7 @@ export function useGet<T>({ url, lazy, config }: IUseGetParams): IUseGet<T> {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { data, error, loading, send, add, change, remove };
+  return { data, error, loading, send, updateData: setData };
 }
 
 export function usePost<T, D>(url: string, config?: AxiosRequestConfig): IUseWithInput<T, D> {
@@ -186,24 +151,24 @@ export function usePatch<T, D>(url: string, config?: AxiosRequestConfig): IUseWi
   return { loading, send };
 }
 
-export function useDelete<T = void>(url: string, config?: AxiosRequestConfig): IUseWithoutInput<T> {
-  const [data, setData] = useState<T>();
-  const [error, setError] = useState('');
+export function useDelete<T = void>(url: string, config?: AxiosRequestConfig): IUseDelete<T> {
   const [loading, setLoading] = useState(false);
 
   const send = async (conf?: AxiosRequestConfig) => {
     setLoading(true);
 
-    try {
-      const response = await axiosClient.delete<T>(url, { ...config, ...conf });
+    let error;
 
-      setData(response);
+    try {
+      await axiosClient.delete<T>(url, { ...config, ...conf });
     } catch (e) {
-      setError(getError(e));
-    } finally {
-      setLoading(false);
+      error = getError(e);
     }
+
+    setLoading(false);
+
+    return { error };
   };
 
-  return { data, error, loading, send };
+  return { loading, send };
 }

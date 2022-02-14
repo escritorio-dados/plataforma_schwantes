@@ -1,11 +1,10 @@
 import styled from '@emotion/styled';
-import { Accordion, AccordionSummary } from '@mui/material';
+import { Accordion, AccordionSummary, Paper } from '@mui/material';
 import { blue, grey, red } from '@mui/material/colors';
 
-export const Publication = styled.div`
-  border-bottom: 1px solid #ccc;
+export const Publication = styled(Paper)`
   margin-bottom: 2rem;
-  padding-bottom: 2rem;
+  padding: 1rem;
 
   a {
     text-decoration: none;
@@ -59,6 +58,16 @@ export const PublicationTags = styled.div`
       background-color: ${grey[600]};
     }
   }
+`;
+
+export const PublicationActions = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  border-top: 1px solid #ccc;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
 `;
 
 export const ResultsInfo = styled.div`

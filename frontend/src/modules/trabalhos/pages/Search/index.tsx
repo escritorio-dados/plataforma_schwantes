@@ -1,13 +1,17 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Delete, Edit } from '@mui/icons-material';
 import {
   AccordionDetails,
   Button,
   FormControl,
+  IconButton,
   MenuItem,
   Pagination,
   Select,
+  Tooltip,
   Typography,
 } from '@mui/material';
+import { blue, red } from '@mui/material/colors';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useSearchParams } from 'react-router-dom';
@@ -15,11 +19,18 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { FormAutoComplete } from '#shared/components/form/FormAutoComplete';
 import { FormTextField } from '#shared/components/form/FormTextField';
 import { Loading } from '#shared/components/Loading';
+import { useAuth } from '#shared/hooks/auth';
 import { useToast } from '#shared/hooks/toast';
 import { useGet } from '#shared/services/useAxios';
-import { IPublicationsSearch, ISearchFilters } from '#shared/types/backend/IPublication';
+import {
+  IPublicationSearch,
+  IPublicationsSearch,
+  ISearchFilters,
+} from '#shared/types/backend/IPublication';
 import { removeEmptyFields } from '#shared/utils/removeEmptyFields';
 
+import { DeletePublicationModal } from '#modules/trabalhos/components/DeletePublication';
+import { UpdatePublicationModal } from '#modules/trabalhos/components/UpdatePublication';
 import { ISearchSchema, SearchSchema } from '#modules/trabalhos/schemas/search.schema';
 
 import {
@@ -28,6 +39,7 @@ import {
   FilterTitle,
   PaginationContainer,
   Publication,
+  PublicationActions,
   PublicationTags,
   ResponsiveContent,
   ResultsInfo,
@@ -47,9 +59,13 @@ const filterFields = {
   unique: ['search', 'min_ano', 'max_ano'],
 };
 
-export function Search() {
-  const [searchParams, setSearchParams] = useSearchParams();
+type IDeleteModal = { id: string; titulo: string } | null;
 
+export function Search() {
+  const [updateModal, setUpdateModal] = useState<string | null>(null);
+  const [deleteModal, setDeleteModal] = useState<IDeleteModal>(null);
+
+  const [searchParams, setSearchParams] = useSearchParams();
   const [filterExpanded, setFilterExpanded] = useState(true);
   const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
   const [sort, setSort] = useState(() => {
@@ -63,8 +79,15 @@ export function Search() {
   });
 
   const { toast } = useToast();
+  const { logged } = useAuth();
 
-  const { error, loading, data, send } = useGet<IPublicationsSearch>({
+  const {
+    error,
+    loading,
+    data,
+    send,
+    updateData: updateSearchPublications,
+  } = useGet<IPublicationsSearch>({
     url: '/elastic/search',
     lazy: true,
   });
@@ -109,7 +132,7 @@ export function Search() {
     setSearchParams(searchParams);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, send, sort]);
+  }, [page, sort]);
 
   useEffect(() => {
     send({ params: { page, sort, ...removeEmptyFields(activeFilters) } });
@@ -236,12 +259,68 @@ export function Search() {
     [activeFilters, page, send],
   );
 
+  const handleChange = useCallback(
+    (newData: IPublicationSearch) => {
+      updateSearchPublications((current) => {
+        if (!current) {
+          return current;
+        }
+
+        return {
+          ...current,
+          data: current.data.map((p) => {
+            if (p._id === newData._id) {
+              return { ...p, ...newData };
+            }
+
+            return p;
+          }),
+        };
+      });
+    },
+    [updateSearchPublications],
+  );
+
+  const handleDeletion = useCallback(
+    (id: string) => {
+      updateSearchPublications((current) => {
+        if (!current) {
+          return current;
+        }
+
+        return {
+          ...current,
+          data: current.data.filter((p) => p._id !== id),
+        };
+      });
+    },
+    [updateSearchPublications],
+  );
+
   if (loading) return <Loading loading={loading} />;
 
   if (filterLoading) return <Loading loading={filterLoading} />;
 
   return (
     <>
+      {!!updateModal && (
+        <UpdatePublicationModal
+          openModal={!!updateModal}
+          closeModal={() => setUpdateModal(null)}
+          doc_id={updateModal || ''}
+          handleChange={handleChange}
+        />
+      )}
+
+      {!!deleteModal && (
+        <DeletePublicationModal
+          openModal={!!deleteModal}
+          closeModal={() => setDeleteModal(null)}
+          publication={deleteModal}
+          handleDeletion={handleDeletion}
+        />
+      )}
+
       {/* Informações sobre o resultado */}
       <ResultsInfo>
         <div className="filter-area" />
@@ -278,7 +357,7 @@ export function Search() {
 
             <AccordionDetails>
               <FilterContent>
-                <form onSubmit={handleSubmit(applyFilters)}>
+                <form onSubmit={handleSubmit(applyFilters)} noValidate>
                   <FormTextField
                     name="search"
                     label="Pesquisar"
@@ -381,7 +460,7 @@ export function Search() {
         <div className="content">
           {/* Resultados */}
           {publications.map((publication) => (
-            <Publication key={publication.id}>
+            <Publication key={publication.id} elevation={3}>
               <PublicationTags>
                 <Typography component="span" className="ano">
                   {publication.ano}
@@ -401,6 +480,26 @@ export function Search() {
               <Typography className="autor">{publication.autor}</Typography>
 
               <Typography className="resumo">{publication.resumo}</Typography>
+
+              {logged && (
+                <PublicationActions>
+                  <Tooltip title="Editar Publicação">
+                    <IconButton onClick={() => setUpdateModal(publication.id)}>
+                      <Edit sx={{ color: blue[500] }} />
+                    </IconButton>
+                  </Tooltip>
+
+                  <Tooltip title="Deletar Publicação">
+                    <IconButton
+                      onClick={() =>
+                        setDeleteModal({ id: publication.id, titulo: publication.titulo })
+                      }
+                    >
+                      <Delete sx={{ color: red[500] }} />
+                    </IconButton>
+                  </Tooltip>
+                </PublicationActions>
+              )}
             </Publication>
           ))}
 

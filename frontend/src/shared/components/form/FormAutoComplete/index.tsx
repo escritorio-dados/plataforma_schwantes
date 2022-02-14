@@ -15,6 +15,8 @@ type IFormAutoComplete = {
   disabled?: boolean;
   margin_type?: 'no-margin' | 'left-margin';
   sx?: SxProps;
+  required?: boolean;
+  freeSolo?: boolean;
 };
 
 export function FormAutoComplete({
@@ -29,6 +31,8 @@ export function FormAutoComplete({
   disabled,
   margin_type,
   sx,
+  required,
+  freeSolo,
 }: IFormAutoComplete) {
   const sxFixed = useMemo(() => {
     let marginTop: string | undefined = '1em';
@@ -64,13 +68,14 @@ export function FormAutoComplete({
     <Controller
       name={name}
       control={control}
-      defaultValue={defaultValue || multiple ? [] : ''}
+      defaultValue={defaultValue || (multiple ? [] : '')}
       render={({ field }) => (
         <Autocomplete
           {...field}
           noOptionsText="Nenhuma Opção"
           filterSelectedOptions
           getOptionLabel={getLabel}
+          freeSolo={freeSolo}
           multiple={multiple}
           options={options}
           disabled={disabled}
@@ -78,6 +83,7 @@ export function FormAutoComplete({
           renderInput={(params) => (
             <TextField
               {...params}
+              required={required}
               label={label}
               name={name}
               error={!!errors}

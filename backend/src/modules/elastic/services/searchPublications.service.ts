@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
+import { AppError } from '#shared/errors/AppError';
 import { elasticClient } from '#shared/services/elastic';
 
 import { SearchPublicationsQuery } from '../query/SearchPublications.query';
@@ -115,32 +116,36 @@ export class SearchPublicationsService {
       }
     }
 
-    const response = await elasticClient.search<IResponseElastic>({
-      index: 'trabalhos',
-      body: {
-        from: (page - 1) * 10,
-        size: 10,
-        query,
-        _source: ['ano', 'titulo', 'tipo_trabalho', 'resumo', 'autor.autor_full_name'],
-        sort: [
-          {
-            [field]: {
-              order,
+    try {
+      const response = await elasticClient.search<IResponseElastic>({
+        index: 'trabalhos',
+        body: {
+          from: (page - 1) * 10,
+          size: 10,
+          query,
+          _source: ['ano', 'titulo', 'tipo_trabalho', 'resumo', 'autor.autor_full_name'],
+          sort: [
+            {
+              [field]: {
+                order,
+              },
             },
-          },
-        ],
-      },
-    });
+          ],
+        },
+      });
 
-    const publications: IPublication[] = response.body.hits.hits;
+      const publications: IPublication[] = response.body.hits.hits;
 
-    const totalResults = response.body.hits.total.value;
+      const totalResults = response.body.hits.total.value;
 
-    const totalPages = Math.ceil(totalResults / 10);
+      const totalPages = Math.ceil(totalResults / 10);
 
-    return {
-      pagination: { page, totalPages, total: totalResults },
-      data: publications,
-    };
+      return {
+        pagination: { page, totalPages, total: totalResults },
+        data: publications,
+      };
+    } catch (error) {
+      throw new AppError({ message: 'internal server error' });
+    }
   }
 }

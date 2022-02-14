@@ -11,7 +11,7 @@ import {
   Typography,
 } from '@mui/material';
 import { orange } from '@mui/material/colors';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import logo from '#static/logo.png';
@@ -26,7 +26,15 @@ export function Navbar() {
   const [anchorUser, setAnchorUser] = useState<null | HTMLElement>(null);
 
   const navigate = useNavigate();
-  const { logged, signOut } = useAuth();
+  const { logged, signOut, user } = useAuth();
+
+  const userSigla = useMemo(() => {
+    if (!user) {
+      return 'U';
+    }
+
+    return user.email[0].toUpperCase();
+  }, [user]);
 
   return (
     <AppBar position="static">
@@ -93,7 +101,7 @@ export function Navbar() {
               <>
                 <Tooltip title="Abrir Menu">
                   <IconButton onClick={(e) => setAnchorUser(e.currentTarget)} sx={{ p: 0 }}>
-                    <Avatar sx={{ background: orange[400] }}>U</Avatar>
+                    <Avatar sx={{ background: orange[400] }}>{userSigla}</Avatar>
                   </IconButton>
                 </Tooltip>
                 <Menu
