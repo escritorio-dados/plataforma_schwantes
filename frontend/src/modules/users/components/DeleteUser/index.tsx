@@ -4,26 +4,21 @@ import { useCallback } from 'react';
 import { Loading } from '#shared/components/Loading';
 import { useToast } from '#shared/hooks/toast';
 import { useDelete } from '#shared/services/useAxios';
-import { IPublication } from '#shared/types/backend/IPublication';
+import { IUser } from '#shared/types/backend/IUser';
 
 import { DeleteContainer } from './styles';
 
-type IDeletePublicationModal = {
+type IDeleteUserModal = {
   openModal: boolean;
   closeModal: () => void;
-  publication: { id: string; titulo: string };
-  handleDeletion(id: string): void;
+  user: { id: string; email: string };
+  handleRemove(id: string): void;
 };
 
-export function DeletePublicationModal({
-  closeModal,
-  publication,
-  openModal,
-  handleDeletion,
-}: IDeletePublicationModal) {
+export function DeleteUserModal({ closeModal, user, openModal, handleRemove }: IDeleteUserModal) {
   const { toast } = useToast();
 
-  const { send, loading } = useDelete<IPublication>(`/elastic/doc/${publication.id}`);
+  const { send, loading } = useDelete<IUser>(`/users/${user.id}`);
 
   const handleDelete = useCallback(async () => {
     const { error } = await send();
@@ -34,12 +29,12 @@ export function DeletePublicationModal({
       return;
     }
 
-    toast({ message: 'publicação excluida', severity: 'success' });
+    toast({ message: 'usuario excluido', severity: 'success' });
 
-    handleDeletion(publication.id);
+    handleRemove(user.id);
 
     closeModal();
-  }, [send, toast, handleDeletion, publication.id, closeModal]);
+  }, [send, toast, handleRemove, user.id, closeModal]);
 
   return (
     <>
@@ -47,11 +42,11 @@ export function DeletePublicationModal({
 
       <Dialog open={openModal} onClose={closeModal} fullWidth maxWidth="sm">
         <DeleteContainer>
-          <Typography component="h2">Deletar Publicação</Typography>
+          <Typography component="h2">Deletar Usuario</Typography>
 
-          <Typography>Tem certeza que deseja deletar a publicação: </Typography>
+          <Typography>Tem certeza que deseja excluir o usuario: </Typography>
 
-          <Typography className="item">{publication.titulo}</Typography>
+          <Typography className="item">{user.email}</Typography>
 
           <Button className="delete" onClick={handleDelete} variant="contained" fullWidth>
             Sim

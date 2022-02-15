@@ -17,6 +17,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '#static/logo.png';
 
 import { useAuth } from '#shared/hooks/auth';
+import { DEFAULT_USER_ID } from '#shared/types/backend/IUser';
 
 import { menuUser } from './data';
 import { LoginButton, LogoStyled } from './styles';
@@ -120,6 +121,18 @@ export function Navbar() {
                   open={Boolean(anchorUser)}
                   onClose={() => setAnchorUser(null)}
                 >
+                  {user.id === DEFAULT_USER_ID && (
+                    <MenuItem
+                      onClick={() => {
+                        setAnchorUser(null);
+
+                        navigate('/users');
+                      }}
+                    >
+                      <Typography textAlign="center">Gerenciar Usuarios</Typography>
+                    </MenuItem>
+                  )}
+
                   {menuUser.map((menu) => (
                     <MenuItem
                       key={menu.title}

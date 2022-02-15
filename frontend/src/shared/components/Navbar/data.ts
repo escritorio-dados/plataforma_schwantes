@@ -6,9 +6,6 @@ export const pages: ILink[] = [
 ];
 
 export const menuUser: ILink[] = [
-  { title: 'Cadastrar Trabalhos', url: '/doc/create' },
+  { title: 'Cadastrar Trabalho', url: '/doc/create' },
   { title: 'Mudar Senha', url: '/users/password' },
-
-  // { title: 'Gerenciar Trabalhos', url: '/admin/publications' },
-  // { title: 'Gerenciar Usuarios', url: '/admin/users' },
 ];
