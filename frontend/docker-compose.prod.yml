@@ -22,8 +22,6 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      # - nginx_templates_schwantes:/etc/nginx/templates
-      # - nginx_dhparam_schwantes:/etc/ssl/certs
       - nginx_web_root_schwantes:/var/www/html
       - nginx_certbot_etc_schwantes:/etc/letsencrypt
       - nginx_certbot_var_schwantes:/var/lib/letsencrypt
@@ -50,18 +48,6 @@ services:
   #   command: certonly --webroot --webroot-path=/var/www/html --email thiago.mendes@ucb.org.br --agree-tos --no-eff-email --force-renewal -d plataformaschwantes.org
 
 volumes:
-  # nginx_templates_schwantes:
-  #   driver: local
-  #   driver_opts:
-  #     type: none
-  #     device: ./nginx/templates/
-  #     o: bind
-  # nginx_dhparam_schwantes:
-  #   driver: local
-  #   driver_opts:
-  #     type: none
-  #     device: ./nginx/dhparam/
-  #     o: bind
   nginx_web_root_schwantes:
   nginx_certbot_etc_schwantes:
   nginx_certbot_var_schwantes:

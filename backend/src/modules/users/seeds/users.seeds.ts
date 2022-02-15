@@ -11,6 +11,6 @@ export const usersSeeds: Partial<User>[] = [
   {
     id: DEFAULT_USER_ID,
     email: process.env.APP_ROOT_USER_EMAIL,
-    password: hashSync(process.env.APP_ROOT_USER_PASS, 10),
+    password: hashSync(process.env.APP_ROOT_USER_PASSWORD, 10),
   },
 ];
