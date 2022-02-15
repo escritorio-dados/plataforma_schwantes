@@ -22,3 +22,17 @@
     "index.mapping.total_fields.limit": 2000
   }
 ```
+
+# Build 
+
+```
+  yarn build
+
+  yarn docker_deploy
+```
+
+# Atualizar API
+
+```
+  yarn docker_update
+```

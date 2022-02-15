@@ -6,6 +6,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "docker_deploy": "docker-compose -f docker-compose.prod.yml up -d",
+    "docker_update": "docker-compose -f docker-compose.prod.yml up -d --no-deps --build api_schwantes",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",

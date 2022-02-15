@@ -1,0 +1,74 @@
+version: "3"
+
+services:
+  app_schwantes:
+    build:
+      context: .
+    image: thiagomf712/app_schwantes
+    container_name: app_schwantes
+    command: sh -c "serve -s build -l 3000"
+    networks:
+      - schwantes
+    tty: true
+    expose:
+      - 3000
+
+  webserver_schwantes:
+    build:
+      context: ./nginx
+    image: thiagomf712/webserver_schwantes
+    container_name: webserver_schwantes
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      # - nginx_templates_schwantes:/etc/nginx/templates
+      # - nginx_dhparam_schwantes:/etc/ssl/certs
+      - nginx_web_root_schwantes:/var/www/html
+      - nginx_certbot_etc_schwantes:/etc/letsencrypt
+      - nginx_certbot_var_schwantes:/var/lib/letsencrypt
+    depends_on:
+      - app_schwantes
+    environment:
+      - SERVER_NAME=${NGINX_SERVER_NAME}
+      - API_SERVER_NAME=${NGINX_API_SERVER_NAME}
+      - SERVER_IP=${NGINX_SERVER_IP}
+    networks:
+      - schwantes
+
+  # certbot_schwantes:
+  #   image: certbot/certbot
+  #   container_name: certbot_schwantes
+  #   volumes:
+  #     - nginx_web_root_schwantes:/var/www/html
+  #     - nginx_certbot_etc_schwantes:/etc/letsencrypt
+  #     - nginx_certbot_var_schwantes:/var/lib/letsencrypt
+  #   depends_on:
+  #     - webserver_schwantes
+  #   networks:
+  #     - schwantes
+  #   command: certonly --webroot --webroot-path=/var/www/html --email thiago.mendes@ucb.org.br --agree-tos --no-eff-email --force-renewal -d plataformaschwantes.org
+
+volumes:
+  # nginx_templates_schwantes:
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     device: ./nginx/templates/
+  #     o: bind
+  # nginx_dhparam_schwantes:
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     device: ./nginx/dhparam/
+  #     o: bind
+  nginx_web_root_schwantes:
+  nginx_certbot_etc_schwantes:
+  nginx_certbot_var_schwantes:
+
+networks:
+  schwantes:
+    driver: bridge
+
+
+

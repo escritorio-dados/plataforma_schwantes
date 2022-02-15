@@ -6,9 +6,7 @@ config();
 export const elasticClient = new Client({
   node: process.env.ELASTIC_HOST,
   auth: {
-    apiKey: {
-      id: process.env.ELASTIC_API_KEY_ID,
-      api_key: process.env.ELASTIC_API_KEY,
-    },
+    username: 'elastic',
+    password: process.env.ELASTIC_PASSWORD,
   },
 });
