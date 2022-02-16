@@ -3,7 +3,7 @@
 - Criar uma API KEY e Salvar o id, api_key, encoded
 
 ```
-  curl --user elastic:pass -PUT "http://127.0.0.1:9200/_security/api_key" -H 'Content-Type: application/json' -d'{ "name": "api_key" }'
+  curl --user elastic -PUT "http://127.0.0.1:9200/_security/api_key" -H 'Content-Type: application/json' -d'{ "name": "api_key" }'
 ```
 
 - Utilização do Token (encoded) (curl e axios por exemplo)

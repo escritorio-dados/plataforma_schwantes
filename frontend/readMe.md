@@ -14,9 +14,13 @@
 
 - Alterar o template do ngix Descomentar o que estiver comentado e comentar o redirecionamento para o servico na porta 80
 
+- As portas no no proxy_pass do nginx tem que ser liberadas nos grupos de segurança para acesso pelo menos pelo proprio IP, ou para qualquer um
+
 - Atualizar o Web server
 
 ```
+  sudo openssl dhparam -out ./nginx/dhparam/dhparam-2048.pem 2048
+
   yarn docker_webserver
 ```
 

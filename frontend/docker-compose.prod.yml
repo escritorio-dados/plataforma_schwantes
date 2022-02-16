@@ -7,11 +7,13 @@ services:
     image: thiagomf712/app_schwantes
     container_name: app_schwantes
     command: sh -c "serve -s build -l 3000"
+    tty: true
+    ports: 
+      - "3000:3000"
     networks:
       - schwantes
-    tty: true
-    expose:
-      - 3000
+    # expose:
+    #   - 3000
 
   webserver_schwantes:
     build:
@@ -31,6 +33,7 @@ services:
       - SERVER_NAME=${NGINX_SERVER_NAME}
       - API_SERVER_NAME=${NGINX_API_SERVER_NAME}
       - SERVER_IP=${NGINX_SERVER_IP}
+      - ELASTIC_SERVER_NAME=${NGINX_ELASTIC_SERVER_NAME}
     networks:
       - schwantes
 
@@ -45,7 +48,7 @@ services:
   #     - webserver_schwantes
   #   networks:
   #     - schwantes
-  #   command: certonly --webroot --webroot-path=/var/www/html --email thiago.mendes@ucb.org.br --agree-tos --no-eff-email --force-renewal -d plataformaschwantes.org
+  #   command: certonly --webroot --webroot-path=/var/www/html --email thiago.mendes@ucb.org.br --agree-tos --no-eff-email --force-renewal -d plataformaschwantes.org -d api.plataformaschwantes.org -d elastic.plataformaschwantes.org
 
 volumes:
   nginx_web_root_schwantes:
@@ -54,7 +57,7 @@ volumes:
 
 networks:
   schwantes:
+    name: schwantes
     driver: bridge
-
-
+    external: true
 

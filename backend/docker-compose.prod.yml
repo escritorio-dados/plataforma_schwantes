@@ -8,8 +8,6 @@ services:
     container_name: api_schwantes
     entrypoint: dockerize -wait tcp://pg_schwantes:5432 -timeout 20s docker-entrypoint.sh
     command: node dist/main.js
-    networks: 
-      - schwantes
     tty: true
     ports: 
       - "3333:3333"
@@ -18,6 +16,8 @@ services:
     environment:
       - "POSTGRESS_HOST=pg_schwantes" 
       - "ELASTIC_HOST=http://es_schwantes:9200"
+    networks: 
+      - schwantes
 
   pg_schwantes:
     image: "postgres:13.3-alpine"
@@ -76,4 +76,5 @@ volumes:
 
 networks:
   schwantes:
+    name: schwantes
     driver: bridge

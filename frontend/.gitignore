@@ -27,3 +27,6 @@ yarn-error.log*
 # Ngix
 /nginx/dhparam/*
 !/nginx/dhparam/.gitkeep
+
+/nginx/templates/*
+!/nginx/templates/.gitkeep
