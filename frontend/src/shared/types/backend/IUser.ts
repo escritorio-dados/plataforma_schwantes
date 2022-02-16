@@ -5,3 +5,5 @@ export type IUser = { id: string; email: string };
 export type IUpdateUserInput = { email: string; password?: string };
 
 export type ICreateUserInput = { email: string; password: string };
+
+export type IChangePasswordInput = { oldPassword: string; newPassword: string };
