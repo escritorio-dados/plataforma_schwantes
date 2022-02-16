@@ -7,7 +7,7 @@ export const Container = styled(Paper)`
   max-width: 600px;
 
   margin: auto;
-  margin-top: calc(50vh - 200px - 64px);
+  margin-top: calc(50vh - 200px - 64px - 4rem);
   padding: 2rem;
 
   display: flex;
