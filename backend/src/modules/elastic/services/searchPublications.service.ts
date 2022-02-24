@@ -98,6 +98,8 @@ export class SearchPublicationsService {
           query.bool.must.push(newFilter);
         } else {
           query.bool.must = [newFilter];
+
+          alreadyHasMust = true;
         }
       });
 
