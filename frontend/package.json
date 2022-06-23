@@ -27,7 +27,7 @@
     "docker_update": "docker-compose -f docker-compose.prod.yml up -d --no-deps --build app_schwantes",
     "docker_certbot": "docker-compose -f docker-compose.prod.yml up --no-deps --force-recreate certbot_schwantes",
     "docker_webserver": "docker-compose -f docker-compose.prod.yml up -d --no-deps --build webserver_schwantes",
-    "docker_certbot_renew": "docker-compose -f docker-compose.prod.yml run app_schwantes renew",
+    "docker_certbot_renew": "docker-compose -f docker-compose.prod.yml run certbot_schwantes renew",
     "dev": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
