@@ -1,5 +1,4 @@
-import styled from '@emotion/styled';
-import { Paper } from '@mui/material';
+import { Paper, styled } from '@mui/material';
 
 export const AuthContainer = styled(Paper)`
   height: 300px;

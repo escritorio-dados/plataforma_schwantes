@@ -1,31 +1,47 @@
-import styled from '@emotion/styled';
-import { Button } from '@mui/material';
-import { green } from '@mui/material/colors';
+import { Box, styled } from '@mui/material';
+import { HashLink } from 'react-router-hash-link';
 
-export const LogoStyled = styled.img`
-  width: 10rem;
+export const Logo = styled('img')``;
+
+export const TopBar = styled(Box)`
   display: flex;
+  align-items: center;
+
+  padding: 1rem;
 `;
 
-export const MenuLinkButton = styled(Button)`
-  display: block;
-  color: #fff;
+export const NavBar = styled(Box)`
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  width: 100%;
 
-  transition: border-bottom 0.3s;
+  background-color: #fff;
+
+  height: 3.5rem;
+  padding: 0 1rem;
+`;
+
+export const NavLink = styled(HashLink)`
+  text-decoration: none;
+
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 0.75rem;
+  color: #252b42;
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #fff;
 
   &:hover {
-    color: ${green[200]};
-    border-bottom: 1px solid #fff;
+    border-bottom: 2px solid #252b42;
+    border-radius: 0 0 3px 3px;
   }
-`;
 
-export const LoginButton = styled(Button)`
-  color: #fff;
-  background-color: ${green[400]};
-  transition: filter 0.2s;
+  & + a {
+    margin-left: 2.5rem;
+  }
 
-  &:hover {
-    background-color: ${green[400]};
-    filter: brightness(0.9);
+  &.login {
+    margin-left: auto;
   }
 `;

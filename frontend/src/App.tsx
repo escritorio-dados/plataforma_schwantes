@@ -1,40 +1,40 @@
-import { css } from '@emotion/react';
-import { Container, GlobalStyles } from '@mui/material';
+import { Container, createTheme, GlobalStyles, ThemeProvider } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { BrowserRouter } from 'react-router-dom';
 
 import { Footer } from '#shared/components/Footer';
-import { Navbar } from '#shared/components/Navbar';
+import { TopBar } from '#shared/components/TopBar';
 import { AppProvider } from '#shared/hooks';
 import { Router } from '#shared/routes';
+import { cssGlobal } from '#shared/themes/global.styles';
+
+const theme = createTheme({
+  typography: {
+    fontFamily: `"Poppins", "Helvetica", "Arial", sans-serif`,
+    fontSize: 12,
+  },
+});
 
 export function App() {
   return (
     <>
       <CssBaseline />
 
-      <GlobalStyles
-        styles={css`
-          #root {
-            min-height: 100vh;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-          }
-        `}
-      />
+      <GlobalStyles styles={cssGlobal} />
 
-      <AppProvider>
-        <BrowserRouter>
-          <Navbar />
+      <ThemeProvider theme={theme}>
+        <AppProvider>
+          <BrowserRouter>
+            <TopBar />
 
-          <Container sx={{ margin: '2em auto' }} maxWidth="xl">
-            <Router />
-          </Container>
+            <Container sx={{ margin: '0 auto', marginBottom: '2rem' }} maxWidth="xl">
+              <Router />
+            </Container>
 
-          <Footer />
-        </BrowserRouter>
-      </AppProvider>
+            <Footer />
+          </BrowserRouter>
+        </AppProvider>
+      </ThemeProvider>
     </>
   );
 }
