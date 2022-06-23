@@ -5,7 +5,7 @@ import { useCallback, useState } from 'react';
 import { ScrollContainer } from './styles';
 
 export function ScrollToTopButton() {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   const toggleVisible = useCallback(() => {
     const scrolled = document.documentElement.scrollTop;
