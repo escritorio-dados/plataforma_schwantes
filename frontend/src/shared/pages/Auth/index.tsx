@@ -23,7 +23,7 @@ export function Auth() {
 
   useEffect(() => {
     if (logged) {
-      navigate('/');
+      navigate(-1);
     }
   }, [logged, navigate]);
 

@@ -63,7 +63,7 @@ export class SearchPublicationsService {
           {
             multi_match: {
               query: search,
-              type: 'phrase',
+              type: 'phrase_prefix',
               fields: [
                 'titulo',
                 'autor.autor_full_name',

@@ -1,10 +1,22 @@
-import styled from '@emotion/styled';
-import { blue } from '@mui/material/colors';
+import { styled } from '@mui/material';
 
-export const FooterContainer = styled.footer`
+export const FooterContainer = styled('footer')`
   min-height: 4rem;
   width: 100%;
   margin-top: auto;
 
-  background-color: ${blue[700]};
+  background-color: #242f5c;
+  color: #fff;
+  padding: 1rem;
+`;
+
+export const LinkText = styled('a')`
+  text-decoration: none;
+  color: #fff;
+
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(0.7);
+  }
 `;

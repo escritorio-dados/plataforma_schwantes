@@ -30,3 +30,5 @@ yarn-error.log*
 
 /nginx/templates/*
 !/nginx/templates/.gitkeep
+
+.VSCodeCounter

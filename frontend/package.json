@@ -17,7 +17,9 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.26.1",
+    "react-lottie": "^1.2.3",
     "react-router-dom": "^6.2.1",
+    "react-router-hash-link": "^2.4.3",
     "react-scripts": "5.0.0",
     "web-vitals": "^2.1.0",
     "yup": "^0.32.11"
@@ -56,6 +58,8 @@
     "@types/node": "^16.7.13",
     "@types/react": "^17.0.20",
     "@types/react-dom": "^17.0.9",
+    "@types/react-lottie": "^1.2.6",
+    "@types/react-router-hash-link": "^2.4.5",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.10.1",
     "eslint": "^8.7.0",

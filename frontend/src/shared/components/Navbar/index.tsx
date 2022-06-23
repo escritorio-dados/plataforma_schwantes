@@ -1,168 +1,105 @@
-import {
-  AppBar,
-  Avatar,
-  Box,
-  Container,
-  IconButton,
-  Menu,
-  MenuItem,
-  Toolbar,
-  Tooltip,
-  Typography,
-} from '@mui/material';
-import { orange } from '@mui/material/colors';
-import { useMemo, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { AccountCircle } from '@mui/icons-material';
+import { Box, IconButton, Menu, MenuItem, Tooltip, Typography } from '@mui/material';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import logo from '#static/logo.png';
+import logo from '#static/logo.svg';
 
 import { useAuth } from '#shared/hooks/auth';
 import { DEFAULT_USER_ID } from '#shared/types/backend/IUser';
 
 import { menuUser } from './data';
-import { LoginButton, LogoStyled } from './styles';
+import { Logo, NavBar, NavLink, TopBar } from './styles';
 
 export function Navbar() {
-  // const [anchorMenu, setAnchorMenu] = useState<null | HTMLElement>(null);
   const [anchorUser, setAnchorUser] = useState<null | HTMLElement>(null);
 
   const navigate = useNavigate();
   const { logged, signOut, user } = useAuth();
 
-  const userSigla = useMemo(() => {
-    if (!user) {
-      return 'U';
-    }
-
-    return user.email[0].toUpperCase();
-  }, [user]);
-
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Link to="/">
-            <LogoStyled src={logo} alt="Logo" />
-          </Link>
+    <TopBar>
+      <Logo src={logo} alt="logo" />
 
-          {/* Box em Telas Pequenas */}
-          {/* <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="Menu Principal"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={(e) => setAnchorMenu(e.currentTarget)}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
+      <NavBar>
+        <NavLink to="/">Página Inicial</NavLink>
 
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorMenu}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorMenu)}
-              onClose={() => setAnchorMenu(null)}
-            >
-              {pages.map((page) => (
-                <MenuItem
-                  key={page.title}
-                  onClick={() => {
-                    navigate(page.url);
-                    setAnchorMenu(null);
-                  }}
-                >
-                  <Typography textAlign="center">{page.title}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box> */}
+        <NavLink to="/#about">Sobre</NavLink>
 
-          {/* Box em Telas Grandes */}
-          {/* <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <MenuLinkButton key={page.title} onClick={() => navigate(page.url)}>
-                {page.title}
-              </MenuLinkButton>
-            ))}
-          </Box> */}
+        <NavLink to="/#bio">Biografia</NavLink>
 
-          {/* Menu Esquerdo */}
-          <Box sx={{ marginLeft: 'auto' }}>
-            {logged ? (
-              <>
-                <Tooltip title="Abrir Menu">
-                  <IconButton onClick={(e) => setAnchorUser(e.currentTarget)} sx={{ p: 0 }}>
-                    <Avatar sx={{ background: orange[400] }}>{userSigla}</Avatar>
-                  </IconButton>
-                </Tooltip>
-                <Menu
-                  sx={{ mt: '45px' }}
-                  id="menu-user"
-                  anchorEl={anchorUser}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  open={Boolean(anchorUser)}
-                  onClose={() => setAnchorUser(null)}
-                >
-                  {user.id === DEFAULT_USER_ID && (
-                    <MenuItem
-                      onClick={() => {
-                        setAnchorUser(null);
+        <NavLink to="/#dados">Dados do Acervo</NavLink>
 
-                        navigate('/users');
-                      }}
-                    >
-                      <Typography textAlign="center">Gerenciar Usuarios</Typography>
-                    </MenuItem>
-                  )}
+        <NavLink to="/#expediente">Expediente</NavLink>
 
-                  {menuUser.map((menu) => (
-                    <MenuItem
-                      key={menu.title}
-                      onClick={() => {
-                        setAnchorUser(null);
+        <Box sx={{ marginLeft: 'auto' }}>
+          {logged ? (
+            <>
+              <Tooltip title="Abrir Menu">
+                <IconButton onClick={(e) => setAnchorUser(e.currentTarget)} sx={{ p: '1px' }}>
+                  <AccountCircle fontSize="large" sx={{ color: '#252d4f' }} />
+                </IconButton>
+              </Tooltip>
 
-                        navigate(menu.url);
-                      }}
-                    >
-                      <Typography textAlign="center">{menu.title}</Typography>
-                    </MenuItem>
-                  ))}
-
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-user"
+                anchorEl={anchorUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorUser)}
+                onClose={() => setAnchorUser(null)}
+              >
+                {user.id === DEFAULT_USER_ID && (
                   <MenuItem
                     onClick={() => {
                       setAnchorUser(null);
 
-                      signOut();
+                      navigate('/users');
                     }}
                   >
-                    <Typography textAlign="center">Sair</Typography>
+                    <Typography textAlign="center">Gerenciar Usuarios</Typography>
                   </MenuItem>
-                </Menu>
-              </>
-            ) : (
-              <LoginButton onClick={() => navigate('/auth')}>Entrar</LoginButton>
-            )}
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+                )}
+
+                {menuUser.map((menu) => (
+                  <MenuItem
+                    key={menu.title}
+                    onClick={() => {
+                      setAnchorUser(null);
+
+                      navigate(menu.url);
+                    }}
+                  >
+                    <Typography textAlign="center">{menu.title}</Typography>
+                  </MenuItem>
+                ))}
+
+                <MenuItem
+                  onClick={() => {
+                    setAnchorUser(null);
+
+                    signOut();
+                  }}
+                >
+                  <Typography textAlign="center">Sair</Typography>
+                </MenuItem>
+              </Menu>
+            </>
+          ) : (
+            <NavLink className="login" to="/auth">
+              Login
+            </NavLink>
+          )}
+        </Box>
+      </NavBar>
+    </TopBar>
   );
 }
