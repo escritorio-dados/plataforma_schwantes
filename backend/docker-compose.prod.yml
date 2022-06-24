@@ -63,6 +63,7 @@ services:
       - ELASTICSEARCH_PASSWORD=$ELASTIC_PASSWORD
       - SERVER_NAME=127.0.0.1
       - ELASTICSEARCH_HOSTS=http://es_schwantes:9200
+      - SERVER_PUBLICBASEURL=${KIBANA_PUBLIC_URL}
     depends_on:
       - es_schwantes
     ports:

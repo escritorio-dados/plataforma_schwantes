@@ -34,6 +34,7 @@ services:
       - API_SERVER_NAME=${NGINX_API_SERVER_NAME}
       - SERVER_IP=${NGINX_SERVER_IP}
       - ELASTIC_SERVER_NAME=${NGINX_ELASTIC_SERVER_NAME}
+      - KIBANA_SERVER_NAME=${NGINX_KIBANA_SERVER_NAME}
     networks:
       - schwantes
 
@@ -48,7 +49,7 @@ services:
   #     - webserver_schwantes
   #   networks:
   #     - schwantes
-  #   command: certonly --webroot --webroot-path=/var/www/html --email thiago.mendes@ucb.org.br --agree-tos --no-eff-email --force-renewal -d plataformaschwantes.org -d api.plataformaschwantes.org -d elastic.plataformaschwantes.org
+  #   command: certonly --webroot --webroot-path=/var/www/html --email thiago.mendes@ucb.org.br --agree-tos --no-eff-email --force-renewal -d plataformaschwantes.org -d api.plataformaschwantes.org -d elastic.plataformaschwantes.org -d dados.plataformaschwantes.org
 
 volumes:
   nginx_web_root_schwantes:
