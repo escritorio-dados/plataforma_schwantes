@@ -1,7 +1,6 @@
 import { Box, Grid, Typography } from '@mui/material';
 
 import arrow from '#static/about/arrow.svg';
-import graficoPdf from '#static/about/graficos.pdf';
 import graficoImg from '#static/about/graficos.png';
 import icon1 from '#static/about/icon_1.svg';
 import icon2 from '#static/about/icon_2.svg';
@@ -133,7 +132,16 @@ export function About() {
               tipo de trabalho.
             </Paragraph>
 
-            <OpenLink href={graficoPdf} target="_blank" rel="noreferrer">
+            <Paragraph>
+              Para acessar a plataforma utilize o usuario: <b>convidado</b> e senha:{' '}
+              <b>convidado</b>
+            </Paragraph>
+
+            <OpenLink
+              href="https://dados.plataformaschwantes.org/s/public_reports/app/dashboards#/view/e4a73500-f3bb-11ec-8dc6-f1dfbc855017"
+              target="_blank"
+              rel="noreferrer"
+            >
               Saber mais <img src={arrow} alt="Seta" />
             </OpenLink>
           </Grid>
