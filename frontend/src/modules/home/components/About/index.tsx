@@ -6,7 +6,7 @@ import icon1 from '#static/about/icon_1.svg';
 import icon2 from '#static/about/icon_2.svg';
 import icon3 from '#static/about/icon_3.svg';
 
-import { AboutContainer, Divider, OpenLink, Paragraph } from './styles';
+import { AboutContainer, Divider, NavLink, OpenLink, Paragraph } from './styles';
 
 export function About() {
   return (
@@ -49,6 +49,10 @@ export function About() {
               formação de uma comunidade que compartilha trabalhos científicos com temas diversos
               voltados para o adventismo no Brasil.
             </Paragraph>
+
+            {/* <NavLink to="/about">
+              Saber mais <img src={arrow} alt="Seta" />
+            </NavLink> */}
           </Grid>
 
           <Grid item xs={12} sm={6}>

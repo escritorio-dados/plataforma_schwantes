@@ -9,6 +9,8 @@ export const ImportantWorksContainer = styled(Box)`
   padding-bottom: 0.5rem;
 
   overflow: auto;
+
+  min-height: 10rem;
 `;
 
 export const Work = styled(Box)`
@@ -118,5 +120,25 @@ export const SearchInput = styled(TextField)`
     &.Mui-focused fieldset {
       border-color: #fff;
     }
+  }
+`;
+
+export const NavLink = styled(Link)`
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+
+  margin-top: 0.5rem;
+  padding-right: 1rem;
+  display: block;
+  width: 100%;
+  text-align: right;
+
+  color: #fff;
+
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(0.7);
   }
 `;

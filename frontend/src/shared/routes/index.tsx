@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import { Auth } from '#shared/pages/Auth';
 
+import { About } from '#modules/about/pages/About';
 import { Bio } from '#modules/bio/pages/Bio';
 import { Home } from '#modules/home/pages/Home';
 import { Search } from '#modules/trabalhos/pages/Search';
@@ -16,6 +17,8 @@ export function Router() {
       <Route path="/" element={<Home />} />
 
       <Route path="/bio" element={<Bio />} />
+
+      {/* <Route path="/about" element={<About />} /> */}
 
       <Route path="/search" element={<Search />} />
 

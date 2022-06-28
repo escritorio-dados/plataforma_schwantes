@@ -8,6 +8,13 @@ import { IPublication } from '../types/IPublication';
 
 type IResponseElastic = { found: boolean; _id: string; _source?: IPublication };
 
+type IPublicationApi = {
+  _id: string;
+  _source: IPublication;
+};
+
+type IResponseRandom = { hits: { hits: IPublicationApi[] } };
+
 @Injectable()
 export class GetPublicationsService {
   async execute(id: string): Promise<IPublication> {
@@ -23,6 +30,40 @@ export class GetPublicationsService {
         throw new AppError(publicationsErrors.notFound);
       }
 
+      throw new AppError({ message: 'internal server error' });
+    }
+  }
+
+  async getRandom(quantity: number) {
+    const query = {
+      function_score: {
+        functions: [
+          {
+            random_score: {},
+          },
+        ],
+      },
+    };
+
+    try {
+      const response = await elasticClient.search<IResponseRandom>({
+        index: 'trabalhos',
+        body: {
+          size: quantity,
+          query,
+          _source: ['ano', 'titulo', 'tipo_trabalho', 'campo'],
+        },
+      });
+
+      const publications = response.body.hits.hits.map((hit) => {
+        return {
+          id: hit._id,
+          ...hit._source,
+        };
+      });
+
+      return publications;
+    } catch (error) {
       throw new AppError({ message: 'internal server error' });
     }
   }

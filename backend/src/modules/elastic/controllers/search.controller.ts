@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 
 import { PublicationDto } from '../dtos/Publication.dto';
+import { RandomPublicationsQuery } from '../query/RandomPublications.query';
 import { SearchPublicationsQuery } from '../query/SearchPublications.query';
 import { CreatePublicationService } from '../services/createPublication.service';
 import { DeletePublicationService } from '../services/deletePublication.service';
@@ -28,6 +29,11 @@ export class SearchController {
   @Get('/search/filters')
   async getFilters() {
     return this.getFilterOptionsService.execute();
+  }
+
+  @Get('/doc/random')
+  async getRandom(@Query() { quantity }: RandomPublicationsQuery) {
+    return this.getPublicationsService.getRandom(quantity);
   }
 
   @Get('/doc/:id')

@@ -1,4 +1,5 @@
 import { Box, styled, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export const AboutContainer = styled(Box)`
   margin-top: 18rem;
@@ -18,6 +19,28 @@ export const Divider = styled(Box)`
 `;
 
 export const OpenLink = styled('a')`
+  display: flex;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 0.75rem;
+
+  margin-top: 1.5rem;
+
+  color: #23a6f0;
+
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(0.7);
+  }
+
+  > img {
+    margin-left: 0.4rem;
+  }
+`;
+
+export const NavLink = styled(Link)`
   display: flex;
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
