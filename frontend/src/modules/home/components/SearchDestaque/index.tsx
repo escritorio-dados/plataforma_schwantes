@@ -64,7 +64,7 @@ export function SearchDestaque() {
         ano: '2020',
         tipo_trabalho: 'Dissertação',
         titulo: 'Estilo de vida e qualidade de vida de pastores em comunidade de fé',
-        image: i2,
+        image: i5,
       },
       '111': {
         id: '111',
@@ -72,14 +72,14 @@ export function SearchDestaque() {
         tipo_trabalho: 'Dissertação',
         titulo:
           '"Um roteiro seguro e certo, a elevar as almas jovens" : educação afetiva e sexual na Revista Mocidade (1958-1994)',
-        image: i3,
+        image: i2,
       },
       '8': {
         id: '8',
         ano: '2020',
         tipo_trabalho: 'Tese',
         titulo: 'A hermenêutica adventista e o dilema da ordenação da mulher',
-        image: i4,
+        image: i3,
       },
       '134': {
         id: '134',
@@ -87,7 +87,7 @@ export function SearchDestaque() {
         tipo_trabalho: 'Dissertação',
         titulo:
           'DEPRESSÃO E DESESPERANÇA: REALIDADE DO PASTOR? Uma Análise sobre os Fatores que Podem Influenciar a Saúde Mental do Pastor',
-        image: i5,
+        image: i4,
       },
       '207': {
         id: '207',
