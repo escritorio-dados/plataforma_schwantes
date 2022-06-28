@@ -6,7 +6,7 @@ import icon1 from '#static/about/icon_1.svg';
 import icon2 from '#static/about/icon_2.svg';
 import icon3 from '#static/about/icon_3.svg';
 
-import { AboutContainer, Divider, NavLink, OpenLink, Paragraph } from './styles';
+import { AboutContainer, Divider, OpenLink, Paragraph } from './styles';
 
 export function About() {
   return (
