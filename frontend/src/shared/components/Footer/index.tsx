@@ -3,7 +3,6 @@ import { Box, Container, Grid, Typography } from '@mui/material';
 import apoio from '#static/footer/apoio.png';
 import unasp from '#static/footer/unasp.png';
 import unaspress from '#static/footer/unaspress.png';
-// import criadores2 from '#static/footer/criadores2.png';
 
 import { FooterContainer, LinkText } from './styles';
 
@@ -55,23 +54,29 @@ export function Footer() {
           </Grid>
         </Box>
 
-        <Box sx={{ marginTop: '1rem' }}>
-          <Typography sx={{ color: '#E74242', fontSize: 13 }}>Criadores:</Typography>
+        <Grid container spacing={6}>
+          <Grid item xs={6}>
+            <Box sx={{ marginTop: '1rem' }}>
+              <Typography sx={{ color: '#E74242', fontSize: 13 }}>Criadores:</Typography>
 
-          <Box display="flex" sx={{ padding: '0.5rem 0', alignItems: 'center' }}>
-            <img src={unaspress} alt="Unaspress" width="200px" />
+              <Box display="flex" sx={{ padding: '0.5rem 0', alignItems: 'center' }}>
+                <img src={unaspress} alt="Unaspress" width="200px" />
 
-            <img src={unasp} alt="Unasp" width="200px" style={{ marginLeft: '3rem' }} />
-          </Box>
-        </Box>
+                <img src={unasp} alt="Unasp" width="200px" style={{ marginLeft: '3rem' }} />
+              </Box>
+            </Box>
+          </Grid>
 
-        <Box sx={{ marginTop: '1rem' }}>
-          <Typography sx={{ color: '#E74242', fontSize: 13 }}>Apoio:</Typography>
+          <Grid item xs={6}>
+            <Box sx={{ marginTop: '1rem' }}>
+              <Typography sx={{ color: '#E74242', fontSize: 13 }}>Apoio:</Typography>
 
-          <Box sx={{ padding: '1rem 0' }}>
-            <img src={apoio} alt="Apoio" width="470px" />
-          </Box>
-        </Box>
+              <Box sx={{ padding: '1rem 0' }}>
+                <img src={apoio} alt="Apoio" width="470px" />
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
       </Container>
     </FooterContainer>
   );
