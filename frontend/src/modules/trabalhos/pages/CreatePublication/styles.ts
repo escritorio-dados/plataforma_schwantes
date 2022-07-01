@@ -3,9 +3,6 @@ import { Paper } from '@mui/material';
 import { grey } from '@mui/material/colors';
 
 export const PublicationForm = styled(Paper)`
-  max-width: 1200px;
-  margin: auto;
-
   padding: 1rem;
 
   > h2 {

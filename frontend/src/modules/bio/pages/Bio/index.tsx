@@ -7,6 +7,8 @@ import bio3 from '#static/bio/bio_3.png';
 import bio4 from '#static/bio/bio_4.png';
 import bio5 from '#static/bio/bio_5.png';
 
+import { ContainerStyled } from '#shared/styles/container';
+
 import { ClickableImage, Divider, LinkText, Paragraph } from './styles';
 
 type IImageConfig = {
@@ -56,9 +58,9 @@ export function Bio() {
   }, [selectedImg]);
 
   return (
-    <Box>
+    <ContainerStyled maxWidth="lg">
       <Grid container spacing={6}>
-        <Grid item xs={9}>
+        <Grid item xs={12} md={9}>
           <Divider />
 
           <Typography sx={{ color: '#737373', fontWeight: 'bold', marginTop: '2rem' }}>
@@ -182,7 +184,7 @@ export function Bio() {
           </Paragraph>
         </Grid>
 
-        <Grid item xs={3}>
+        <Grid item md={3} sx={{ display: { xs: 'none', md: 'block' } }}>
           <Box sx={{ marginTop: '7rem' }}>
             <img src={imagesConfig[selectedImg].img} alt="Schwantes" width="100%" />
 
@@ -208,6 +210,6 @@ export function Bio() {
           </Box>
         </Grid>
       </Grid>
-    </Box>
+    </ContainerStyled>
   );
 }

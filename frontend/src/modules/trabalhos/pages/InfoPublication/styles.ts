@@ -3,8 +3,6 @@ import { blue, grey } from '@mui/material/colors';
 
 export const Publication = styled.div`
   text-align: justify;
-  max-width: 1200px;
-  margin: auto;
 
   h2,
   h3,

@@ -1,4 +1,4 @@
-import { Box, styled, Typography } from '@mui/material';
+import { Box, Paper, styled, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 export const BioInfoContainer = styled(Box)`
@@ -63,7 +63,7 @@ export const ImagesContainer = styled(Box)`
   overflow: auto;
 `;
 
-export const Image = styled(Box)`
+export const Image = styled(Paper)`
   width: 170px;
   min-width: 170px;
   height: 236px;
@@ -73,8 +73,6 @@ export const Image = styled(Box)`
   }
 
   border-radius: 5px;
-  box-shadow: 0px 0.519481px 0.519481px rgba(0, 0, 0, 0.25),
-    inset 0px 0.25974px 0px rgba(0, 0, 0, 0.1);
 
   > img {
     width: 100%;

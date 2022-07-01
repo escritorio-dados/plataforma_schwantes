@@ -6,13 +6,16 @@ import laptop from '#static/expediente/laptop.png';
 
 export function Expediente() {
   return (
-    <Box sx={{ marginTop: '10rem' }} id="expediente">
-      <Grid container spacing={10}>
+    <Box sx={{ marginTop: '5rem' }} id="expediente">
+      <Grid container spacing={5}>
         <Grid
           item
-          xs={12}
-          sm={6}
-          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          md={6}
+          sx={{
+            display: { xs: 'none', md: 'flex' },
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
         >
           <Box sx={{ width: '326px', height: '326px', position: 'relative', overflow: 'hidden' }}>
             <img src={laptop} alt="Laptop" width="100%" height="100%" />
@@ -30,7 +33,7 @@ export function Expediente() {
             />
           </Box>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={6}>
           <Typography sx={{ color: '#23A6F0', fontSize: 14, fontWeight: 'bold' }}>
             Expediente
           </Typography>
@@ -42,16 +45,16 @@ export function Expediente() {
           </Typography>
 
           <Typography sx={{ marginTop: '1rem', color: '#737373', lineHeight: 1.8 }}>
-            Coordenação Geral: Dr. Allan Novaes
+            <b>Coordenação Geral</b>: Dr. Allan Novaes
             <br />
-            Coordenação técnica: Esp. Bruno Ferreira
+            <b>Coordenação técnica</b>: Esp. Bruno Ferreira
             <br />
-            Análise e Pesquisa: Dr. Allan Novaes, Dr. Rodrigo Follis, Dra. Paula Caroline Passos ,
-            Jamphier Geyser Carhuatanta Gomez.
+            <b>Análise e Pesquisa</b>: Dr. Allan Novaes, Dr. Rodrigo Follis, Dra. Paula Caroline
+            Passos , Jamphier Geyser Carhuatanta Gomez.
             <br />
-            Desenvolvimento técnico e suporte: Thiago Ferreira
+            <b>Desenvolvimento técnico e suporte</b>: Thiago Ferreira
             <br />
-            Design das Telas: Bruna Short
+            <b>Design das Telas</b>: Bruna Short
           </Typography>
         </Grid>
       </Grid>

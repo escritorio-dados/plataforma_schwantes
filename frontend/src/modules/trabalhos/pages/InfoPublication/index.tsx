@@ -6,6 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Loading } from '#shared/components/Loading';
 import { useToast } from '#shared/hooks/toast';
 import { useGet } from '#shared/services/useAxios';
+import { ContainerStyled } from '#shared/styles/container';
 import { IPublication } from '#shared/types/backend/IPublication';
 
 import { PublicationTags, MetadataInfo, Publication } from './styles';
@@ -32,106 +33,108 @@ export function InfoPublication() {
   if (!publication) return <div />;
 
   return (
-    <Publication>
-      <Tooltip title="Voltar para a pesquisa" placement="right">
-        <IconButton onClick={() => navigate(-1)} className="go-back">
-          <ArrowBack fontSize="large" />
-        </IconButton>
-      </Tooltip>
+    <ContainerStyled maxWidth="lg">
+      <Publication>
+        <Tooltip title="Voltar para a pesquisa" placement="right">
+          <IconButton onClick={() => navigate(-1)} className="go-back">
+            <ArrowBack fontSize="large" />
+          </IconButton>
+        </Tooltip>
 
-      <header>
-        <PublicationTags>
-          <Typography component="span" className="ano">
-            {publication.ano}
-          </Typography>
+        <header>
+          <PublicationTags>
+            <Typography component="span" className="ano">
+              {publication.ano}
+            </Typography>
 
-          <Typography component="span" className="tipo">
-            {publication.tipo_trabalho}
-          </Typography>
-        </PublicationTags>
+            <Typography component="span" className="tipo">
+              {publication.tipo_trabalho}
+            </Typography>
+          </PublicationTags>
 
-        <div className="link">
-          <Button
-            variant="contained"
-            onClick={() => window.open(publication.link, '_blank')}
-            disabled={!publication.link}
-          >
-            Link para Artigo
-          </Button>
-        </div>
-      </header>
+          <div className="link">
+            <Button
+              variant="contained"
+              onClick={() => window.open(publication.link, '_blank')}
+              disabled={!publication.link}
+            >
+              Link para Artigo
+            </Button>
+          </div>
+        </header>
 
-      <main>
-        <Typography component="h2">{publication.titulo}</Typography>
+        <main>
+          <Typography component="h2">{publication.titulo}</Typography>
 
-        <section className="autor">
-          <Typography component="h4">Autor</Typography>
+          <section className="autor">
+            <Typography component="h4">Autor</Typography>
 
-          <Typography>{publication.autor.autor_full_name}</Typography>
+            <Typography>{publication.autor.autor_full_name}</Typography>
 
-          {publication.orientador.orientador_full_name && (
-            <>
-              <Typography component="h4">Orientador</Typography>
+            {publication.orientador.orientador_full_name && (
+              <>
+                <Typography component="h4">Orientador</Typography>
 
-              <Typography>{publication.orientador.orientador_full_name}</Typography>
-            </>
-          )}
-        </section>
-
-        {publication.palavras_chave && (
-          <section className="palavras-chave">
-            <Typography component="h3">Palavras Chave</Typography>
-
-            <div>
-              {publication.palavras_chave.map((keyword) => (
-                <Typography component="span" key={keyword}>
-                  {keyword}
-                </Typography>
-              ))}
-            </div>
+                <Typography>{publication.orientador.orientador_full_name}</Typography>
+              </>
+            )}
           </section>
-        )}
 
-        <section className="resumo">
-          <Typography component="h3">Resumo</Typography>
+          {publication.palavras_chave && (
+            <section className="palavras-chave">
+              <Typography component="h3">Palavras Chave</Typography>
 
-          <Typography>{publication.resumo || 'Sem Resumo'}</Typography>
-        </section>
+              <div>
+                {publication.palavras_chave.map((keyword) => (
+                  <Typography component="span" key={keyword}>
+                    {keyword}
+                  </Typography>
+                ))}
+              </div>
+            </section>
+          )}
 
-        <section className="detalhes">
-          <Typography component="h3">Detalhes</Typography>
+          <section className="resumo">
+            <Typography component="h3">Resumo</Typography>
 
-          <MetadataInfo>
-            <Typography className="metadata">Programa</Typography>
+            <Typography>{publication.resumo || 'Sem Resumo'}</Typography>
+          </section>
 
-            <Typography className="info">{publication.programa}</Typography>
-          </MetadataInfo>
+          <section className="detalhes">
+            <Typography component="h3">Detalhes</Typography>
 
-          <MetadataInfo>
-            <Typography className="metadata">Campo</Typography>
+            <MetadataInfo>
+              <Typography className="metadata">Programa</Typography>
 
-            <Typography className="info">{publication.campo}</Typography>
-          </MetadataInfo>
+              <Typography className="info">{publication.programa}</Typography>
+            </MetadataInfo>
 
-          <MetadataInfo>
-            <Typography className="metadata">Instituição</Typography>
+            <MetadataInfo>
+              <Typography className="metadata">Campo</Typography>
 
-            <Typography className="info">{publication.instituicao}</Typography>
-          </MetadataInfo>
+              <Typography className="info">{publication.campo}</Typography>
+            </MetadataInfo>
 
-          <MetadataInfo>
-            <Typography className="metadata">Tipo de Instituição</Typography>
+            <MetadataInfo>
+              <Typography className="metadata">Instituição</Typography>
 
-            <Typography className="info">{publication.tipo_instituicao}</Typography>
-          </MetadataInfo>
+              <Typography className="info">{publication.instituicao}</Typography>
+            </MetadataInfo>
 
-          <MetadataInfo>
-            <Typography className="metadata">Estado</Typography>
+            <MetadataInfo>
+              <Typography className="metadata">Tipo de Instituição</Typography>
 
-            <Typography className="info">{publication.estado}</Typography>
-          </MetadataInfo>
-        </section>
-      </main>
-    </Publication>
+              <Typography className="info">{publication.tipo_instituicao}</Typography>
+            </MetadataInfo>
+
+            <MetadataInfo>
+              <Typography className="metadata">Estado</Typography>
+
+              <Typography className="info">{publication.estado}</Typography>
+            </MetadataInfo>
+          </section>
+        </main>
+      </Publication>
+    </ContainerStyled>
   );
 }

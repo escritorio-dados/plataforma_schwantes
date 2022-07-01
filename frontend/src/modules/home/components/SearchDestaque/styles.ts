@@ -1,4 +1,4 @@
-import { Box, styled, TextField } from '@mui/material';
+import { Box, Paper, styled, TextField } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 export const ImportantWorksContainer = styled(Box)`
@@ -11,17 +11,20 @@ export const ImportantWorksContainer = styled(Box)`
   overflow: auto;
 
   min-height: 10rem;
+
+  > div + div {
+    margin-left: 1rem;
+  }
 `;
 
-export const Work = styled(Box)`
+export const Work = styled(Paper)`
   width: 196px;
   min-width: 196px;
   height: 244px;
-  margin-right: 2rem;
 
   border-radius: 5px;
-  box-shadow: 0px 0.519481px 0.519481px rgba(0, 0, 0, 0.25),
-    inset 0px 0.25974px 0px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0px 0.519481px 0.519481px rgba(0, 0, 0, 0.5),
+    inset 0px 0.25974px 0px rgba(0, 0, 0, 0.5); */
 
   padding: 0.5rem 0.7rem;
   position: relative;

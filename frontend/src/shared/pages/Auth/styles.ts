@@ -5,7 +5,7 @@ export const AuthContainer = styled(Paper)`
   max-width: 600px;
 
   margin: auto;
-  margin-top: calc(50vh - 150px - 64px - 4rem);
+  margin-top: 2rem;
   padding: 2rem;
 
   display: flex;

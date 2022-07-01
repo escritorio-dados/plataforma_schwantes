@@ -45,3 +45,22 @@ export const NavLink = styled(HashLink)`
     margin-left: auto;
   }
 `;
+
+export const AuthSm = styled(HashLink)`
+  text-decoration: none;
+
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 0.75rem;
+  color: #fff;
+`;
+
+export const NavLinkSm = styled(HashLink)`
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 0.75rem;
+  color: #252b42;
+
+  padding: 8px 16px;
+`;

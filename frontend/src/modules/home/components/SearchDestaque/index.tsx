@@ -169,7 +169,7 @@ export function SearchDestaque() {
 
     const destaques = [];
 
-    for (let i = 0; i < 4; i += 1) {
+    for (let i = 0; i < 3; i += 1) {
       const destaqueKey = getRandomKey(Object.keys(destaquesList));
 
       destaques.push({ ...destaquesList[destaqueKey] });
@@ -251,8 +251,8 @@ export function SearchDestaque() {
   return (
     <>
       <Box sx={{ marginTop: '5rem' }}>
-        <Grid container spacing={12}>
-          <Grid item xs={12} sm={6} lg={5} xl={4} sx={{ color: '#fff' }}>
+        <Grid container spacing={6}>
+          <Grid item xs={12} md={6} lg={5} sx={{ color: '#fff' }}>
             <Typography fontSize="0.75rem">Bem-vindo à Plataforma Shwantes</Typography>
 
             <Typography
@@ -303,37 +303,45 @@ export function SearchDestaque() {
             <NavLink to="/search">Busca Avançada</NavLink>
           </Grid>
 
-          <Grid item xs={12} sm={6} lg={7} xl={8}>
-            <Typography sx={{ color: '#737373', fontSize: '0.75rem' }}>DESTAQUES</Typography>
+          <Grid item xs={12} md={6} lg={7}>
+            <Box sx={{ margin: 'auto' }}>
+              <Typography sx={{ color: '#fff', fontSize: '0.75rem', alignSelf: 'flex-start' }}>
+                DESTAQUES
+              </Typography>
 
-            <ImportantWorksContainer>
-              {
-                // destaqueLoading ? (
-                //   <CircularProgress sx={{ color: blue[700], marginLeft: '4rem' }} size={75} />
-                // ) : destaqueError ? (
-                //   <></>
-                // ) : (
-                destaqueInfo.map((work) => (
-                  <Work sx={{ backgroundImage: `url(${work.image})` }} key={work.id}>
-                    <Box className="background" />
-
-                    <WorkTags>
-                      <Typography className="ano">{work.ano}</Typography>
-
-                      <Typography className="tipo">{work.tipo_trabalho}</Typography>
-                    </WorkTags>
-
-                    <WorkDesc>
+              <ImportantWorksContainer>
+                {
+                  // destaqueLoading ? (
+                  //   <CircularProgress sx={{ color: blue[700], marginLeft: '4rem' }} size={75} />
+                  // ) : destaqueError ? (
+                  //   <></>
+                  // ) : (
+                  destaqueInfo.map((work) => (
+                    <Work
+                      sx={{ backgroundImage: `url(${work.image})` }}
+                      key={work.id}
+                      elevation={3}
+                    >
                       <Box className="background" />
 
-                      <Typography>{work.titulo}</Typography>
-                    </WorkDesc>
+                      <WorkTags>
+                        <Typography className="ano">{work.ano}</Typography>
 
-                    <WorkLink to={`/doc/${work.id}`}>Saber Mais</WorkLink>
-                  </Work>
-                ))
-              }
-            </ImportantWorksContainer>
+                        <Typography className="tipo">{work.tipo_trabalho}</Typography>
+                      </WorkTags>
+
+                      <WorkDesc>
+                        <Box className="background" />
+
+                        <Typography>{work.titulo}</Typography>
+                      </WorkDesc>
+
+                      <WorkLink to={`/doc/${work.id}`}>Saber Mais</WorkLink>
+                    </Work>
+                  ))
+                }
+              </ImportantWorksContainer>
+            </Box>
           </Grid>
         </Grid>
       </Box>

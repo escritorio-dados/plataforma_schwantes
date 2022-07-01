@@ -1,10 +1,12 @@
-import { Box, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
+
+import { ContainerStyled } from '#shared/styles/container';
 
 import { Divider, Paragraph } from './styles';
 
 export function About() {
   return (
-    <Box>
+    <ContainerStyled maxWidth="lg">
       <Divider />
 
       <Typography sx={{ color: '#737373', fontWeight: 'bold', marginTop: '2rem' }}>
@@ -158,6 +160,6 @@ export function About() {
         [2] PATRICK, Arthur. A brief, annotated introduction to the field of Adventist studies for
         higher degree students. Cooranbong: Avondale University, 2009.
       </Typography>
-    </Box>
+    </ContainerStyled>
   );
 }

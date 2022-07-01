@@ -7,6 +7,7 @@ import * as yup from 'yup';
 
 import { FormTextField } from '#shared/components/form/FormTextField';
 import { useAuth } from '#shared/hooks/auth';
+import { ContainerStyled } from '#shared/styles/container';
 
 import { AuthContainer } from './styles';
 
@@ -38,30 +39,32 @@ export function Auth() {
   });
 
   return (
-    <AuthContainer elevation={5}>
-      <form onSubmit={handleSubmit(signIn)} noValidate>
-        <FormTextField
-          required
-          control={control}
-          name="email"
-          label="E-mail"
-          margin_type="no-margin"
-          errors={errors.email}
-        />
+    <ContainerStyled maxWidth="lg">
+      <AuthContainer elevation={5}>
+        <form onSubmit={handleSubmit(signIn)} noValidate>
+          <FormTextField
+            required
+            control={control}
+            name="email"
+            label="E-mail"
+            margin_type="no-margin"
+            errors={errors.email}
+          />
 
-        <FormTextField
-          required
-          control={control}
-          type="password"
-          name="password"
-          label="Senha"
-          errors={errors.password}
-        />
+          <FormTextField
+            required
+            control={control}
+            type="password"
+            name="password"
+            label="Senha"
+            errors={errors.password}
+          />
 
-        <Button sx={{ marginTop: '1rem' }} fullWidth type="submit" variant="contained">
-          Entrar
-        </Button>
-      </form>
-    </AuthContainer>
+          <Button sx={{ marginTop: '1rem' }} fullWidth type="submit" variant="contained">
+            Entrar
+          </Button>
+        </form>
+      </AuthContainer>
+    </ContainerStyled>
   );
 }

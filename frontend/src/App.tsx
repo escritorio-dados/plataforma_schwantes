@@ -1,4 +1,4 @@
-import { Container, createTheme, GlobalStyles, ThemeProvider } from '@mui/material';
+import { createTheme, GlobalStyles, ThemeProvider } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -33,9 +33,7 @@ export function App() {
 
             <ScrollToTopButton />
 
-            <Container sx={{ margin: '0 auto', marginBottom: '2rem' }} maxWidth="xl">
-              <Router />
-            </Container>
+            <Router />
 
             <Footer />
           </BrowserRouter>

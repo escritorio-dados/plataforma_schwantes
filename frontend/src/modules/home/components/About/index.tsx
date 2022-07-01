@@ -14,8 +14,8 @@ export function About() {
       <Typography sx={{ color: '#23A6F0', fontSize: 14, fontWeight: 'bold' }}>Sobre</Typography>
 
       <Box sx={{ marginTop: '1rem' }}>
-        <Grid container spacing={12}>
-          <Grid item xs={12} sm={6}>
+        <Grid container spacing={5}>
+          <Grid item xs={12} md={6}>
             <Typography sx={{ color: '#232F5E', fontSize: 27, fontWeight: 'bold' }}>
               A Plataforma
             </Typography>
@@ -55,9 +55,17 @@ export function About() {
             </NavLink> */}
           </Grid>
 
-          <Grid item xs={12} sm={6}>
-            <Grid container spacing={10}>
-              <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={6}>
+            <Grid container spacing={5}>
+              <Grid
+                item
+                xs={6}
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: { xs: 'center', md: 'flex-start' },
+                }}
+              >
                 <img src={icon1} alt="Apoio a pesquisa" />
 
                 <Typography sx={{ color: '#232F5E', fontWeight: 'bold', marginTop: '0.5rem' }}>
@@ -69,7 +77,15 @@ export function About() {
                 <Paragraph>Visa incentivar a formação de pesquisadores brasileiros</Paragraph>
               </Grid>
 
-              <Grid item xs={12} sm={6}>
+              <Grid
+                item
+                xs={6}
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: { xs: 'center', md: 'flex-start' },
+                }}
+              >
                 <img src={icon1} alt="Acervo" />
 
                 <Typography sx={{ color: '#232F5E', fontWeight: 'bold', marginTop: '0.5rem' }}>
@@ -83,7 +99,15 @@ export function About() {
                 </Paragraph>
               </Grid>
 
-              <Grid item xs={12} sm={6}>
+              <Grid
+                item
+                xs={6}
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: { xs: 'center', md: 'flex-start' },
+                }}
+              >
                 <img src={icon2} alt="Compartilhar" />
 
                 <Typography sx={{ color: '#232F5E', fontWeight: 'bold', marginTop: '0.5rem' }}>
@@ -97,7 +121,15 @@ export function About() {
                 </Paragraph>
               </Grid>
 
-              <Grid item xs={12} sm={6}>
+              <Grid
+                item
+                xs={6}
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: { xs: 'center', md: 'flex-start' },
+                }}
+              >
                 <img src={icon3} alt="Comunidade" />
 
                 <Typography sx={{ color: '#232F5E', fontWeight: 'bold', marginTop: '0.5rem' }}>
@@ -114,11 +146,19 @@ export function About() {
             </Grid>
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid
+            item
+            md={6}
+            sx={{
+              display: { xs: 'none', md: 'flex' },
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
             <img src={graficoImg} alt="Compartilhar" width="100%" />
           </Grid>
 
-          <Grid id="dados" item xs={12} sm={6}>
+          <Grid id="dados" item xs={12} md={6}>
             <Typography sx={{ color: '#23A6F0', fontSize: 14, fontWeight: 'bold' }}>
               Estatística
             </Typography>

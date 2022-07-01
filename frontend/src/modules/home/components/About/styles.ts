@@ -2,7 +2,7 @@ import { Box, styled, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 export const AboutContainer = styled(Box)`
-  margin-top: 18rem;
+  margin-top: 9rem;
 `;
 
 export const Paragraph = styled(Typography)`

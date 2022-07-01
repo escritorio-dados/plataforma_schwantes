@@ -8,6 +8,7 @@ import { FormTextField } from '#shared/components/form/FormTextField';
 import { Loading } from '#shared/components/Loading';
 import { useToast } from '#shared/hooks/toast';
 import { usePatch } from '#shared/services/useAxios';
+import { ContainerStyled } from '#shared/styles/container';
 import { IChangePasswordInput, IUser } from '#shared/types/backend/IUser';
 import { removeEmptyFields } from '#shared/utils/removeEmptyFields';
 
@@ -61,45 +62,47 @@ export function ChangePassword() {
     <>
       <Loading loading={updateLoading} />
 
-      <Container elevation={3}>
-        <form onSubmit={handleSubmit(handleUpdate)} noValidate>
-          <FormTextField
-            required
-            type="password"
-            control={control}
-            name="oldPassword"
-            label="Senha Atual"
-            margin_type="no-margin"
-            errors={errors.oldPassword}
-          />
+      <ContainerStyled maxWidth="lg">
+        <Container elevation={3}>
+          <form onSubmit={handleSubmit(handleUpdate)} noValidate>
+            <FormTextField
+              required
+              type="password"
+              control={control}
+              name="oldPassword"
+              label="Senha Atual"
+              margin_type="no-margin"
+              errors={errors.oldPassword}
+            />
 
-          <FormTextField
-            required
-            type="password"
-            control={control}
-            name="newPassword"
-            label="Nova Senha"
-            errors={errors.newPassword}
-          />
+            <FormTextField
+              required
+              type="password"
+              control={control}
+              name="newPassword"
+              label="Nova Senha"
+              errors={errors.newPassword}
+            />
 
-          <FormTextField
-            required
-            type="password"
-            control={control}
-            name="confirmPassword"
-            label="Confirmar Nova Senha"
-            errors={errors.confirmPassword}
-          />
+            <FormTextField
+              required
+              type="password"
+              control={control}
+              name="confirmPassword"
+              label="Confirmar Nova Senha"
+              errors={errors.confirmPassword}
+            />
 
-          <Button fullWidth type="submit" variant="contained">
-            Alterar a senha
-          </Button>
+            <Button fullWidth type="submit" variant="contained">
+              Alterar a senha
+            </Button>
 
-          <Button className="cancel" variant="contained" onClick={() => navigate('/')}>
-            Cancelar
-          </Button>
-        </form>
-      </Container>
+            <Button className="cancel" variant="contained" onClick={() => navigate('/')}>
+              Cancelar
+            </Button>
+          </form>
+        </Container>
+      </ContainerStyled>
     </>
   );
 }

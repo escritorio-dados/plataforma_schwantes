@@ -11,8 +11,8 @@ export function Footer() {
     <FooterContainer>
       <Container maxWidth="xl">
         <Box>
-          <Grid container spacing={6}>
-            <Grid item xs={4}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={4}>
               <Typography sx={{ color: '#E74242', fontSize: 13 }}>
                 Engenheiro Coelho - SP
               </Typography>
@@ -27,7 +27,7 @@ export function Footer() {
               </Typography>
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} md={4}>
               <Typography sx={{ color: '#E74242', fontSize: 13 }}>PROPEDI</Typography>
 
               <Typography fontSize="12px" sx={{ marginTop: '0.5rem', lineHeight: 1.7 }}>
@@ -42,7 +42,7 @@ export function Footer() {
               </Typography>
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} md={4}>
               <Typography sx={{ color: '#E74242', fontSize: 13 }}>EDM</Typography>
 
               <Typography fontSize="12px" sx={{ marginTop: '0.5rem', lineHeight: 1.7 }}>
@@ -54,25 +54,35 @@ export function Footer() {
           </Grid>
         </Box>
 
-        <Grid container spacing={6}>
-          <Grid item xs={6}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
             <Box sx={{ marginTop: '1rem' }}>
               <Typography sx={{ color: '#E74242', fontSize: 13 }}>Criadores:</Typography>
 
-              <Box display="flex" sx={{ padding: '0.5rem 0', alignItems: 'center' }}>
-                <img src={unaspress} alt="Unaspress" width="200px" />
+              <Box sx={{ padding: '0.5rem 0' }}>
+                <Grid container spacing={2}>
+                  <Grid item xs={6} sx={{ display: 'flex', alignItems: 'center' }}>
+                    <img
+                      src={unaspress}
+                      alt="Unaspress"
+                      style={{ maxWidth: '200px', width: '100%' }}
+                    />
+                  </Grid>
 
-                <img src={unasp} alt="Unasp" width="200px" style={{ marginLeft: '3rem' }} />
+                  <Grid item xs={6} sx={{ display: 'flex', alignItems: 'center' }}>
+                    <img src={unasp} alt="Unasp" style={{ maxWidth: '200px', width: '100%' }} />
+                  </Grid>
+                </Grid>
               </Box>
             </Box>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} md={6}>
             <Box sx={{ marginTop: '1rem' }}>
               <Typography sx={{ color: '#E74242', fontSize: 13 }}>Apoio:</Typography>
 
               <Box sx={{ padding: '1rem 0' }}>
-                <img src={apoio} alt="Apoio" width="470px" />
+                <img src={apoio} alt="Apoio" style={{ maxWidth: '470px', width: '100%' }} />
               </Box>
             </Box>
           </Grid>

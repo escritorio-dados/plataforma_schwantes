@@ -22,6 +22,7 @@ import { Loading } from '#shared/components/Loading';
 import { useAuth } from '#shared/hooks/auth';
 import { useToast } from '#shared/hooks/toast';
 import { useGet } from '#shared/services/useAxios';
+import { ContainerStyled } from '#shared/styles/container';
 import {
   IPublicationSearch,
   IPublicationsSearch,
@@ -321,200 +322,202 @@ export function Search() {
         />
       )}
 
-      {/* Informações sobre o resultado */}
-      <ResultsInfo>
-        <div className="filter-area" />
+      <ContainerStyled maxWidth="xl">
+        {/* Informações sobre o resultado */}
+        <ResultsInfo>
+          <div className="filter-area" />
 
-        <div className="results">
-          <div className="total">
-            <Typography component="span">{totalResults}</Typography>
+          <div className="results">
+            <div className="total">
+              <Typography component="span">{totalResults}</Typography>
 
-            <Typography>Resultados Encontrados</Typography>
+              <Typography>Resultados Encontrados</Typography>
+            </div>
+
+            <div className="sort">
+              <FormControl fullWidth>
+                <Select id="sort" value={sort} onChange={(e) => changeSort(e.target.value)}>
+                  <MenuItem value="recente">Mais Recentes</MenuItem>
+                  <MenuItem value="antigo">Mais Antigos</MenuItem>
+                  <MenuItem value="score">Maior Relevância</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
           </div>
+        </ResultsInfo>
 
-          <div className="sort">
-            <FormControl fullWidth>
-              <Select id="sort" value={sort} onChange={(e) => changeSort(e.target.value)}>
-                <MenuItem value="recente">Mais Recentes</MenuItem>
-                <MenuItem value="antigo">Mais Antigos</MenuItem>
-                <MenuItem value="score">Maior Relevância</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
-        </div>
-      </ResultsInfo>
+        <ResponsiveContent>
+          <div className="filter">
+            {/* Filtro */}
+            <FilterContainer
+              expanded={filterExpanded}
+              onChange={() => setFilterExpanded((old) => !old)}
+            >
+              <FilterTitle>
+                <Typography>Filtros</Typography>
+              </FilterTitle>
 
-      <ResponsiveContent>
-        <div className="filter">
-          {/* Filtro */}
-          <FilterContainer
-            expanded={filterExpanded}
-            onChange={() => setFilterExpanded((old) => !old)}
-          >
-            <FilterTitle>
-              <Typography>Filtros</Typography>
-            </FilterTitle>
+              <AccordionDetails>
+                <FilterContent>
+                  <form onSubmit={handleSubmit(applyFilters)} noValidate>
+                    <FormTextField
+                      name="search"
+                      label="Pesquisar"
+                      control={control}
+                      margin_type="no-margin"
+                      errors={errors.search}
+                    />
 
-            <AccordionDetails>
-              <FilterContent>
-                <form onSubmit={handleSubmit(applyFilters)} noValidate>
-                  <FormTextField
-                    name="search"
-                    label="Pesquisar"
-                    control={control}
-                    margin_type="no-margin"
-                    errors={errors.search}
-                  />
-
-                  {filterData && (
-                    <>
-                      <FormAutoComplete
-                        multiple
-                        control={control}
-                        name="tipo_trabalho"
-                        label="Tipo de Trabalho"
-                        options={filterData.tipo_trabalho}
-                        errors={errors.tipo_trabalho}
-                      />
-
-                      <FormAutoComplete
-                        multiple
-                        control={control}
-                        name="campo"
-                        label="Campo"
-                        options={filterData.campo}
-                        errors={errors.campo}
-                      />
-
-                      <FormAutoComplete
-                        multiple
-                        control={control}
-                        name="tipo_instituicao"
-                        label="Tipo de Instituição"
-                        options={filterData.tipo_instituicao}
-                        errors={errors.tipo_instituicao}
-                      />
-
-                      <FormAutoComplete
-                        multiple
-                        control={control}
-                        name="instituicao"
-                        label="Instituição"
-                        options={filterData.instituicao}
-                        errors={errors.instituicao}
-                      />
-
-                      <FormAutoComplete
-                        multiple
-                        control={control}
-                        name="programa"
-                        label="Programa"
-                        options={filterData.programa}
-                        errors={errors.programa}
-                      />
-
-                      <FormAutoComplete
-                        multiple
-                        control={control}
-                        name="estado"
-                        label="Estado"
-                        options={filterData.estado}
-                        errors={errors.estado}
-                      />
-
-                      <div className="ano">
-                        <FormTextField
-                          name="min_ano"
-                          label="Ano Inicial"
+                    {filterData && (
+                      <>
+                        <FormAutoComplete
+                          multiple
                           control={control}
-                          margin_type="no-margin"
-                          errors={errors.min_ano}
-                          helperText={`EX: ${filterData.ano.min}`}
+                          name="tipo_trabalho"
+                          label="Tipo de Trabalho"
+                          options={filterData.tipo_trabalho}
+                          errors={errors.tipo_trabalho}
                         />
 
-                        <FormTextField
-                          name="max_ano"
-                          label="Ano Final"
+                        <FormAutoComplete
+                          multiple
                           control={control}
-                          margin_type="left-margin"
-                          errors={errors.max_ano}
-                          helperText={`EX: ${filterData.ano.max}`}
+                          name="campo"
+                          label="Campo"
+                          options={filterData.campo}
+                          errors={errors.campo}
                         />
-                      </div>
-                    </>
-                  )}
 
-                  <Button type="submit" className="filter" variant="contained">
-                    Aplicar Filtros
-                  </Button>
+                        <FormAutoComplete
+                          multiple
+                          control={control}
+                          name="tipo_instituicao"
+                          label="Tipo de Instituição"
+                          options={filterData.tipo_instituicao}
+                          errors={errors.tipo_instituicao}
+                        />
 
-                  <Button className="clear" variant="contained" onClick={clearFilters}>
-                    Limpar
-                  </Button>
-                </form>
-              </FilterContent>
-            </AccordionDetails>
-          </FilterContainer>
-        </div>
+                        <FormAutoComplete
+                          multiple
+                          control={control}
+                          name="instituicao"
+                          label="Instituição"
+                          options={filterData.instituicao}
+                          errors={errors.instituicao}
+                        />
 
-        <div className="content">
-          {/* Resultados */}
-          {publications.map((publication) => (
-            <Publication key={publication.id} elevation={3}>
-              <PublicationTags>
-                <Typography component="span" className="ano">
-                  {publication.ano}
-                </Typography>
+                        <FormAutoComplete
+                          multiple
+                          control={control}
+                          name="programa"
+                          label="Programa"
+                          options={filterData.programa}
+                          errors={errors.programa}
+                        />
 
-                <Typography component="span" className="tipo">
-                  {publication.tipo_trabalho}
-                </Typography>
-              </PublicationTags>
+                        <FormAutoComplete
+                          multiple
+                          control={control}
+                          name="estado"
+                          label="Estado"
+                          options={filterData.estado}
+                          errors={errors.estado}
+                        />
 
-              <Link to={`/doc/${publication.id}`}>
-                <Typography variant="h4" className="title">
-                  {publication.titulo}
-                </Typography>
-              </Link>
+                        <div className="ano">
+                          <FormTextField
+                            name="min_ano"
+                            label="Ano Inicial"
+                            control={control}
+                            margin_type="no-margin"
+                            errors={errors.min_ano}
+                            helperText={`EX: ${filterData.ano.min}`}
+                          />
 
-              <Typography className="autor">{publication.autor}</Typography>
+                          <FormTextField
+                            name="max_ano"
+                            label="Ano Final"
+                            control={control}
+                            margin_type="left-margin"
+                            errors={errors.max_ano}
+                            helperText={`EX: ${filterData.ano.max}`}
+                          />
+                        </div>
+                      </>
+                    )}
 
-              <Typography className="resumo">{publication.resumo}</Typography>
+                    <Button type="submit" className="filter" variant="contained">
+                      Aplicar Filtros
+                    </Button>
 
-              {logged && (
-                <PublicationActions>
-                  <Tooltip title="Editar Publicação">
-                    <IconButton onClick={() => setUpdateModal(publication.id)}>
-                      <Edit sx={{ color: blue[500] }} />
-                    </IconButton>
-                  </Tooltip>
+                    <Button className="clear" variant="contained" onClick={clearFilters}>
+                      Limpar
+                    </Button>
+                  </form>
+                </FilterContent>
+              </AccordionDetails>
+            </FilterContainer>
+          </div>
 
-                  <Tooltip title="Deletar Publicação">
-                    <IconButton
-                      onClick={() =>
-                        setDeleteModal({ id: publication.id, titulo: publication.titulo })
-                      }
-                    >
-                      <Delete sx={{ color: red[500] }} />
-                    </IconButton>
-                  </Tooltip>
-                </PublicationActions>
-              )}
-            </Publication>
-          ))}
+          <div className="content">
+            {/* Resultados */}
+            {publications.map((publication) => (
+              <Publication key={publication.id} elevation={3}>
+                <PublicationTags>
+                  <Typography component="span" className="ano">
+                    {publication.ano}
+                  </Typography>
 
-          {/* Páginação */}
-          <PaginationContainer>
-            <Pagination
-              variant="outlined"
-              shape="rounded"
-              count={totalPages}
-              page={page}
-              onChange={(e, p) => changePage(p)}
-            />
-          </PaginationContainer>
-        </div>
-      </ResponsiveContent>
+                  <Typography component="span" className="tipo">
+                    {publication.tipo_trabalho}
+                  </Typography>
+                </PublicationTags>
+
+                <Link to={`/doc/${publication.id}`}>
+                  <Typography variant="h4" className="title">
+                    {publication.titulo}
+                  </Typography>
+                </Link>
+
+                <Typography className="autor">{publication.autor}</Typography>
+
+                <Typography className="resumo">{publication.resumo}</Typography>
+
+                {logged && (
+                  <PublicationActions>
+                    <Tooltip title="Editar Publicação">
+                      <IconButton onClick={() => setUpdateModal(publication.id)}>
+                        <Edit sx={{ color: blue[500] }} />
+                      </IconButton>
+                    </Tooltip>
+
+                    <Tooltip title="Deletar Publicação">
+                      <IconButton
+                        onClick={() =>
+                          setDeleteModal({ id: publication.id, titulo: publication.titulo })
+                        }
+                      >
+                        <Delete sx={{ color: red[500] }} />
+                      </IconButton>
+                    </Tooltip>
+                  </PublicationActions>
+                )}
+              </Publication>
+            ))}
+
+            {/* Páginação */}
+            <PaginationContainer>
+              <Pagination
+                variant="outlined"
+                shape="rounded"
+                count={totalPages}
+                page={page}
+                onChange={(e, p) => changePage(p)}
+              />
+            </PaginationContainer>
+          </div>
+        </ResponsiveContent>
+      </ContainerStyled>
     </>
   );
 }

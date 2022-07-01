@@ -1,36 +1,52 @@
 import { Box } from '@mui/material';
 
-import bgImage from '#static/back_home.svg';
+import back2 from '#static/back2.png';
 
 import { Navbar } from '#shared/components/Navbar';
+import { ContainerStyled } from '#shared/styles/container';
 
 import { About } from '#modules/home/components/About';
 import { BioInfo } from '#modules/home/components/BioInfo';
 import { Expediente } from '#modules/home/components/Expediente';
 import { SearchDestaque } from '#modules/home/components/SearchDestaque';
 
-import { BackgroundImage } from './styles';
+import { BackgroundDiv, BackgroundImage } from './styles';
 
 export function Home() {
   return (
     <Box overflow="auto">
+      {/* <Box sx={{ position: 'relative', maxWidth: '2000px' }} /> */}
       <BackgroundImage
-        src={bgImage}
-        alt="background"
+        src={back2}
+        alt="Back"
         sx={{
-          width: { xl: '60%', lg: '80%', md: '90%', sm: '100%', xs: '100%' },
+          width: { xl: '60%', lg: '70%', md: '90%' },
+          height: '650px',
+          display: { xs: 'none', md: 'block' },
+          top: '-1px',
         }}
       />
 
-      <Navbar />
+      <BackgroundDiv
+        sx={{
+          display: { xs: 'block', md: 'none' },
+          height: { xs: '730px' },
+        }}
+      />
 
-      <SearchDestaque />
+      <ContainerStyled maxWidth="xl">
+        <Navbar />
 
-      <About />
+        <SearchDestaque />
+
+        <About />
+      </ContainerStyled>
 
       <BioInfo />
 
-      <Expediente />
+      <ContainerStyled maxWidth="xl">
+        <Expediente />
+      </ContainerStyled>
     </Box>
   );
 }
