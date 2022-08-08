@@ -13,7 +13,7 @@ export function Footer() {
         <Box>
           <Grid container spacing={2}>
             <Grid item xs={12} md={4}>
-              <Typography sx={{ color: '#E74242', fontSize: 13 }}>
+              <Typography sx={{ color: '#fc714c', fontSize: 13 }}>
                 Engenheiro Coelho - SP
               </Typography>
 
@@ -21,14 +21,14 @@ export function Footer() {
                 Estrada Municipal Pastor Walter Boger, S/N - Lagoa Bonita, Eng. Coelho - SP,
                 13448-900
                 <br />
-                <b>Atendimento</b>: 0800 948 0048
+                <b>Atendimento</b>: <span>0800 948 0048</span>
                 <br />
-                <b>E-mail</b>: atendimento.ec@unasp.edu.br
+                <b>E-mail</b>: <span>atendimento.ec@unasp.edu.br</span>
               </Typography>
             </Grid>
 
             <Grid item xs={12} md={4}>
-              <Typography sx={{ color: '#E74242', fontSize: 13 }}>PROPEDI</Typography>
+              <Typography sx={{ color: '#fc714c', fontSize: 13 }}>PROPEDI</Typography>
 
               <Typography fontSize="12px" sx={{ marginTop: '0.5rem', lineHeight: 1.7 }}>
                 <b>Link</b>:{' '}
@@ -36,19 +36,19 @@ export function Footer() {
                   https://www.unasp.br/ciencia
                 </LinkText>
                 <br />
-                <b>Atendimento</b>: 3858-5150
+                <b>Atendimento</b>: <span>3858-5150</span>
                 <br />
-                <b>E-mail</b>: escritorio.pesquisa@unasp.edu.br
+                <b>E-mail</b>: <span>escritorio.pesquisa@unasp.edu.br</span>
               </Typography>
             </Grid>
 
             <Grid item xs={12} md={4}>
-              <Typography sx={{ color: '#E74242', fontSize: 13 }}>EDM</Typography>
+              <Typography sx={{ color: '#fc714c', fontSize: 13 }}>EDM</Typography>
 
               <Typography fontSize="12px" sx={{ marginTop: '0.5rem', lineHeight: 1.7 }}>
-                <b>Atendimento</b>: 3858-5171
+                <b>Atendimento</b>: <span>3858-5171</span>
                 <br />
-                <b>E-mail</b>: escritorio.dados@unasp.edu.br
+                <b>E-mail</b>: <span>escritorio.dados@unasp.edu.br</span>
               </Typography>
             </Grid>
           </Grid>
@@ -57,7 +57,7 @@ export function Footer() {
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <Box sx={{ marginTop: '1rem' }}>
-              <Typography sx={{ color: '#E74242', fontSize: 13 }}>Criadores:</Typography>
+              <Typography sx={{ color: '#fc714c', fontSize: 13 }}>Criadores:</Typography>
 
               <Box sx={{ padding: '0.5rem 0' }}>
                 <Grid container spacing={2}>
@@ -79,7 +79,7 @@ export function Footer() {
 
           <Grid item xs={12} md={6}>
             <Box sx={{ marginTop: '1rem' }}>
-              <Typography sx={{ color: '#E74242', fontSize: 13 }}>Apoio:</Typography>
+              <Typography sx={{ color: '#fc714c', fontSize: 13 }}>Apoio:</Typography>
 
               <Box sx={{ padding: '1rem 0' }}>
                 <img src={apoio} alt="Apoio" style={{ maxWidth: '470px', width: '100%' }} />

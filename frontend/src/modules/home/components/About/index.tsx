@@ -1,12 +1,13 @@
 import { Box, Grid, Typography } from '@mui/material';
+import LottieViwer from 'react-lottie';
 
 import arrow from '#static/about/arrow.svg';
-import graficoImg from '#static/about/graficos.png';
+import graficoImg from '#static/about/graficos.json';
 import icon1 from '#static/about/icon_1.svg';
 import icon2 from '#static/about/icon_2.svg';
 import icon3 from '#static/about/icon_3.svg';
 
-import { AboutContainer, Divider, OpenLink, Paragraph } from './styles';
+import { AboutContainer, Divider, NavLink, OpenLink, Paragraph } from './styles';
 
 export function About() {
   return (
@@ -50,9 +51,9 @@ export function About() {
               voltados para o adventismo no Brasil.
             </Paragraph>
 
-            {/* <NavLink to="/about">
+            <NavLink to="/about">
               Saber mais <img src={arrow} alt="Seta" />
-            </NavLink> */}
+            </NavLink>
           </Grid>
 
           <Grid item xs={12} md={6}>
@@ -155,7 +156,17 @@ export function About() {
               justifyContent: 'center',
             }}
           >
-            <img src={graficoImg} alt="Compartilhar" width="100%" />
+            <LottieViwer
+              options={{
+                animationData: graficoImg,
+                rendererSettings: {
+                  preserveAspectRatio: 'xMidYMid slice',
+                },
+              }}
+              isClickToPauseDisabled
+              // width="298px"
+              // height="250px"
+            />
           </Grid>
 
           <Grid id="dados" item xs={12} md={6}>

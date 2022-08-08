@@ -27,6 +27,7 @@ export function Expediente() {
                   preserveAspectRatio: 'xMidYMid slice',
                 },
               }}
+              isClickToPauseDisabled
               width="298px"
               height="250px"
               style={{ position: 'absolute', top: 0, left: 15 }}

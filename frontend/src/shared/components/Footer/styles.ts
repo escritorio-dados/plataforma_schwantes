@@ -5,9 +5,13 @@ export const FooterContainer = styled('footer')`
   width: 100%;
   margin-top: auto;
 
-  background-color: #242f5c;
-  color: #fff;
+  background-color: #0e395e;
+  color: #95caff;
   padding: 1rem;
+
+  p span {
+    color: #fff;
+  }
 `;
 
 export const LinkText = styled('a')`

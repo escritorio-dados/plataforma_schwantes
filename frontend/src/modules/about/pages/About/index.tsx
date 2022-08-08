@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 
 import { ContainerStyled } from '#shared/styles/container';
 
-import { Divider, Paragraph } from './styles';
+import { Divider, LinkText, Paragraph } from './styles';
 
 export function About() {
   return (
@@ -16,14 +16,12 @@ export function About() {
       <Typography
         sx={{ color: '#737373', fontWeight: 'bold', marginTop: '2rem', marginBottom: '2rem' }}
       >
-        O que é a Plataforma Schwantes e por que o adventismo como objeto de pesquisa O que é a
-        Plataforma Schwantes e por que o adventismo como objeto de pesquisa
+        O que é a Plataforma Schwantes e por que o adventismo como objeto de pesquisa
       </Typography>
 
       <Paragraph>
         A confissão adventista do sétimo dia está presente no Brasil há mais de 150 anos, possuindo
-        cerca de XX milhões de adeptos no país de acordo com o último Censo do IBGE [1] (sociologia
-        e adventismo).
+        cerca de 1.487.429 de adeptos no país de acordo com o último Censo do IBGE <b>[1]</b>.
       </Paragraph>
 
       <Paragraph>
@@ -64,7 +62,8 @@ export function About() {
         Diante disso, com esse repositório espera-se contribuir com a sistematização, organização e
         análise da produção de conhecimento relacionado à tradição adventista, cujo resultado seja a
         construção de um estado da arte do adventismo na academia brasileira, bem como a
-        consolidação do campo de “estudos do adventismo” (em inglês, “Adventist Studies”) [2].
+        consolidação do campo de “estudos do adventismo” (em inglês, “Adventist Studies”) <b>[2]</b>
+        .
       </Paragraph>
 
       <Paragraph>
@@ -97,10 +96,16 @@ export function About() {
 
       <Paragraph>
         O resultado desse empreendimento foi a publicação, no início de 2016, do livro O adventismo
-        na academia brasileira: um panorama do estado da arte (link para download), organizado pelos
-        doutores Allan Novaes e Rodrigo Follis, lançado pela Unaspress, editoria universitária do
-        Unasp. Na obra, o levantamento consistiu em 106 dissertações e teses que tinham como objeto
-        de investigação a confissão adventista defendidas entre 1972 e 2013.
+        na academia brasileira: um panorama do estado da arte (
+        <LinkText
+          target="_blank"
+          href="https://digital.unaspress.com.br/ebook/o-adventismo-na-academia-brasileira/"
+        >
+          link
+        </LinkText>
+        ) organizado pelos doutores Allan Novaes e Rodrigo Follis, lançado pela Unaspress, editoria
+        universitária do Unasp. Na obra, o levantamento consistiu em 106 dissertações e teses que
+        tinham como objeto de investigação a confissão adventista defendidas entre 1972 e 2013.
       </Paragraph>
 
       <Paragraph>
@@ -108,7 +113,8 @@ export function About() {
         ligado à época ao Centro de Pesquisas Ellen G. White, Leonardo Gubert atualizou o
         levantamento feito no livro O adventismo na academia brasileira. Assim, Gubert apresentou os
         resultados da nova coleta em seu Trabalho de Conclusão de Curso, defendido na Faculdade de
-        Teologia do Unasp com o título “Nnonononono”.
+        Teologia do Unasp com o título “Panorama dos trabalhos acadêmicos de stricto sensu sobre o
+        adventismo de 1972-2015”.
       </Paragraph>
 
       <Paragraph>
@@ -120,14 +126,15 @@ export function About() {
       </Paragraph>
 
       <Paragraph>
-        Em 2019 (???) o Pr. Bruno Ferreira, coordenador do Escritório de Apoio à Gestão de Dados e
+        Em 2020 o Pr. Bruno Ferreira, coordenador do Escritório de Apoio à Gestão de Dados e
         Métricas do Unasp, assumiu a coordenação técnica do projeto de criação do repositório. Com a
-        ajuda do teólogo e analista de dados Geyser nonoon, a metodologia foi redefinida e a coleta
-        de dados, refinada, ampliando as bases de dados consultada. O trabalho sofreu atrasos e
-        paralisações decorrentes do cenário pandêmico global em 2020 e retomado no ano seguinte,
-        quando o nome do repositório foi escolhido e votado no Conselho Superior Universitário de
-        noonono: Plataforma Schwantes, em homenagem ao Dr. Julio Siegfried Schwantes (1XXX-XXXX),
-        cuja família, representada por sua filha nonono, autorizou e agradeceu a homenagem.
+        ajuda do teólogo e analista de dados Jamphier Geyser Carhuatanta Gómez, a metodologia foi
+        redefinida e a coleta de dados, refinada, ampliando as bases de dados consultada. O trabalho
+        sofreu atrasos e paralisações decorrentes do cenário pandêmico global em 2020 e retomado no
+        ano seguinte, quando o nome do repositório foi escolhido e votado no Conselho Superior
+        Universitário como Plataforma Schwantes, em homenagem ao Dr. Julio Siegfried Schwantes (1915
+        – 2008), cuja família, representada por sua filha Keila Schwantes, autorizou e agradeceu a
+        homenagem.
       </Paragraph>
 
       <Paragraph>
@@ -137,29 +144,32 @@ export function About() {
         meio do Escritório de Apoio à Gestão de Dados e Métricas, e recebe suporte do Mestrado
         Profissional em Promoção da Saúde, Mestrado Profissional em Educação, Faculdade de Teologia
         e cursos de Comunicação Social do Unasp, especialmente através dos seguintes grupos de
-        pesquisa: Reis, Excelsior!, Thanos,
+        pesquisa: Reis, Excelsior, Thanos.
       </Paragraph>
 
       <Paragraph>
-        São apoiadores da Plataforma Schwantes o Centro de Pesquisas Ellen G. White – filial Unasp,
-        a Faculdade Adventista Paranaense (FAP), a Faculdade Adventista da Bahia (FADBA), a
-        Faculdade Adventista da Amazônia (FAAMA) e a Faculdade Adventista de Minas Gerais
-        (FADMINAS).
+        São apoiadores da Plataforma Schwantes o Centro de Pesquisas Ellen G. White – Unasp, a
+        Faculdade Adventista Paranaense (FAP), a Faculdade Adventista da Bahia (FADBA), a Faculdade
+        Adventista da Amazônia (FAAMA) e a Faculdade Adventista de Minas Gerais (FADMINAS).
       </Paragraph>
 
-      <Typography
-        sx={{ color: '#E74040', fontWeight: 'bold', marginTop: '2rem', marginBottom: '2rem' }}
+      {/* <Typography
+        sx={{ color: '#737373', fontWeight: 'bold', marginTop: '2rem', marginBottom: '2rem' }}
       >
         A metodologia por trás da Plataforma Schwantes
+      </Typography> */}
+
+      <Typography
+        sx={{ color: '#737373', fontWeight: 'bold', marginTop: '2rem', marginBottom: '1rem' }}
+      >
+        Notas
       </Typography>
 
-      <Typography sx={{ color: '#E74040', fontWeight: 'bold' }}>Notas</Typography>
-
-      <Typography sx={{ color: '#E74040' }}>
-        [1] Referência Sociologia e Adventismo <br />
-        [2] PATRICK, Arthur. A brief, annotated introduction to the field of Adventist studies for
-        higher degree students. Cooranbong: Avondale University, 2009.
-      </Typography>
+      <Paragraph>
+        <b>[1]</b> Referência Sociologia e Adventismo <br />
+        <b>[2]</b> PATRICK, Arthur. A brief, annotated introduction to the field of Adventist
+        studies for higher degree students. Cooranbong: Avondale University, 2009.
+      </Paragraph>
     </ContainerStyled>
   );
 }
