@@ -164,8 +164,8 @@ export function About() {
                 },
               }}
               isClickToPauseDisabled
-              // width="298px"
-              // height="250px"
+              width="100%"
+              height="250px"
             />
           </Grid>
 
