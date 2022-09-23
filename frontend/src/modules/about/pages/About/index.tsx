@@ -153,11 +153,110 @@ export function About() {
         Adventista da Amazônia (FAAMA) e a Faculdade Adventista de Minas Gerais (FADMINAS).
       </Paragraph>
 
-      {/* <Typography
+      <Typography
         sx={{ color: '#737373', fontWeight: 'bold', marginTop: '2rem', marginBottom: '2rem' }}
       >
         A metodologia por trás da Plataforma Schwantes
-      </Typography> */}
+      </Typography>
+
+      <Paragraph>
+        Os serviços de indexação de recursos científicos possibilitam a organização e catalogação de
+        informações sobre a produção científica, podendo ser concebido de diversas formas, tais
+        quais: (a) bases de dados, (b) diretórios, (c) repositórios ou (d) portais (RIOS, 2017). A
+        plataforma Schwantes caracteriza-se como uma fonte de dados presente na terceira camada do
+        ciclo da produção científica online. Segundo Weitzel (2006), as camadas de fontes da
+        produção científica são: “primária (publicações científicas online), secundárias
+        (repositórios temáticos e institucionais) e terciárias (provedores de serviços)”.
+      </Paragraph>
+
+      <Paragraph>
+        As bases de indexação podem ser denominadas como “provedores de serviços [, que] agrupam
+        conteúdos de vários repositórios digitais, facilitando a busca otimizando o acesso ao texto
+        completo.”
+      </Paragraph>
+
+      <Paragraph>
+        Os provedores de serviço de indexação podem buscar informações para criar seu catálogo de
+        literatura científica de fontes primárias ou secundárias, dependendo de sua política de
+        gestão de acervo. Essa busca se dá preferencialmente através de padrões definição de
+        metadados tais como OAI-PMH. As políticas de curadoria implementadas por tais provedores de
+        serviço, se restringem a definir como critérios de inclusão as obras contidas em um
+        determinado repositório, ou em um determinado periódico científico, sendo indexado
+        automaticamente todos os seus artigos internos. Como a finalidade da plataforma Schwantes é
+        de ser um provedor de serviços de indexação apenas para teses e dissertações sobre o
+        adventismo, faz-se necessário uma curadoria das obras que iram compor o acervo e não apenas
+        a coleta automática de metadados de teses e dissertações nos repositórios institucionais das
+        universidades brasileiras, bem como nos repositórios governamentais.
+      </Paragraph>
+
+      <Paragraph>
+        A curadoria das obras que compõem a plataforma Schwantes teve um processo de coleta e
+        triagem de metadados em três ondas. A primeira onda de tratamento de metadados foi realizada
+        entre março de 2013 a outubro de 2016 e seus resultados são apresentados por Novaes e Follis
+        (2016) em formato de fichas seguindo o seguinte padrão: (a) referência bibliográfica - ABNT;
+        (b) resumo dos trabalhos – conforme ou autores; (c) disponibilidade do arquivo pdf; (d) link
+        para o arquivo no repositório institucional original.
+      </Paragraph>
+
+      <Paragraph>
+        A segunda onda de coleta e tratamento dos dados foi apresentada por Gubert (2017), com a
+        expansão dos metadados para o seguinte padrão: (a) tipo de documento – dissertação ou tese;
+        (b) área do conhecimento; (c) título; (d) autor; (e) região da instituição; (f) tipo de
+        instituição: particular, pública ou confessional; (g) data da publicação; (h) abrangência da
+        geografia do estudo; (i) DOI; (j) Link da fonte; (l) texto completo em PDF; (m) resumo; (n)
+        palavras-chave; (o) base de dados; (p) ID do coletor; (q) estratégia de busca.
+      </Paragraph>
+
+      <Paragraph>
+        Os repositórios empregados nessa coleta foram: IBICT, TEDE, Sapientia, BDTD, RDBU, USP,
+        Unicamp, Capes, PUC-SP, PUC-MG, PUC-GO, PUC-PE, PUC-RJ, PUC-RS, PUC-PR, Unida, FTBP, PPG-CR,
+        UFJF, UFMG, UFES, UFBA, UFPR, Uninove, UEL, Umesp, Mackenzie, UFPA, EST, FAJE, Domínio
+        Público e SciELO.
+      </Paragraph>
+
+      <Paragraph>
+        A estratégia de busca empregou os seguintes termos na pesquisa: (a) adventista, (b)
+        adventismo, (c) Ellen G. White, (d) Casa Publicadora Brasileira, (e) Novo Tempo, (f)
+        Superbom e (g) Centro de Vida Saudável (CEVISA).
+      </Paragraph>
+
+      <Paragraph>
+        A terceira onda de coleta e tratamento dos dados foi realizada pelo Escritório de apoio a
+        gestão de Dados e Métricas, no ano de 2021 pelo pesquisador Jamphier Geyser Carhuatanta
+        Gomez atualizando a busca dos trabalhos para os disponíveis até o ano de 2020 nos
+        repositórios institucionais listados na segunda onda.
+      </Paragraph>
+
+      <Typography
+        sx={{ color: '#737373', fontWeight: 'bold', marginTop: '2rem', marginBottom: '1rem' }}
+      >
+        Referências
+      </Typography>
+
+      <Paragraph>
+        RIOS, F. P. <b>Critérios para indexação de periódicos científicos.</b> Ciência Aberta: visão
+        e contribuição, p. 49, 2017.
+      </Paragraph>
+
+      <Paragraph>
+        WEITZEL, S. R.{' '}
+        <b>
+          O papel dos repositórios institucionais e temáticos na estrutura da produção científica.
+        </b>{' '}
+        Em Questão, v. 12, n. 1, p. 51-71, 2006.
+      </Paragraph>
+
+      <Paragraph>
+        NOVAES, A.; FOLLIS, R. (orgs.).{' '}
+        <b>O adventismo na academia brasileira: um panorama do estado da arte.</b> Engenheiro
+        Coelho: UNASPRESS, 2016.
+      </Paragraph>
+
+      <Paragraph>
+        GUBERT, Leonardo.{' '}
+        <b>Panorama dos trabalhos acadêmicos de stricto sensu sobre o adventismo de 1972-2015.</b>{' '}
+        Engenheiro Coelho - UNASP, 2017.
+      </Paragraph>
 
       <Typography
         sx={{ color: '#737373', fontWeight: 'bold', marginTop: '2rem', marginBottom: '1rem' }}
