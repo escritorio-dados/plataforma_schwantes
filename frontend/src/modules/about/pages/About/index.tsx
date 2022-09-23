@@ -184,7 +184,7 @@ export function About() {
         determinado repositório, ou em um determinado periódico científico, sendo indexado
         automaticamente todos os seus artigos internos. Como a finalidade da plataforma Schwantes é
         de ser um provedor de serviços de indexação apenas para teses e dissertações sobre o
-        adventismo, faz-se necessário uma curadoria das obras que iram compor o acervo e não apenas
+        adventismo, faz-se necessário uma curadoria das obras que irão compor o acervo e não apenas
         a coleta automática de metadados de teses e dissertações nos repositórios institucionais das
         universidades brasileiras, bem como nos repositórios governamentais.
       </Paragraph>
