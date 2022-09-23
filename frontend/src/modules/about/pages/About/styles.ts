@@ -1,4 +1,5 @@
 import { Box, styled, Typography } from '@mui/material';
+import { HashLink } from 'react-router-hash-link';
 
 export const Divider = styled(Box)`
   width: 10%;
@@ -15,6 +16,18 @@ export const Paragraph = styled(Typography)`
 `;
 
 export const LinkText = styled('a')`
+  text-decoration: none;
+  color: #737373;
+  font-weight: bold;
+
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(0.7);
+  }
+`;
+
+export const NavLinkHash = styled(HashLink)`
   text-decoration: none;
   color: #737373;
   font-weight: bold;
