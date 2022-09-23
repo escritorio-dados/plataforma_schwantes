@@ -28,7 +28,9 @@ export function Footer() {
             </Grid>
 
             <Grid item xs={12} md={4}>
-              <Typography sx={{ color: '#fc714c', fontSize: 13 }}>PROPEDI</Typography>
+              <Typography sx={{ color: '#fc714c', fontSize: 13 }}>
+                Pró-reitoria de Pesquisa e Desenvolvimento Institucional
+              </Typography>
 
               <Typography fontSize="12px" sx={{ marginTop: '0.5rem', lineHeight: 1.7 }}>
                 <b>Link</b>:{' '}
@@ -43,7 +45,9 @@ export function Footer() {
             </Grid>
 
             <Grid item xs={12} md={4}>
-              <Typography sx={{ color: '#fc714c', fontSize: 13 }}>EDM</Typography>
+              <Typography sx={{ color: '#fc714c', fontSize: 13 }}>
+                Escritório de Apoio a Gestão de Dados e Métricas
+              </Typography>
 
               <Typography fontSize="12px" sx={{ marginTop: '0.5rem', lineHeight: 1.7 }}>
                 <b>Atendimento</b>: <span>3858-5171</span>

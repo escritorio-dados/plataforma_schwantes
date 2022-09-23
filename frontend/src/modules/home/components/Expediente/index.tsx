@@ -39,12 +39,6 @@ export function Expediente() {
             Expediente
           </Typography>
 
-          <Typography
-            sx={{ color: '#232F5E', fontSize: 27, fontWeight: 'bold', marginTop: '1rem' }}
-          >
-            Criadores da Plataforma
-          </Typography>
-
           <Typography sx={{ marginTop: '1rem', color: '#737373', lineHeight: 1.8 }}>
             <b>Coordenação Geral</b>: Dr. Allan Novaes
             <br />

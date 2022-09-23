@@ -46,7 +46,7 @@ export function About() {
             <Paragraph>
               Como uma forma de facilitar a pesquisa sobre adventismo no Brasil e impulsionar a
               relevância desse nicho de pesquisa dentro do ambiente acadêmico, foi desenvolvido a
-              Plataforma Shwantes, o primeiro repositório online, que fornece apoio à pesquisa e a
+              Plataforma Shwantes, uma base de indexação online, que fornece apoio à pesquisa e a
               formação de uma comunidade que compartilha trabalhos científicos com temas diversos
               voltados para o adventismo no Brasil.
             </Paragraph>
@@ -140,8 +140,7 @@ export function About() {
                 <Divider />
 
                 <Paragraph>
-                  Comunidade que alimenta o nicho de pesquisa voltado para a religião no ambiente
-                  acadêmico
+                  Alimenta o circuito a pesquisa que tem o adventismo como objeto de pesquisa
                 </Paragraph>
               </Grid>
             </Grid>

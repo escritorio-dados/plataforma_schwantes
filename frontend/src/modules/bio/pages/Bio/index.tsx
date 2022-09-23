@@ -172,8 +172,8 @@ export function Bio() {
           </Paragraph>
 
           <Paragraph>
-            Seu ministério acadêmico durou mais de 50 anos e há ainda grandes feitos em sua história
-            que podem ser consultados na biografia completa deste grande homem, clicando{' '}
+            Seu ministério acadêmico durou mais de 50 anos e há ainda feitos em sua história que
+            podem ser consultados na biografia completa, clicando{' '}
             <LinkText
               href="https://encyclopedia.adventist.org/article?id=DGOP&lang=pt"
               target="_blank"

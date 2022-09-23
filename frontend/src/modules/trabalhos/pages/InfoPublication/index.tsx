@@ -58,7 +58,7 @@ export function InfoPublication() {
               onClick={() => window.open(publication.link, '_blank')}
               disabled={!publication.link}
             >
-              Link para Artigo
+              Link para {publication.tipo_trabalho}
             </Button>
           </div>
         </header>

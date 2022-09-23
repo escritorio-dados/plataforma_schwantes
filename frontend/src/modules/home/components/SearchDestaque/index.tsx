@@ -265,13 +265,12 @@ export function SearchDestaque() {
                 lineHeight: 1.2,
               }}
             >
-              O maior repositório online para estudos sobre o adventismo no Brasil
+              Base de indexação online para estudos sobre o adventismo no Brasil
             </Typography>
 
             <Typography fontSize="0.75rem" sx={{ marginTop: '1rem', textAlign: 'justify' }}>
               Uma nova maneira de pesquisar e acessar teses e dissertações que tiveram o Adventismo
-              como objeto de pesquisa na academia brasileira. Explore o nosso acervo, conheça os
-              trabalhos e dê continuidade ao exercício da ciência
+              como objeto de pesquisa na academia brasileira.
             </Typography>
 
             <SearchInput

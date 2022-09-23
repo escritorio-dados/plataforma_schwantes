@@ -59,15 +59,15 @@ export function About() {
       </Paragraph>
 
       <Paragraph>
-        Diante disso, com esse repositório espera-se contribuir com a sistematização, organização e
-        análise da produção de conhecimento relacionado à tradição adventista, cujo resultado seja a
-        construção de um estado da arte do adventismo na academia brasileira, bem como a
-        consolidação do campo de “estudos do adventismo” (em inglês, “Adventist Studies”) <b>[2]</b>
-        .
+        Diante disso, com esta base de indexação espera-se contribuir com a sistematização,
+        organização e análise da produção de conhecimento relacionado à tradição adventista, cujo
+        resultado seja a construção de um estado da arte do adventismo na academia brasileira, bem
+        como a consolidação do campo de “estudos do adventismo” (em inglês, “Adventist Studies”){' '}
+        <b>[2]</b>.
       </Paragraph>
 
       <Paragraph>
-        A Plataforma Schwantes é, portanto, o primeiro repositório online que fornece apoio à
+        A Plataforma Schwantes é, portanto, um serviço de indexação online que fornece apoio à
         pesquisa e a formação de uma comunidade que compartilha trabalhos científicos com temas
         diversos voltados para a tradição adventista no Brasil.
       </Paragraph>
@@ -119,19 +119,19 @@ export function About() {
 
       <Paragraph>
         Esses dois trabalhos de 2016 foram ponto-de-partida teórico-metodológico para que, em 2018,
-        a ideia de criar um repositório digital com dissertações e teses sobre a tradição adventista
-        se tornasse meta institucional. Isso ocorreu através da recém-criada Pró-reitoria de
-        Pesquisa e Desenvolvimento Institucional no Unasp, liderada pelo Dr. Allan Novaes, também
+        a ideia de criar uma base de indexação digital com dissertações e teses sobre a tradição
+        adventista se tornasse meta institucional. Isso ocorreu através da recém-criada Pró-reitoria
+        de Pesquisa e Desenvolvimento Institucional no Unasp, liderada pelo Dr. Allan Novaes, também
         diretor do projeto.
       </Paragraph>
 
       <Paragraph>
         Em 2020 o Pr. Bruno Ferreira, coordenador do Escritório de Apoio à Gestão de Dados e
-        Métricas do Unasp, assumiu a coordenação técnica do projeto de criação do repositório. Com a
-        ajuda do teólogo e analista de dados Jamphier Geyser Carhuatanta Gómez, a metodologia foi
-        redefinida e a coleta de dados, refinada, ampliando as bases de dados consultada. O trabalho
-        sofreu atrasos e paralisações decorrentes do cenário pandêmico global em 2020 e retomado no
-        ano seguinte, quando o nome do repositório foi escolhido e votado no Conselho Superior
+        Métricas do Unasp, assumiu a coordenação técnica do projeto de criação da base de indexação.
+        Com a ajuda do teólogo e analista de dados Jamphier Geyser Carhuatanta Gómez, a metodologia
+        foi redefinida e a coleta de dados, refinada, ampliando as bases de dados consultada. O
+        trabalho sofreu paralisação decorrentes do cenário pandêmico global em 2020 e retomado no
+        ano seguinte, quando o nome da base de indexação foi escolhido e votado no Conselho Superior
         Universitário como Plataforma Schwantes, em homenagem ao Dr. Julio Siegfried Schwantes (1915
         – 2008), cuja família, representada por sua filha Keila Schwantes, autorizou e agradeceu a
         homenagem.
