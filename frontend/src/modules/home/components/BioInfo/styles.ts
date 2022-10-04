@@ -5,29 +5,13 @@ export const BioInfoContainer = styled(Box)`
   margin-top: 8rem;
   padding: 2rem;
   position: relative;
-
-  > div.background {
-    z-index: -1;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(214, 216, 224, 0.33);
-  }
-`;
-
-export const Divider = styled(Box)`
-  width: 20%;
-  height: 5px;
-  background: #e74040;
-  margin-top: 1rem;
+  background: #df5a35;
 `;
 
 export const Paragraph = styled(Typography)`
   margin-top: 1rem;
   text-align: justify;
-  color: #737373;
+  color: #fff;
   font-size: 14px;
 `;
 
@@ -40,12 +24,12 @@ export const NavLink = styled(Link)`
 
   margin-top: 1.5rem;
 
-  color: #23a6f0;
+  color: #fff;
 
   transition: filter 0.2s;
 
   &:hover {
-    filter: brightness(0.7);
+    filter: brightness(0.9);
   }
 
   > img {

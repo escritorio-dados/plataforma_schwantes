@@ -1,6 +1,5 @@
 import { Search } from '@mui/icons-material';
-import { Typography, InputAdornment, IconButton, Box, Grid } from '@mui/material';
-// import { blue } from '@mui/material/colors';
+import { Typography, InputAdornment, IconButton, Box, Grid, Container } from '@mui/material';
 import { useState, useCallback, useMemo, useEffect } from 'react';
 import { useNavigate, createSearchParams } from 'react-router-dom';
 
@@ -19,9 +18,6 @@ import i7 from '#static/searchDestaques/i7.png';
 import i8 from '#static/searchDestaques/i8.png';
 import i9 from '#static/searchDestaques/i9.png';
 
-// import { useGet } from '#shared/services/useAxios';
-// import { IPublication } from '#shared/types/backend/IPublication';
-
 import {
   SearchInput,
   ImportantWorksContainer,
@@ -30,6 +26,7 @@ import {
   WorkLink,
   Work,
   NavLink,
+  SearchDestaqueContainer,
 } from './styles';
 
 type IDestaque = { id: string; image: string; ano: string; tipo_trabalho: string; titulo: string };
@@ -42,20 +39,11 @@ function getRandomKey(keys: string[]) {
   return keys[Math.floor(Math.random() * keys.length)];
 }
 
-// type IImageConfig = { [key: string]: string };
-
 export function SearchDestaque() {
   const [search, setSearch] = useState('');
   const [destaqueData, setDestaqueData] = useState<IDestaque[]>([]);
 
   const navigate = useNavigate();
-
-  // const {
-  //   error: destaqueError,
-  //   loading: destaqueLoading,
-  //   data: destaqueData,
-  //   send: getNewDestaques,
-  // } = useGet<IPublication[]>({ url: '/elastic/doc/random', config: { params: { quantity: 4 } } });
 
   const selectDestaques = useCallback(() => {
     const destaquesList: IDestaqueList = {
@@ -186,7 +174,6 @@ export function SearchDestaque() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // getNewDestaques();
       selectDestaques();
     }, 1000 * 60 * 3);
 
@@ -195,7 +182,6 @@ export function SearchDestaque() {
       clearInterval(interval);
     };
   }, [selectDestaques]);
-  // }, [getNewDestaques]);
 
   const handleSearch = useCallback(() => {
     const params = createSearchParams({ search: encodeURI(search) });
@@ -250,100 +236,104 @@ export function SearchDestaque() {
 
   return (
     <>
-      <Box sx={{ marginTop: '5rem' }}>
-        <Grid container spacing={6}>
-          <Grid item xs={12} md={6} lg={5} sx={{ color: '#fff' }}>
-            <Typography fontSize="0.75rem">Bem-vindo à Plataforma Shwantes</Typography>
+      <SearchDestaqueContainer>
+        <Container maxWidth="xl">
+          <Grid container spacing={10}>
+            <Grid item xs={12} md={6} lg={5} sx={{ color: '#fff' }}>
+              <Typography fontSize="0.75rem">Bem-vindo à Plataforma Shwantes</Typography>
 
-            <Typography
-              component="h1"
-              sx={{
-                marginTop: '1rem',
-                fontSize: '2rem',
-                fontWeight: 'bold',
-                textAlign: 'justify',
-                lineHeight: 1.2,
-              }}
-            >
-              Base de indexação online para estudos sobre o adventismo no Brasil
-            </Typography>
-
-            <Typography fontSize="0.75rem" sx={{ marginTop: '1rem', textAlign: 'justify' }}>
-              Uma nova maneira de pesquisar e acessar teses e dissertações que tiveram o Adventismo
-              como objeto de pesquisa na academia brasileira.
-            </Typography>
-
-            <SearchInput
-              fullWidth
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              onKeyUp={(e) => {
-                if (e.key === 'Enter') {
-                  handleSearch();
-                }
-              }}
-              label="Insira o termo de sua busca"
-              variant="outlined"
-              InputLabelProps={{
-                sx: { color: '#fff' },
-              }}
-              InputProps={{
-                sx: { color: '#fff' },
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton onClick={handleSearch}>
-                      <Search sx={{ color: '#fff' }} />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-
-            <NavLink to="/search">Busca Avançada</NavLink>
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={7}>
-            <Box sx={{ margin: 'auto' }}>
-              <Typography sx={{ color: '#fff', fontSize: '0.75rem', alignSelf: 'flex-start' }}>
-                DESTAQUES
+              <Typography
+                component="h1"
+                sx={{
+                  marginTop: '1rem',
+                  fontSize: '2rem',
+                  fontWeight: 'bold',
+                  textAlign: 'justify',
+                  lineHeight: 1.2,
+                }}
+              >
+                Base de indexação online para estudos sobre o adventismo no Brasil
               </Typography>
 
-              <ImportantWorksContainer>
-                {
-                  // destaqueLoading ? (
-                  //   <CircularProgress sx={{ color: blue[700], marginLeft: '4rem' }} size={75} />
-                  // ) : destaqueError ? (
-                  //   <></>
-                  // ) : (
-                  destaqueInfo.map((work) => (
+              <Typography fontSize="0.75rem" sx={{ marginTop: '1rem', textAlign: 'justify' }}>
+                Uma nova maneira de pesquisar e acessar teses e dissertações que tiveram o
+                Adventismo como objeto de pesquisa na academia brasileira.
+              </Typography>
+
+              <SearchInput
+                fullWidth
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                onKeyUp={(e) => {
+                  if (e.key === 'Enter') {
+                    handleSearch();
+                  }
+                }}
+                label="Insira o termo de sua busca"
+                variant="outlined"
+                InputProps={{
+                  sx: { color: '#df5a35' },
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={handleSearch}>
+                        <Search sx={{ color: '#df5a35' }} />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+
+              <NavLink to="/search">Busca Avançada</NavLink>
+            </Grid>
+
+            <Grid item xs={12} md={6} lg={7}>
+              <Box sx={{ margin: 'auto' }}>
+                <Typography sx={{ color: '#fff', fontSize: '0.75rem', alignSelf: 'flex-start' }}>
+                  DESTAQUES
+                </Typography>
+
+                <ImportantWorksContainer>
+                  {destaqueInfo.map((work) => (
                     <Work
                       sx={{ backgroundImage: `url(${work.image})` }}
                       key={work.id}
-                      elevation={3}
+                      elevation={4}
                     >
                       <Box className="background" />
 
-                      <WorkTags>
-                        <Typography className="ano">{work.ano}</Typography>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'space-between',
+                          height: '100%',
+                          zIndex: 2,
+                        }}
+                      >
+                        <WorkTags>
+                          <Typography>{work.ano}</Typography>
 
-                        <Typography className="tipo">{work.tipo_trabalho}</Typography>
-                      </WorkTags>
+                          <Typography>{work.tipo_trabalho}</Typography>
+                        </WorkTags>
 
-                      <WorkDesc>
-                        <Box className="background" />
+                        <Box>
+                          <WorkDesc>
+                            <Typography>{work.titulo}</Typography>
+                          </WorkDesc>
 
-                        <Typography>{work.titulo}</Typography>
-                      </WorkDesc>
-
-                      <WorkLink to={`/doc/${work.id}`}>Saber Mais</WorkLink>
+                          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <WorkLink to={`/doc/${work.id}`}>Saber Mais</WorkLink>
+                          </Box>
+                        </Box>
+                      </Box>
                     </Work>
-                  ))
-                }
-              </ImportantWorksContainer>
-            </Box>
+                  ))}
+                </ImportantWorksContainer>
+              </Box>
+            </Grid>
           </Grid>
-        </Grid>
-      </Box>
+        </Container>
+      </SearchDestaqueContainer>
     </>
   );
 }

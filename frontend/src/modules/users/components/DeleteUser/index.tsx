@@ -1,9 +1,10 @@
-import { Button, Dialog, Typography } from '@mui/material';
+import { Dialog, Typography } from '@mui/material';
 import { useCallback } from 'react';
 
 import { Loading } from '#shared/components/Loading';
 import { useToast } from '#shared/hooks/toast';
 import { useDelete } from '#shared/services/useAxios';
+import { CustomButtom } from '#shared/styles/common';
 import { IUser } from '#shared/types/backend/IUser';
 
 import { DeleteContainer } from './styles';
@@ -48,13 +49,13 @@ export function DeleteUserModal({ closeModal, user, openModal, handleRemove }: I
 
           <Typography className="item">{user.email}</Typography>
 
-          <Button className="delete" onClick={handleDelete} variant="contained" fullWidth>
+          <CustomButtom onClick={handleDelete} variant="contained" fullWidth>
             Sim
-          </Button>
+          </CustomButtom>
 
-          <Button className="cancel" onClick={closeModal} variant="contained" fullWidth>
+          <CustomButtom onClick={closeModal} variant="contained" fullWidth customColor="#0d3362">
             Não
-          </Button>
+          </CustomButtom>
         </DeleteContainer>
       </Dialog>
     </>

@@ -1,7 +1,9 @@
 import { Box, styled } from '@mui/material';
 import { HashLink } from 'react-router-hash-link';
 
-export const Logo = styled('img')``;
+export const Logo = styled('img')`
+  margin-right: 2rem;
+`;
 
 export const TopBar = styled(Box)`
   display: flex;
@@ -13,10 +15,7 @@ export const TopBar = styled(Box)`
 export const NavBar = styled(Box)`
   display: flex;
   align-items: center;
-  border-radius: 10px;
   width: 100%;
-
-  background-color: #fff;
 
   height: 3.5rem;
   padding: 0 1rem;
@@ -28,13 +27,12 @@ export const NavLink = styled(HashLink)`
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   font-size: 0.75rem;
-  color: #252b42;
-  border-top: 2px solid #fff;
-  border-bottom: 2px solid #fff;
+  color: #fff;
+
+  transition: filter 0.2s;
 
   &:hover {
-    border-bottom: 2px solid #252b42;
-    border-radius: 0 0 3px 3px;
+    filter: brightness(0.8);
   }
 
   & + a {
@@ -60,7 +58,7 @@ export const NavLinkSm = styled(HashLink)`
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   font-size: 0.75rem;
-  color: #252b42;
+  color: #333;
 
   padding: 8px 16px;
 `;

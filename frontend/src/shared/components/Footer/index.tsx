@@ -4,12 +4,14 @@ import apoio from '#static/footer/apoio.png';
 import unasp from '#static/footer/unasp.png';
 import unaspress from '#static/footer/unaspress.png';
 
-import { FooterContainer, LinkText } from './styles';
+import { Divider, FooterContainer, LinkText } from './styles';
 
 export function Footer() {
   return (
     <FooterContainer>
       <Container maxWidth="xl">
+        <Divider />
+
         <Box>
           <Grid container spacing={2}>
             <Grid item xs={12} md={4}>
@@ -58,13 +60,15 @@ export function Footer() {
           </Grid>
         </Box>
 
+        <Divider />
+
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
-            <Box sx={{ marginTop: '1rem' }}>
+            <Box>
               <Typography sx={{ color: '#fc714c', fontSize: 13 }}>Criadores:</Typography>
 
               <Box sx={{ padding: '0.5rem 0' }}>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} sx={{ alignItems: 'center' }}>
                   <Grid item xs={6} sx={{ display: 'flex', alignItems: 'center' }}>
                     <img
                       src={unaspress}
@@ -82,7 +86,7 @@ export function Footer() {
           </Grid>
 
           <Grid item xs={12} md={6}>
-            <Box sx={{ marginTop: '1rem' }}>
+            <Box>
               <Typography sx={{ color: '#fc714c', fontSize: 13 }}>Apoio:</Typography>
 
               <Box sx={{ padding: '1rem 0' }}>

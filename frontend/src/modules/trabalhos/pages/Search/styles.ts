@@ -1,18 +1,18 @@
 import styled from '@emotion/styled';
 import { Accordion, AccordionSummary, Paper } from '@mui/material';
-import { blue, grey, red } from '@mui/material/colors';
 
 export const Publication = styled(Paper)`
   margin-bottom: 2rem;
   padding: 1rem;
+  border-radius: 10px;
 
   a {
     text-decoration: none;
   }
 
   .title {
-    font-size: 1.3rem;
-    color: ${blue[700]};
+    font-size: 17px;
+    color: #0d3362;
     text-align: justify;
     font-weight: bold;
 
@@ -25,11 +25,12 @@ export const Publication = styled(Paper)`
 
   .autor {
     margin: 0.3em 0;
-    color: ${blue[500]};
+    color: #737373;
   }
 
   .resumo {
     text-align: justify;
+    color: #73737380;
   }
 
   &:last-child {
@@ -51,11 +52,11 @@ export const PublicationTags = styled.div`
     color: #fff;
 
     &.ano {
-      background-color: ${blue[600]};
+      background-color: #df5a35;
     }
 
     &.tipo {
-      background-color: ${grey[600]};
+      background-color: #9f9e9e;
     }
   }
 `;
@@ -75,6 +76,8 @@ export const ResultsInfo = styled.div`
   align-items: center;
   margin-bottom: 2rem;
 
+  margin-top: 3rem;
+
   > div.results {
     display: flex;
     align-items: center;
@@ -87,10 +90,18 @@ export const ResultsInfo = styled.div`
 
       > span {
         display: block;
-        padding: 0.2em 0.6rem;
-        background-color: ${grey[300]};
+        padding: 0.5rem 1rem;
+        background-color: #df5a35;
         border-radius: 5px;
-        margin-right: 0.5rem;
+        margin-right: 1rem;
+        color: #fff;
+      }
+
+      > p {
+        color: #df5a35;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 15px;
+        font-weight: bold;
       }
     }
 
@@ -121,7 +132,7 @@ export const FilterContainer = styled(Accordion)`
 `;
 
 export const FilterTitle = styled(AccordionSummary)`
-  background-color: ${blue[600]};
+  background-color: #df5a35;
   color: #fff;
 
   text-align: center;
@@ -138,7 +149,7 @@ export const FilterTitle = styled(AccordionSummary)`
   }
 
   &.Mui-expanded {
-    min-height: 3rem;
+    min-height: 4rem;
 
     border-radius: 5px 5px 0 0;
   }
@@ -153,15 +164,6 @@ export const FilterContent = styled.div`
       width: 100%;
       margin-top: 1rem;
       align-self: center;
-    }
-
-    > button.clear {
-      background-color: ${red[400]};
-      transition: filter 0.2s;
-
-      &:hover {
-        filter: brightness(0.95);
-      }
     }
 
     .ano {

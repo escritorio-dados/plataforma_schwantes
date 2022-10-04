@@ -61,13 +61,17 @@ export function Bio() {
     <ContainerStyled maxWidth="lg">
       <Grid container spacing={6}>
         <Grid item xs={12} md={9}>
-          <Divider />
+          <Divider sx={{ mt: '3rem' }} />
 
-          <Typography sx={{ color: '#737373', fontWeight: 'bold', marginTop: '2rem' }}>
+          <Typography
+            sx={{ color: '#df5a35', fontWeight: 'bold', marginTop: '1rem', fontSize: '30px' }}
+          >
             Biografia
           </Typography>
 
-          <Typography sx={{ color: '#737373', fontWeight: 'bold', marginTop: '2rem' }}>
+          <Typography
+            sx={{ color: '#0D3362', fontWeight: 'bold', marginTop: '2rem', fontSize: '30px' }}
+          >
             História de Vida
           </Typography>
 

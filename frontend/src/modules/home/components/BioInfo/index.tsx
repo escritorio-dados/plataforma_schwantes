@@ -1,19 +1,17 @@
-import { Box, Container, Grid, Typography } from '@mui/material';
+import { Container, Grid, Typography } from '@mui/material';
 
-import arrow from '#static/about/arrow.svg';
+import arrow from '#static/about/arrow2.svg';
 import bio1 from '#static/bio/bio_1.png';
 import bio2 from '#static/bio/bio_2.png';
 import bio3 from '#static/bio/bio_3.png';
 import bio4 from '#static/bio/bio_4.png';
 import bio5 from '#static/bio/bio_5.png';
 
-import { BioInfoContainer, Divider, Image, ImagesContainer, NavLink, Paragraph } from './styles';
+import { BioInfoContainer, Image, ImagesContainer, NavLink, Paragraph } from './styles';
 
 export function BioInfo() {
   return (
     <BioInfoContainer id="bio">
-      <Box className="background" />
-
       <Container maxWidth="xl">
         <Grid container spacing={6}>
           <Grid
@@ -28,14 +26,12 @@ export function BioInfo() {
               alignItems: { xs: 'center', md: 'flex-start' },
             }}
           >
-            <Divider />
-
-            <Typography sx={{ color: '#737373', fontWeight: 'bold', marginTop: '2rem' }}>
+            <Typography sx={{ color: '#fff', fontWeight: 'bold', marginTop: '2rem' }}>
               Biografia
             </Typography>
 
             <Typography
-              sx={{ color: '#737373', fontWeight: 'bold', marginTop: '1rem', fontSize: '35px' }}
+              sx={{ color: '#252B42', fontWeight: 'bold', marginTop: '1rem', fontSize: '35px' }}
             >
               Siegfried Júlio Schwantes
             </Typography>

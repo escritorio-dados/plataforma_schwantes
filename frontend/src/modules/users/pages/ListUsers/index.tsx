@@ -118,7 +118,7 @@ export function ListUsers() {
         />
       )}
 
-      <ContainerStyled maxWidth="lg">
+      <ContainerStyled maxWidth="lg" sx={{ mt: '2rem' }}>
         <ListUsersContainer>
           <header>
             <Typography component="h2">Lista de de usuarios</Typography>

@@ -2,7 +2,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Delete, Edit } from '@mui/icons-material';
 import {
   AccordionDetails,
-  Button,
   FormControl,
   IconButton,
   MenuItem,
@@ -22,6 +21,7 @@ import { Loading } from '#shared/components/Loading';
 import { useAuth } from '#shared/hooks/auth';
 import { useToast } from '#shared/hooks/toast';
 import { useGet } from '#shared/services/useAxios';
+import { CustomButtom } from '#shared/styles/common';
 import { ContainerStyled } from '#shared/styles/container';
 import {
   IPublicationSearch,
@@ -446,13 +446,18 @@ export function Search() {
                       </>
                     )}
 
-                    <Button type="submit" className="filter" variant="contained">
+                    <CustomButtom type="submit" className="filter" variant="contained">
                       Aplicar Filtros
-                    </Button>
+                    </CustomButtom>
 
-                    <Button className="clear" variant="contained" onClick={clearFilters}>
+                    <CustomButtom
+                      className="clear"
+                      variant="contained"
+                      onClick={clearFilters}
+                      customColor="#0d3362"
+                    >
                       Limpar
-                    </Button>
+                    </CustomButtom>
                   </form>
                 </FilterContent>
               </AccordionDetails>

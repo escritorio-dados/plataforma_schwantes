@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
-import { blue, grey } from '@mui/material/colors';
 
 export const Publication = styled.div`
   text-align: justify;
+
+  margin-top: 2rem;
 
   h2,
   h3,
@@ -17,6 +18,7 @@ export const Publication = styled.div`
 
   h2 {
     font-size: 1.7rem;
+    color: #0d3362;
   }
 
   h3 {
@@ -54,13 +56,13 @@ export const Publication = styled.div`
         margin-left: 0.8rem;
 
         > span {
-          border: 2px solid ${blue[500]};
+          border: 2px solid #0d3362;
           border-radius: 5px;
           padding: 0.3rem;
           display: block;
           white-space: nowrap;
           margin: 0.2rem;
-          color: ${grey[700]};
+          color: #737373;
         }
       }
 
@@ -83,11 +85,11 @@ export const PublicationTags = styled.div`
     color: #fff;
 
     &.ano {
-      background-color: ${blue[600]};
+      background-color: #df5a35;
     }
 
     &.tipo {
-      background-color: ${grey[600]};
+      background-color: #9f9e9e;
     }
 
     & + span {

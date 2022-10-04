@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Dialog, Typography } from '@mui/material';
+import { Dialog, Typography } from '@mui/material';
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -7,6 +7,7 @@ import { FormTextField } from '#shared/components/form/FormTextField';
 import { Loading } from '#shared/components/Loading';
 import { useToast } from '#shared/hooks/toast';
 import { usePost } from '#shared/services/useAxios';
+import { CustomButtom } from '#shared/styles/common';
 import { IUser, ICreateUserInput } from '#shared/types/backend/IUser';
 import { removeEmptyFields } from '#shared/utils/removeEmptyFields';
 
@@ -97,13 +98,13 @@ export function CreateUserModal({ closeModal, openModal, handleAdd }: ICreateUse
             helperText="Repetir a senha digitada"
           />
 
-          <Button type="submit" variant="contained">
+          <CustomButtom type="submit" variant="contained">
             Cadastrar usuario
-          </Button>
+          </CustomButtom>
 
-          <Button className="cancel" variant="contained" onClick={() => closeModal()}>
+          <CustomButtom variant="contained" onClick={() => closeModal()} customColor="#0d3362">
             Cancelar
-          </Button>
+          </CustomButtom>
         </form>
       </UserForm>
     </Dialog>

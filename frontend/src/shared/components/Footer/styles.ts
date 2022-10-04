@@ -1,4 +1,4 @@
-import { styled } from '@mui/material';
+import { Box, styled } from '@mui/material';
 
 export const FooterContainer = styled('footer')`
   min-height: 4rem;
@@ -6,7 +6,7 @@ export const FooterContainer = styled('footer')`
   margin-top: auto;
 
   background-color: #0e395e;
-  color: #95caff;
+  color: #fff;
   padding: 1rem;
 
   p span {
@@ -23,4 +23,11 @@ export const LinkText = styled('a')`
   &:hover {
     filter: brightness(0.7);
   }
+`;
+
+export const Divider = styled(Box)`
+  height: 2px;
+  background-color: #145c85;
+  width: 100%;
+  margin: 3rem 0;
 `;

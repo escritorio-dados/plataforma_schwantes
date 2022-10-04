@@ -1,9 +1,10 @@
-import { Button, Dialog, Typography } from '@mui/material';
+import { Dialog, Typography } from '@mui/material';
 import { useCallback } from 'react';
 
 import { Loading } from '#shared/components/Loading';
 import { useToast } from '#shared/hooks/toast';
 import { useDelete } from '#shared/services/useAxios';
+import { CustomButtom } from '#shared/styles/common';
 import { IPublication } from '#shared/types/backend/IPublication';
 
 import { DeleteContainer } from './styles';
@@ -53,13 +54,19 @@ export function DeletePublicationModal({
 
           <Typography className="item">{publication.titulo}</Typography>
 
-          <Button className="delete" onClick={handleDelete} variant="contained" fullWidth>
+          <CustomButtom className="delete" onClick={handleDelete} variant="contained" fullWidth>
             Sim
-          </Button>
+          </CustomButtom>
 
-          <Button className="cancel" onClick={closeModal} variant="contained" fullWidth>
+          <CustomButtom
+            className="cancel"
+            onClick={closeModal}
+            variant="contained"
+            fullWidth
+            customColor="#0d3362"
+          >
             Não
-          </Button>
+          </CustomButtom>
         </DeleteContainer>
       </Dialog>
     </>

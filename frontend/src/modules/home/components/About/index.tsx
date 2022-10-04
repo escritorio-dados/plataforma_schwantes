@@ -12,7 +12,7 @@ import { AboutContainer, Divider, NavLink, OpenLink, Paragraph } from './styles'
 export function About() {
   return (
     <AboutContainer id="about">
-      <Typography sx={{ color: '#23A6F0', fontSize: 14, fontWeight: 'bold' }}>Sobre</Typography>
+      <Typography sx={{ color: '#DF5A35', fontSize: 14, fontWeight: 'bold' }}>Sobre</Typography>
 
       <Box sx={{ marginTop: '1rem' }}>
         <Grid container spacing={5}>
@@ -169,7 +169,7 @@ export function About() {
           </Grid>
 
           <Grid id="dados" item xs={12} md={6}>
-            <Typography sx={{ color: '#23A6F0', fontSize: 14, fontWeight: 'bold' }}>
+            <Typography sx={{ color: '#DF5A35', fontSize: 14, fontWeight: 'bold' }}>
               Estatística
             </Typography>
 

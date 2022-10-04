@@ -1,5 +1,4 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button } from '@mui/material';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +6,7 @@ import * as yup from 'yup';
 
 import { FormTextField } from '#shared/components/form/FormTextField';
 import { useAuth } from '#shared/hooks/auth';
+import { CustomButtom } from '#shared/styles/common';
 import { ContainerStyled } from '#shared/styles/container';
 
 import { AuthContainer } from './styles';
@@ -60,9 +60,9 @@ export function Auth() {
             errors={errors.password}
           />
 
-          <Button sx={{ marginTop: '1rem' }} fullWidth type="submit" variant="contained">
+          <CustomButtom sx={{ marginTop: '1rem' }} fullWidth type="submit" variant="contained">
             Entrar
-          </Button>
+          </CustomButtom>
         </form>
       </AuthContainer>
     </ContainerStyled>

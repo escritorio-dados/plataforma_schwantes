@@ -1,5 +1,4 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button } from '@mui/material';
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +7,7 @@ import { FormTextField } from '#shared/components/form/FormTextField';
 import { Loading } from '#shared/components/Loading';
 import { useToast } from '#shared/hooks/toast';
 import { usePatch } from '#shared/services/useAxios';
+import { CustomButtom } from '#shared/styles/common';
 import { ContainerStyled } from '#shared/styles/container';
 import { IChangePasswordInput, IUser } from '#shared/types/backend/IUser';
 import { removeEmptyFields } from '#shared/utils/removeEmptyFields';
@@ -93,13 +93,13 @@ export function ChangePassword() {
               errors={errors.confirmPassword}
             />
 
-            <Button fullWidth type="submit" variant="contained">
+            <CustomButtom fullWidth type="submit" variant="contained">
               Alterar a senha
-            </Button>
+            </CustomButtom>
 
-            <Button className="cancel" variant="contained" onClick={() => navigate('/')}>
+            <CustomButtom variant="contained" onClick={() => navigate('/')} customColor="#0d3362">
               Cancelar
-            </Button>
+            </CustomButtom>
           </form>
         </Container>
       </ContainerStyled>

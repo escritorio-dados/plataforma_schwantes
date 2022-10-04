@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { grey, red } from '@mui/material/colors';
 
 export const DeleteContainer = styled.div`
   padding: 1rem;
@@ -20,14 +19,6 @@ export const DeleteContainer = styled.div`
   > button {
     margin-top: 1rem;
     transition: filter 0.2s;
-
-    &.delete {
-      background-color: ${red[400]}
-    }
-
-    &.cancel {
-      background-color: ${grey[500]}
-    }
 
     &:hover {
       filter: brightness(0.9);

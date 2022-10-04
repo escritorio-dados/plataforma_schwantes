@@ -1,6 +1,14 @@
 import { Box, Paper, styled, TextField } from '@mui/material';
 import { Link } from 'react-router-dom';
 
+export const SearchDestaqueContainer = styled(Box)`
+  background: #0d3362;
+  padding: 5rem 0;
+
+  display: flex;
+  align-items: center;
+`;
+
 export const ImportantWorksContainer = styled(Box)`
   display: flex;
   align-items: center;
@@ -23,16 +31,14 @@ export const Work = styled(Paper)`
   height: 244px;
 
   border-radius: 5px;
-  /* box-shadow: 0px 0.519481px 0.519481px rgba(0, 0, 0, 0.5),
-    inset 0px 0.25974px 0px rgba(0, 0, 0, 0.5); */
 
   padding: 0.5rem 0.7rem;
   position: relative;
 
   > div.background {
     border-radius: 5px;
-    background-color: #b4aeae;
-    opacity: 0.3;
+    background-color: #0d3362;
+    opacity: 0.4;
 
     position: absolute;
     z-index: 0;
@@ -46,7 +52,6 @@ export const Work = styled(Paper)`
 export const WorkTags = styled(Box)`
   display: flex;
   align-items: center;
-  margin-bottom: 0.5rem;
 
   > p {
     z-index: 1;
@@ -56,72 +61,69 @@ export const WorkTags = styled(Box)`
     padding: 2px 5px;
     font-size: 0.75rem;
     color: #fff;
-
-    &.ano {
-      background-color: #23a6f0;
-    }
-
-    &.tipo {
-      background-color: #9f9e9e;
-    }
   }
 `;
 
 export const WorkDesc = styled(Box)`
   padding: 0.3rem;
-  position: relative;
-
-  > div.background {
-    background: #252d4b;
-    border-radius: 2px;
-    opacity: 0.6;
-
-    position: absolute;
-    z-index: 0;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
 
   > p {
     position: relative;
     z-index: 1;
     font-size: 0.75rem;
     color: #fff;
+    text-align: center;
   }
 `;
 
 export const WorkLink = styled(Link)`
-  z-index: 1;
+  border: 1px solid #fff;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
   text-decoration: none;
-  position: absolute;
-  bottom: 8px;
+  z-index: 2;
 
   font-weight: bold;
   font-size: 0.75rem;
   color: #fff;
-  border-bottom: 1px solid #00000000;
+
+  margin: 0.5rem 0;
 
   &:hover {
-    border-bottom: 1px solid #fff;
-    border-radius: 0 0 3px 3px;
+    background-color: #fff;
+    color: #0d3362;
   }
 `;
 
 export const SearchInput = styled(TextField)`
-  background-color: #23a6f0;
+  background-color: #fff;
+  color: #df5a35;
   border-radius: 10px;
 
   margin-top: 2rem;
 
   & label.Mui-focused {
-    color: #fff;
+    color: #df5a35;
+    background: #fff;
+    padding: 3px;
+    border-radius: 5px;
+  }
+
+  & label {
+    color: #df5a35;
   }
 
   & .MuiOutlinedInput-root {
     &.Mui-focused fieldset {
-      border-color: #fff;
+      border-radius: 10px;
+
+      border-color: #df5a35;
+    }
+
+    fieldset {
+      border-radius: 10px;
+
+      border-color: #df5a35;
     }
   }
 `;
@@ -142,6 +144,6 @@ export const NavLink = styled(Link)`
   transition: filter 0.2s;
 
   &:hover {
-    filter: brightness(0.7);
+    filter: brightness(0.9);
   }
 `;

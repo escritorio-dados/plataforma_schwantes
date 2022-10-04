@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { Paper } from '@mui/material';
-import { grey } from '@mui/material/colors';
 
 export const UserForm = styled(Paper)`
   max-width: 1200px;
@@ -19,16 +18,6 @@ export const UserForm = styled(Paper)`
     > button {
       width: 100%;
       margin-top: 1rem;
-
-      &.cancel {
-        background-color: ${grey[500]};
-
-        transition: filter 0.2s;
-
-        &:hover {
-          filter: brightness(0.9);
-        }
-      }
     }
   }
 `;

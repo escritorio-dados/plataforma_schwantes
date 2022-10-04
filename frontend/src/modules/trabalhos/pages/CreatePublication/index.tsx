@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +9,7 @@ import { FormTextField } from '#shared/components/form/FormTextField';
 import { Loading } from '#shared/components/Loading';
 import { useToast } from '#shared/hooks/toast';
 import { useGet, usePost } from '#shared/services/useAxios';
+import { CustomButtom } from '#shared/styles/common';
 import { ContainerStyled } from '#shared/styles/container';
 import {
   IPublication,
@@ -88,7 +89,7 @@ export function CreatePublication() {
     <>
       <Loading loading={loading} />
 
-      <ContainerStyled maxWidth="md">
+      <ContainerStyled maxWidth="md" sx={{ mt: '2rem' }}>
         <PublicationForm elevation={3}>
           <Typography component="h2">Cadastrar Publicação</Typography>
 
@@ -222,13 +223,13 @@ export function CreatePublication() {
               errors={errors.estado}
             />
 
-            <Button type="submit" variant="contained">
+            <CustomButtom type="submit" variant="contained" customColor="#df5a35">
               Cadastrar Publicação
-            </Button>
+            </CustomButtom>
 
-            <Button className="cancel" variant="contained" onClick={() => navigate(-1)}>
+            <CustomButtom variant="contained" onClick={() => navigate(-1)} customColor="#0d3362">
               Cancelar
-            </Button>
+            </CustomButtom>
           </form>
         </PublicationForm>
       </ContainerStyled>

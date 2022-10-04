@@ -2,7 +2,7 @@ import { Box, styled, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 export const AboutContainer = styled(Box)`
-  margin-top: 10rem;
+  margin-top: 7rem;
 `;
 
 export const Paragraph = styled(Typography)`
@@ -27,7 +27,7 @@ export const OpenLink = styled('a')`
 
   margin-top: 1.5rem;
 
-  color: #23a6f0;
+  color: #df5a35;
 
   transition: filter 0.2s;
 
@@ -49,7 +49,7 @@ export const NavLink = styled(Link)`
 
   margin-top: 1.5rem;
 
-  color: #23a6f0;
+  color: #df5a35;
 
   transition: filter 0.2s;
 

@@ -1,11 +1,12 @@
 import { ArrowBack } from '@mui/icons-material';
-import { Button, IconButton, Tooltip, Typography } from '@mui/material';
+import { IconButton, Tooltip, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { Loading } from '#shared/components/Loading';
 import { useToast } from '#shared/hooks/toast';
 import { useGet } from '#shared/services/useAxios';
+import { CustomButtom } from '#shared/styles/common';
 import { ContainerStyled } from '#shared/styles/container';
 import { IPublication } from '#shared/types/backend/IPublication';
 
@@ -53,13 +54,13 @@ export function InfoPublication() {
           </PublicationTags>
 
           <div className="link">
-            <Button
+            <CustomButtom
               variant="contained"
               onClick={() => window.open(publication.link, '_blank')}
               disabled={!publication.link}
             >
               Link para {publication.tipo_trabalho}
-            </Button>
+            </CustomButtom>
           </div>
         </header>
 

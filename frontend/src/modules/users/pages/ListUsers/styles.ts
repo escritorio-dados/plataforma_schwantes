@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { blue } from '@mui/material/colors';
 
 export const ListUsersContainer = styled.div`
   max-width: 1200px;
@@ -13,7 +12,7 @@ export const ListUsersContainer = styled.div`
 
     border-radius: 5px 5px 0 0;
 
-    background-color: ${blue[600]};
+    background-color: #df5a35;
 
     > h2 {
       color: #eee;

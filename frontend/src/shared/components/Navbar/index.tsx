@@ -3,6 +3,7 @@ import { Box, IconButton, Menu, MenuItem, Tooltip, Typography } from '@mui/mater
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import logo2 from '#static/logo_small.png';
 import logo from '#static/logo.svg';
 
 import { useAuth } from '#shared/hooks/auth';
@@ -21,7 +22,13 @@ export function Navbar() {
 
   return (
     <TopBar>
-      <Logo src={logo} alt="logo" />
+      <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center' }}>
+        <Logo src={logo} alt="logo" />
+      </Box>
+
+      <Box sx={{ display: { xs: 'flex', sm: 'none' }, alignItems: 'center' }}>
+        <img src={logo2} alt="logo" />
+      </Box>
 
       {/* Telas Menores que 900px */}
       <Box sx={{ display: { xs: 'flex', md: 'none' }, marginLeft: 'auto', alignItems: 'center' }}>
@@ -149,14 +156,16 @@ export function Navbar() {
 
         <NavLink to="/#dados">Dados do Acervo</NavLink>
 
-        <NavLink to="/#expediente">Expediente</NavLink>
+        <NavLink to="/#expediente" sx={{ mr: '1rem' }}>
+          Expediente
+        </NavLink>
 
         <Box sx={{ marginLeft: 'auto' }}>
           {logged ? (
             <>
               <Tooltip title="Abrir Menu">
                 <IconButton onClick={(e) => setAnchorUser(e.currentTarget)} sx={{ p: '1px' }}>
-                  <AccountCircle fontSize="large" sx={{ color: '#252d4f' }} />
+                  <AccountCircle fontSize="large" sx={{ color: '#fff' }} />
                 </IconButton>
               </Tooltip>
 

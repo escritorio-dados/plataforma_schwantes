@@ -35,7 +35,7 @@ export function Expediente() {
           </Box>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Typography sx={{ color: '#23A6F0', fontSize: 14, fontWeight: 'bold' }}>
+          <Typography sx={{ color: '#df5a35', fontSize: 14, fontWeight: 'bold' }}>
             Expediente
           </Typography>
 

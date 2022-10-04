@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Dialog, Typography } from '@mui/material';
+import { Dialog, Typography } from '@mui/material';
 import { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -7,6 +7,7 @@ import { FormTextField } from '#shared/components/form/FormTextField';
 import { Loading } from '#shared/components/Loading';
 import { useToast } from '#shared/hooks/toast';
 import { useGet, usePut } from '#shared/services/useAxios';
+import { CustomButtom } from '#shared/styles/common';
 import { IUser, IUpdateUserInput } from '#shared/types/backend/IUser';
 import { removeEmptyFields } from '#shared/utils/removeEmptyFields';
 
@@ -118,13 +119,13 @@ export function UpdateUserModal({
             helperText="Só Preecher se quiser mudar a senha"
           />
 
-          <Button type="submit" variant="contained">
+          <CustomButtom type="submit" variant="contained">
             Salvar Alterações
-          </Button>
+          </CustomButtom>
 
-          <Button className="cancel" variant="contained" onClick={() => closeModal()}>
+          <CustomButtom variant="contained" onClick={() => closeModal()} customColor="#0d3362">
             Cancelar
-          </Button>
+          </CustomButtom>
         </form>
       </UserForm>
     </Dialog>

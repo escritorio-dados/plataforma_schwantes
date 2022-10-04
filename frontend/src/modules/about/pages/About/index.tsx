@@ -7,14 +7,22 @@ import { Divider, LinkText, Paragraph } from './styles';
 export function About() {
   return (
     <ContainerStyled maxWidth="lg">
-      <Divider />
+      <Divider sx={{ mt: '3rem' }} />
 
-      <Typography sx={{ color: '#737373', fontWeight: 'bold', marginTop: '2rem' }}>
+      <Typography
+        sx={{ color: '#df5a35', fontWeight: 'bold', marginTop: '1rem', fontSize: '30px' }}
+      >
         Sobre
       </Typography>
 
       <Typography
-        sx={{ color: '#737373', fontWeight: 'bold', marginTop: '2rem', marginBottom: '2rem' }}
+        sx={{
+          color: '#737373',
+          fontWeight: 'bold',
+          marginTop: '2rem',
+          marginBottom: '1rem',
+          fontSize: '30px',
+        }}
       >
         O que é a Plataforma Schwantes e por que o adventismo como objeto de pesquisa
       </Typography>
@@ -73,7 +81,13 @@ export function About() {
       </Paragraph>
 
       <Typography
-        sx={{ color: '#737373', fontWeight: 'bold', marginTop: '2rem', marginBottom: '2rem' }}
+        sx={{
+          color: '#737373',
+          fontWeight: 'bold',
+          marginTop: '2rem',
+          marginBottom: '1rem',
+          fontSize: '30px',
+        }}
       >
         Como foi criada a Plataforma Schwantes
       </Typography>
@@ -154,7 +168,13 @@ export function About() {
       </Paragraph>
 
       <Typography
-        sx={{ color: '#737373', fontWeight: 'bold', marginTop: '2rem', marginBottom: '2rem' }}
+        sx={{
+          color: '#737373',
+          fontWeight: 'bold',
+          marginTop: '2rem',
+          marginBottom: '1rem',
+          fontSize: '30px',
+        }}
       >
         A metodologia por trás da Plataforma Schwantes
       </Typography>
@@ -228,7 +248,13 @@ export function About() {
       </Paragraph>
 
       <Typography
-        sx={{ color: '#737373', fontWeight: 'bold', marginTop: '2rem', marginBottom: '1rem' }}
+        sx={{
+          color: '#737373',
+          fontWeight: 'bold',
+          marginTop: '2rem',
+          marginBottom: '1rem',
+          fontSize: '20px',
+        }}
       >
         Referências
       </Typography>
@@ -259,7 +285,13 @@ export function About() {
       </Paragraph>
 
       <Typography
-        sx={{ color: '#737373', fontWeight: 'bold', marginTop: '2rem', marginBottom: '1rem' }}
+        sx={{
+          color: '#737373',
+          fontWeight: 'bold',
+          marginTop: '2rem',
+          marginBottom: '1rem',
+          fontSize: '20px',
+        }}
       >
         Notas
       </Typography>
