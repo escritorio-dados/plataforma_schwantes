@@ -49,7 +49,7 @@ services:
   #     - webserver_schwantes
   #   networks:
   #     - schwantes
-  #   command: certonly --webroot --webroot-path=/var/www/html --email thiago.mendes@ucb.org.br --agree-tos --no-eff-email --force-renewal -d plataformaschwantes.org -d api.plataformaschwantes.org -d elastic.plataformaschwantes.org -d dados.plataformaschwantes.org
+  #   command: certonly --webroot --webroot-path=/var/www/html --email thiago.mendes@ucb.org.br --agree-tos --no-eff-email --force-renewal -d plataformaschwantes.org -d api.plataformaschwantes.org -d elastic.plataformaschwantes.org -d dados.plataformaschwantes.org -d plataformaschwantes.unasp.br
 
 volumes:
   nginx_web_root_schwantes:
