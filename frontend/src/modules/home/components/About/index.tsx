@@ -192,7 +192,7 @@ export function About() {
             </Paragraph>
 
             <OpenLink
-              href="https://dados.plataformaschwantes.org/s/public_reports/app/dashboards#/view/e4a73500-f3bb-11ec-8dc6-f1dfbc855017"
+              href="https://dados.plataformaschwantes.org/app/dashboards#/view/e4a73500-f3bb-11ec-8dc6-f1dfbc855017"
               target="_blank"
               rel="noreferrer"
             >
