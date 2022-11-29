@@ -256,8 +256,8 @@ export function SearchDestaque() {
               </Typography>
 
               <Typography fontSize="0.75rem" sx={{ marginTop: '1rem', textAlign: 'justify' }}>
-                Plataforma de teses e dissertações na academia braisleira que têm o Adventismo como
-                objeto de pesquisa
+                Plataforma de teses e dissertações na academia brasileira que apresentam o
+                Adventismo como objeto de pesquisa
               </Typography>
 
               <SearchInput
