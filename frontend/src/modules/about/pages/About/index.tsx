@@ -29,7 +29,8 @@ export function About() {
 
       <Paragraph>
         A confissão adventista do sétimo dia está presente no Brasil há mais de 150 anos, possuindo
-        cerca de 1.487.429 de adeptos no país de acordo com o último Censo do IBGE <b>[1]</b>.
+        cerca de 1.487.429 de adeptos no país de acordo com o último Censo do IBGE (FERREIRA &
+        PEREIRA, 2017).
       </Paragraph>
 
       <Paragraph>
@@ -70,8 +71,8 @@ export function About() {
         Diante disso, com esta base de indexação espera-se contribuir com a sistematização,
         organização e análise da produção de conhecimento relacionado à tradição adventista, cujo
         resultado seja a construção de um estado da arte do adventismo na academia brasileira, bem
-        como a consolidação do campo de “estudos do adventismo” (em inglês, “Adventist Studies”){' '}
-        <b>[2]</b>.
+        como a consolidação do campo de “estudos do adventismo” (em inglês, “Adventist Studies”)
+        (PATRICK, 2009).
       </Paragraph>
 
       <Paragraph>
@@ -260,6 +261,34 @@ export function About() {
       </Typography>
 
       <Paragraph>
+        FERREIRA, B. S. G.; PEREIRA, L. H.{' '}
+        <b>Questões Metodológicas sobre o adventismo nos dados de religião do censo 2010. </b> In:
+        Rodrigo Follis; Allan Novaes; Marcelo Dias. (Org.). Sociologia e Adventismo: Desafios
+        brasileiros para a missão. 1ed.Engenheiro Coelho: UNASPRESS, 2015 , p. 102-107.
+      </Paragraph>
+
+      <Paragraph>
+        GUBERT, Leonardo.{' '}
+        <b>Panorama dos trabalhos acadêmicos de stricto sensu sobre o adventismo de 1972-2015.</b>{' '}
+        Engenheiro Coelho - UNASP, 2017.
+      </Paragraph>
+
+      <Paragraph>
+        NOVAES, A.; FOLLIS, R. (orgs.).{' '}
+        <b>O adventismo na academia brasileira: um panorama do estado da arte.</b> Engenheiro
+        Coelho: UNASPRESS, 2016.
+      </Paragraph>
+
+      <Paragraph>
+        PATRICK, Arthur.{' '}
+        <b>
+          A brief, annotated introduction to the field of Adventist studies for higher degree
+          students.{' '}
+        </b>{' '}
+        Cooranbong: Avondale University, 2009.
+      </Paragraph>
+
+      <Paragraph>
         RIOS, F. P. <b>Critérios para indexação de periódicos científicos.</b> Ciência Aberta: visão
         e contribuição, p. 49, 2017.
       </Paragraph>
@@ -270,36 +299,6 @@ export function About() {
           O papel dos repositórios institucionais e temáticos na estrutura da produção científica.
         </b>{' '}
         Em Questão, v. 12, n. 1, p. 51-71, 2006.
-      </Paragraph>
-
-      <Paragraph>
-        NOVAES, A.; FOLLIS, R. (orgs.).{' '}
-        <b>O adventismo na academia brasileira: um panorama do estado da arte.</b> Engenheiro
-        Coelho: UNASPRESS, 2016.
-      </Paragraph>
-
-      <Paragraph>
-        GUBERT, Leonardo.{' '}
-        <b>Panorama dos trabalhos acadêmicos de stricto sensu sobre o adventismo de 1972-2015.</b>{' '}
-        Engenheiro Coelho - UNASP, 2017.
-      </Paragraph>
-
-      <Typography
-        sx={{
-          color: '#737373',
-          fontWeight: 'bold',
-          marginTop: '2rem',
-          marginBottom: '1rem',
-          fontSize: '20px',
-        }}
-      >
-        Notas
-      </Typography>
-
-      <Paragraph>
-        <b>[1]</b> Referência Sociologia e Adventismo <br />
-        <b>[2]</b> PATRICK, Arthur. A brief, annotated introduction to the field of Adventist
-        studies for higher degree students. Cooranbong: Avondale University, 2009.
       </Paragraph>
     </ContainerStyled>
   );

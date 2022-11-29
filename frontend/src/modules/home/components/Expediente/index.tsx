@@ -36,20 +36,27 @@ export function Expediente() {
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography sx={{ color: '#df5a35', fontSize: 14, fontWeight: 'bold' }}>
-            Expediente
+            Criação
           </Typography>
 
-          <Typography sx={{ marginTop: '1rem', color: '#737373', lineHeight: 1.8 }}>
-            <b>Coordenação Geral</b>: Dr. Allan Novaes
-            <br />
-            <b>Coordenação técnica</b>: Esp. Bruno Ferreira
-            <br />
-            <b>Análise e Pesquisa</b>: Dr. Allan Novaes, Dr. Rodrigo Follis, Dra. Paula Caroline
-            Passos , Jamphier Geyser Carhuatanta Gomez.
-            <br />
-            <b>Desenvolvimento técnico e suporte</b>: Thiago Ferreira
-            <br />
-            <b>Design das Telas</b>: Bruna Short
+          <Typography sx={{ mt: '1rem', color: '#737373', lineHeight: 1.8 }}>
+            Dr. Allan Novaes e Esp. Bruno Ferreira
+          </Typography>
+
+          <Typography sx={{ color: '#df5a35', fontSize: 14, fontWeight: 'bold', mt: '1rem' }}>
+            Desenvolvimento
+          </Typography>
+
+          <Typography sx={{ mt: '1rem', color: '#737373', lineHeight: 1.8 }}>
+            Dr. Rodrigo Follis, Bruna Short, Jamphier Geyser Carhuatanta Gomez, Thiago Ferreira
+          </Typography>
+
+          <Typography sx={{ color: '#df5a35', fontSize: 14, fontWeight: 'bold', mt: '1rem' }}>
+            Suporte
+          </Typography>
+
+          <Typography sx={{ mt: '1rem', color: '#737373', lineHeight: 1.8 }}>
+            Escritório de Apoio ao Pesquisador
           </Typography>
         </Grid>
       </Grid>

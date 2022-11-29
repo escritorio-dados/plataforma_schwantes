@@ -65,7 +65,7 @@ export function Footer() {
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <Box>
-              <Typography sx={{ color: '#fc714c', fontSize: 13 }}>Criadores:</Typography>
+              <Typography sx={{ color: '#fc714c', fontSize: 13 }}>Realização:</Typography>
 
               <Box sx={{ padding: '0.5rem 0' }}>
                 <Grid container spacing={2} sx={{ alignItems: 'center' }}>
